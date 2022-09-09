@@ -1,7 +1,7 @@
 <?php
 require_once('includes/load.php');
 
-$page_title = 'Todos os Equipamentos';
+$page_title = 'Todos os Itens';
 // Checkin What level user has permission to view this page
 page_require_level(1);
 
@@ -17,7 +17,7 @@ $equipments = find_all_equipment();
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Todos os Equipamentos</span>
+          <span>Todos os Itens</span>
         </strong>
         <div class="pull-right">
           <a href="adicionar_equipamento.php" class="btn btn-primary">Adicionar Novo</a>
@@ -28,17 +28,17 @@ $equipments = find_all_equipment();
           <thead>
             <tr>
               <th class="text-center">#</th>                
-              <th class="text-center"> Tombo</th>
+              <th class="text-center">Nº Tombo</th>
               <th class="text-center"> Especificações </th>
-              <th class="text-center"> Tipo de Equipamento </th>
-              <th class="text-center none"> Fabricante </th>
-              <th class="text-center none"> Situação </th>
-              <th class="text-center none"> Observação </th>
-              <th class="text-center none"> Término da Garantia </th>
-              <th class="text-center none"> Criado por </th>
-              <th class="text-center none"> Criado em </th>
-              <th class="text-center none"> Atualizado por </th>
-              <th class="text-center none"> Atualizado em </th>
+              <th class="text-center"> Tipo </th>
+              <th class="text-center none"> Fabricante: </th>
+              <th class="text-center none"> Situação: </th>
+              <th class="text-center none"> Observação: </th>
+              <th class="text-center none"> Término da Garantia: </th>
+              <th class="text-center none"> Criado por: </th>
+              <th class="text-center none"> Criado em: </th>
+              <th class="text-center none"> Atualizado por: </th>
+              <th class="text-center none"> Atualizado em: </th>
               <th class="text-center"> Ações </th>
             </tr>
           </thead>

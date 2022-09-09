@@ -8,11 +8,11 @@
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-th-large"></i>
-      <span>Equipamentos</span>
+      <span>Itens</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="equipamentos.php">Gerenciar equipamentos</a> </li>
-      <li><a href="tipos_equipamento.php">Tipos de Equipamento</a> </li>
+      <li><a href="equipamentos.php">Gerenciar Itens</a> </li>
+      <li><a href="tipos_equipamento.php">Tipos de Itens</a> </li>
     </ul>
   </li>
   <li>
