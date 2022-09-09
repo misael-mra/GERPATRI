@@ -309,6 +309,7 @@ input.input100 {
   width: 100%;
   height: 60px;
   background-color: #4272d7;
+  border-radius: 15px;
 
   font-size: 14px;
   color: #fff;

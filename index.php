@@ -29,7 +29,9 @@ if($session->isUserLoggedIn(true)) { redirect('dashboard.php', false);}
 						<img  width="70" src="assets/img/favicon.png" alt="Inventário">
 					</div>
 					<span class="login100-form-title p-b-65">
-						Acervo Patrimonial NTI - HGWA
+					GerPatri
+					<br>
+					<p style="font-size:20px"> Controle Patrimonial </p>
 					</span>
 
 					<?= display_msg($msg); ?>

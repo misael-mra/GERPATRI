@@ -47,7 +47,7 @@ $recent_transfers    = find_recent_transfer_added('5');
       </div>
       <div class="panel-value pull-right">
         <h2 class="margin-top"> <?= $c_equipment['total']; ?> </h2>
-        <p class="text-muted">Equipamentos</p>
+        <p class="text-muted">Itens Cadastrados</p>
       </div>
     </div>
   </div>
@@ -58,7 +58,7 @@ $recent_transfers    = find_recent_transfer_added('5');
       </div>
       <div class="panel-value pull-right">
         <h2 class="margin-top"> <?= $c_transfer['total']; ?> </h2>
-        <p class="text-muted">Transferências</p>
+        <p class="text-muted">Transferências Pendentes</p>
       </div>
     </div>
   </div>
@@ -106,15 +106,15 @@ $recent_transfers    = find_recent_transfer_added('5');
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Equipamentos adicionados recentemente</span>
+          <span>Itens adicionados recentemente</span>
         </strong>
       </div>
       <div class="panel-body">
         <table class="table table-striped table-bordered table-condensed">
           <thead>
             <tr>
-              <th>Tombo</th>
-              <th>Especificações</th>
+              <th>Nº Tombo</th>
+              <th>Item</th>
             </tr>
           </thead>
           <tbody>
@@ -135,16 +135,16 @@ $recent_transfers    = find_recent_transfer_added('5');
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Transferências feitas recentemente</span>
+          <span>Transferências pendentes de análise</span>
         </strong>
       </div>
       <div class="panel-body">
         <table class="table table-striped table-bordered table-condensed">
           <thead>
             <tr>
-              <th>Tombo</th>
-              <th>Tipo de equipamento</th>
-              <th>Usuário Responsável</th>
+              <th>N º Tombo</th>
+              <th>Item</th>
+              <th>Responsável</th>
             </tr>
           </thead>
           <tbody>
