@@ -83,14 +83,14 @@ if(isset($_POST['add_equipment'])){
 										<span class="input-group-addon">
 											<i class="glyphicon glyphicon-th-large"></i>
 										</span>
-										<input type="number" class="form-control" name="equipment-tombo" placeholder="Número Tombo" required autocomplete="off">
+										<input type="number" class="form-control" name="equipment-tombo" placeholder="Nº Tombo*" required autocomplete="off">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-3">
 											<select class="form-control" name="equipment-type_equip" required>
-												<option value="">Selecione o Tipo de Equipamento</option>
+												<option value="">Selecione o Item*</option>
 												<?php  foreach ($all_types_equip as $t_equip): ?>
 												<option value="<?= (int)$t_equip['id'] ?>">
 												<?= $t_equip['name'] ?></option>
@@ -99,7 +99,7 @@ if(isset($_POST['add_equipment'])){
 										</div>						
 										<div class="col-md-3">
 											<select class="form-control" name="equipment-manufacturer" required>
-												<option value="">Selecione o Fabricante</option>
+												<option value="">Selecione o Fabricante*</option>
 												<?php  foreach ($all_manufacturer as $man): ?>
 												<option value="<?= (int)$man['id'] ?>">
 												<?= $man['name'] ?></option>
@@ -108,7 +108,7 @@ if(isset($_POST['add_equipment'])){
 										</div>
 										<div class="col-md-3">
 											<select class="form-control" name="equipment-situation" required>
-												<option value="">Selecione a Situação</option>
+												<option value="">Selecione a Situação*</option>
 												<?php  foreach ($all_situation as $sit): ?>
 												<option value="<?= (int)$sit['id'] ?>">
 												<?= $sit['name'] ?></option>
@@ -121,25 +121,25 @@ if(isset($_POST['add_equipment'])){
 								<div class="col-md-2">
 									<div class="input-group">
 										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-tags"></i>
+											<i class="glyphicon glyphicon-info-sign"></i>
 										</span>
-										<input type="text" class="form-control" name="equipment-model" placeholder="Modelo">
+										<input type="text" class="form-control" name="equipment-model" placeholder="Modelo" autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="input-group">
 										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-tags"></i>
+											<i class="glyphicon glyphicon-info-sign"></i>
 										</span>
-										<input type="text" class="form-control" name="equipment-number_serial" placeholder="Número de Série">
+										<input type="text" class="form-control" name="equipment-number_serial" placeholder="Número de Série" autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="input-group">
 										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-tags"></i>
+											<i class="glyphicon glyphicon-info-sign"></i>
 										</span>
-										<input type="text" class="form-control" name="equipment-specifications" placeholder="Especificações do Equipamento" required>
+										<input type="text" class="form-control" name="equipment-specifications" placeholder="Especificações" autocomplete="off">
 									</div>
 								</div>
 							</div>
@@ -149,9 +149,9 @@ if(isset($_POST['add_equipment'])){
 								<div class="col-md-12">
 									<div class= "input-group">
 										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-bookmark"></i>
+											<i class="glyphicon glyphicon-paperclip"></i>
 										</span>
-										<input type="text" class="form-control" name="equipment-obs" placeholder="Observações sobre o Equipamento">
+										<input type="text" class="form-control" name="equipment-obs" placeholder="Observações (Caso não tenha deixar em branco)" autocomplete="off">
 									</div>
 								</div>
 							</div> 

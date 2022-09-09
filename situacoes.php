@@ -62,7 +62,7 @@ if(isset($_POST['add_situation'])){
           <span>Todas as situações</span>
         </strong>
       </div>
-      <div class="panel-body">
+      <div class="panel-body" id="panel-body-list">
         <table class="table table-bordered table-striped table-hover">
           <thead>
             <tr>

@@ -64,6 +64,11 @@ a {
   padding: 15px;
 }
 
+#panel-body-list{
+overflow-y: auto;
+height: 80vh;
+}
+
 .panel-box {
   width: 100%;
   height: 100%;
@@ -118,6 +123,7 @@ a {
 }
 
 header>.logo {
+  font-size: 26px;
   color: #fff;
   text-align: center;
   font-weight: 700;
