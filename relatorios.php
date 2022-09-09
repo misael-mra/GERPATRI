@@ -1,7 +1,7 @@
 <?php
 require_once('includes/load.php');
 
-$page_title = 'Relatório de Equipamentos';
+$page_title = 'Relatórios';
 // Checkin What level user has permission to view this page
 page_require_level(2);
 
@@ -83,7 +83,7 @@ endif;
               </div>
               <div class="col-md-4">
                 <select class="form-control" name="equipment-type_equip">
-                  <option value="">Tipo de Equipamento</option>
+                  <option value="">Tipo</option>
                   <?php  foreach ($all_types_equip as $t_equip): ?>
                    <option value="<?= (int)$t_equip['id'] ?>">
                   <?= $t_equip['name'] ?></option>
@@ -91,7 +91,7 @@ endif;
                 </select>
               </div>
               <div class="col-md-4">
-                <select id="sector" class="form-control" name="equipment-sector">
+                <select id="sector" class="form-control" name="equipment-sector" style="/* display: none; */">
                   <option value="">Setor</option>
                   <?php  foreach ($all_sector as $sector): ?>
                   <option value="<?= (int)$sector['id'] ?>">

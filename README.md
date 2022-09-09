@@ -22,4 +22,10 @@
 
    ### 09/09/2022 ###
 
-   Foi realizada algumas alterações no Dasboard e banco de dados, mudança de nomes e categorias do dashboard.
+   Foi realizada algumas alterações no Dasboard e banco de dados, mudança de nomes e categorias do dashboard. alterações na página de itens, troca do nome equipamentos para 'Itens' em todo front da página 'Equipamentos'. 
+
+   * Pendências
+   Realizar a troca do nome no banco de dados da tabela equipamentos e das paginas .php
+
+   ### 10/09/2022 ###
+
