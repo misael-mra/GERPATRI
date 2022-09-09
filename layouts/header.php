@@ -25,7 +25,7 @@ $scripts = null;
   <body>
   <?php if ($session->isUserLoggedIn(true)): ?>
     <header id="header">
-      <div class="logo pull-left"> Acervo Patrimonial </div>
+      <div class="logo pull-left"> GerPatri </div>
       <div class="header-content">
       <div class="header-date pull-left">
         <strong><?= strftime('%H:%M,  %d de %B de %Y', strtotime(make_date()));?></strong>
@@ -62,7 +62,7 @@ $scripts = null;
       <?php include_once('admin_menu.php');?>
 
       <?php elseif($user['user_level'] === '2'): ?>
-        <!-- Special user -->
+        <!-- user -->
       <?php include_once('operator_menu.php');?>      
 
       <?php endif;?>

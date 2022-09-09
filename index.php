@@ -7,7 +7,7 @@ if($session->isUserLoggedIn(true)) { redirect('dashboard.php', false);}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>Inventário</title>
+	<title>GerPatri</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="assets/img/favicon.png">
