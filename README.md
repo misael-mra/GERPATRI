@@ -18,3 +18,8 @@
    ---------------------| ---------------------
    **Username** : admin | **Username** : user | 
    **Password** : admin | **Password** : user |
+
+
+   ### 09/09/2022 ###
+
+   Foi realizada algumas alterações no Dasboard e banco de dados, mudança de nomes e categorias do dashboard.
