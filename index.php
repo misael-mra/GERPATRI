@@ -26,12 +26,9 @@ if($session->isUserLoggedIn(true)) { redirect('dashboard.php', false);}
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-65">				
 				<form method="post" action="auth.php" class="login100-form">
 					<div class="text-center">
-						<img  width="70" src="assets/img/favicon.png" alt="Inventário">
+						<img  style="width: 100%; max-width: 500px;" src="assets/img/gerpatri-logo.png" alt="Inventário">
 					</div>
-					<span class="login100-form-title p-b-65">
-					GerPatri
-					<br>
-					<p style="font-size:20px"> Controle Patrimonial </p>
+					<p style="font-size:14px" class="text-center"> Seja bem vindo! </p><br>
 					</span>
 
 					<?= display_msg($msg); ?>

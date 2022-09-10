@@ -2,7 +2,7 @@
 require_once('includes/load.php');
 
 $page_title = 'Todos os tipos de itens';
-// Checkin What level user has permission to view this page
+// Verifica se o usuário tem permissão para visualizar essa página
 page_require_level(1);
 
 $all_types_equip = find_all('types_equips');
