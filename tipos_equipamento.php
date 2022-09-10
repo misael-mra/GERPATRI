@@ -40,15 +40,15 @@ if(isset($_POST['types_equip'])){
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Adicionar novo tipo de equipamento</span>
+          <span>Adicionar novo tipo de Item</span>
         </strong>
       </div>
       <div class="panel-body">
         <form method="post" action="tipos_equipamento.php">
           <div class="form-group">
-            <input type="text" class="form-control" name="tipos_equipamento-name" placeholder="Nome do tipo de equipamento" required autocomplete="off">
+            <input type="text" class="form-control" name="tipos_equipamento-name" placeholder="Nome do tipo de item" required autocomplete="off">
           </div>
-          <button type="submit" name="types_equip" class="btn btn-primary">Novo tipo de equipamento</button>
+          <button type="submit" name="types_equip" class="btn btn-primary">Adicionar Novo</button>
         </form>
       </div>
     </div>
@@ -58,15 +58,15 @@ if(isset($_POST['types_equip'])){
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Todos os tipos de equipamento</span>
+          <span>Todos os tipos de Itens</span>
         </strong>
       </div>
-      <div class="panel-body">
+      <div class="panel-body" id="panel-body-list">
         <table class="table table-bordered table-striped table-hover">
           <thead>
             <tr>
-              <th class="text-center" style="width: 50px;">#</th>
-              <th>Tipos de equipamento</th>
+              <th class="text-center" style="width: 60px;">#</th>
+              <th>Todos os Itens</th>
               <th class="text-center" style="width: 100px;">Ações</th>
             </tr>
           </thead>
@@ -78,11 +78,11 @@ if(isset($_POST['types_equip'])){
                 <td class="text-center">
                   <div class="btn-group">
                     <a href="editar_tipos_equipamento.php?id=<?= (int)$t_equip['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
-                      <span class="glyphicon glyphicon-edit"></span>
+                      <span class="glyphicon glyphicon-edit" style="width: 22px;"></span>
                     </a>
 
                     <button title="Remover" type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#launchModal-<?= (int)$t_equip['id'];?>">
-                      <i class="glyphicon glyphicon-remove"></i>
+                      <i class="glyphicon glyphicon-remove" style="width: 22px;"></i>
                     </button>
                     <?php $action="deletar_tipos_equipamento.php"; $id=(int)$t_equip['id']; include('layouts/modal-confirmacao.php'); ?>
                   </div>

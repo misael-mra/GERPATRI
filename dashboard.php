@@ -43,7 +43,7 @@ $recent_transfers    = find_recent_transfer_added('5');
   <div class="col-md-3">
     <div class="panel panel-box clearfix">
       <div class="panel-icon pull-left bg-red">
-        <i class="glyphicon glyphicon-th-large"></i>
+        <i class="glyphicon glyphicon-edit"></i>
       </div>
       <div class="panel-value pull-right">
         <h2 class="margin-top"> <?= $c_equipment['total']; ?> </h2>
@@ -54,7 +54,7 @@ $recent_transfers    = find_recent_transfer_added('5');
   <div class="col-md-3">
     <div class="panel panel-box clearfix">
       <div class="panel-icon pull-left bg-blue">
-        <i class="glyphicon glyphicon-random"></i>
+        <i class="glyphicon glyphicon-transfer"></i>
       </div>
       <div class="panel-value pull-right">
         <h2 class="margin-top"> <?= $c_transfer['total']; ?> </h2>
@@ -65,7 +65,7 @@ $recent_transfers    = find_recent_transfer_added('5');
   <div class="col-md-3">
     <div class="panel panel-box clearfix">
       <div class="panel-icon pull-left bg-yellow">
-        <i class="glyphicon glyphicon-object-align-vertical"></i>
+        <i class="glyphicon glyphicon-map-marker"></i>
       </div>
       <div class="panel-value pull-right">
         <h2 class="margin-top"> <?= $c_sector['total']; ?></h2>

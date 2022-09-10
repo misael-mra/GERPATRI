@@ -65,8 +65,9 @@ a {
 }
 
 #panel-body-list{
-overflow-y: auto;
-height: 80vh;
+overflow-y: scroll;
+max-height: 80vh;
+font-size: 12px;
 }
 
 .panel-box {

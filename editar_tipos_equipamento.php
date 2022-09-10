@@ -1,14 +1,14 @@
 <?php
 require_once('includes/load.php');
 
-$page_title = 'Editar tipo de equipamento';
+$page_title = 'Editar tipo de Item';
 // Checkin What level user has permission to view this page
 page_require_level(1);
 
 //Display all types equipment.
 $type_equip = find_by_id('types_equips',(int)$_GET['id']);
 if(!$type_equip){
-  $session->msg("d","Tipo de equipamento não encontrado!");
+  $session->msg("d","Tipo de item não encontrado!");
   redirect('tipos_equipamento.php');
 }
 
@@ -21,10 +21,10 @@ if(isset($_POST['edit_type_equip'])){
     $sql .= " WHERE id='{$type_equip['id']}'";
     $result = $db->query($sql);
     if($result && $db->affected_rows() === 1) {
-      $session->msg("s", "Tipo de equipamento alterado com sucesso");
+      $session->msg("s", "Tipo de item alterado com sucesso");
       redirect('tipos_equipamento.php',false);
     } else {
-      $session->msg("d", "Desculpe, falha ao alterar o tipo de equipamento.");
+      $session->msg("d", "Desculpe, falha ao alterar o tipo de item.");
       redirect('tipos_equipamento.php',false);
     }
   } else {
@@ -43,7 +43,7 @@ if(isset($_POST['edit_type_equip'])){
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-          <span class="glyphicon glyphicon-th"></span>
+          <span class="glyphicon glyphicon-edit"></span>
           <span>Editando <?= remove_junk(ucfirst($type_equip['name']));?></span>
         </strong>
       </div>
@@ -52,7 +52,7 @@ if(isset($_POST['edit_type_equip'])){
           <div class="form-group">
             <input type="text" class="form-control" name="type_equip-name" required autocomplete="off" value="<?= remove_junk(ucfirst($type_equip['name']));?>">
           </div>
-          <button type="submit" name="edit_type_equip" class="btn btn-primary">Atualizar tipo de equipamento</button>
+          <button type="submit" name="edit_type_equip" class="btn btn-primary">Atualizar Item</button>
         </form>
       </div>
     </div>

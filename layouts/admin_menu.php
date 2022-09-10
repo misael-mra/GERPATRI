@@ -11,8 +11,8 @@
       <span>Itens</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="equipamentos.php">Gerenciar Itens</a> </li>
-      <li><a href="tipos_equipamento.php">Tipos de Itens</a> </li>
+      <li><a href="equipamentos.php">Gerenciar e Cadastrar</a> </li>
+      <li><a href="tipos_equipamento.php">Editar e Cadastrar Tipos</a> </li>
     </ul>
   </li>
   <li>
