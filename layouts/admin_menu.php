@@ -23,7 +23,7 @@
   </li>
   <li>
     <a href="setores.php" >
-      <i class="glyphicon glyphicon-indent-left"></i>
+      <i class="glyphicon glyphicon-map-marker"></i>
       <span>Setores</span>
     </a>
   </li>
@@ -35,7 +35,7 @@
   </li>  
   <li>
     <a href="#" class="submenu-toggle">
-      <i class="glyphicon glyphicon-random"></i>
+      <i class="glyphicon glyphicon-transfer"></i>
       <span>Transferências</span>
     </a>
     <ul class="nav submenu">

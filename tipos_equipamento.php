@@ -1,7 +1,7 @@
 <?php
 require_once('includes/load.php');
 
-$page_title = 'Todos os tipos de equipamento';
+$page_title = 'Todos os tipos de itens';
 // Checkin What level user has permission to view this page
 page_require_level(1);
 
@@ -15,10 +15,10 @@ if(isset($_POST['types_equip'])){
     $sql  = "INSERT INTO types_equips (name)";
     $sql .= " VALUES ('{$type_equip_name}')";
     if($db->query($sql)){
-      $session->msg("s", "Tipos de equipamento adicionado com sucesso!");
+      $session->msg("s", "Tipos de item adicionado com sucesso!");
       redirect('tipos_equipamento.php',false);
     } else {
-      $session->msg("d", "Desculpe, falha ao cadastrar o tipo de equipamento.");
+      $session->msg("d", "Desculpe, falha ao cadastrar o tipo de item.");
       redirect('tipos_equipamento.php',false);
     }
   } else {

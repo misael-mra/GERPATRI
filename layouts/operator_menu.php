@@ -7,7 +7,7 @@
   </li>  
   <li>
     <a href="#" class="submenu-toggle">
-      <i class="glyphicon glyphicon-random"></i>
+      <i class="glyphicon glyphicon-transfer"></i>
       <span>Transferências</span>
     </a>
     <ul class="nav submenu">
