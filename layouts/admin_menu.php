@@ -42,7 +42,7 @@
     </a>
     <ul class="nav submenu">
       <li><a href="adicionar_transferencia.php">Realizar Transferência</a> </li> <!-- implementar função -->
-      <li><a href="adicionar_transferencia.php">Realizar Baixa</a> </li> <!-- implementar função -->
+      <li><a href="adicionar_baixa.php">Realizar Baixa</a> </li> <!-- implementar função -->
       <li><a href="transferencias.php">Gerenciar Transferências</a> </li>
       <li><a href="historico_transferencias.php">Histórico de Transferências</a> </li>
     </ul>
