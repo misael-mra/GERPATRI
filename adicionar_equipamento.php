@@ -77,15 +77,18 @@ if (isset($_POST['add_equipment'])) {
 						<div class="form-group">
 							<!--campos principais do formulário-->
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-md-2">
+									<span class="input-group-addon">
+										<b>Tombo</b>
+									</span>
 									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-th-large"></i>
-										</span>
 										<input type="number" class="form-control" name="equipment-tombo" placeholder="Nº Tombo*" required autocomplete="off">
 									</div>
 								</div>
-								<div class="col-md-9">
+								<div class="col-md-10">
+									<span class="input-group-addon">
+										<b>Descrição do item</b>
+									</span>
 									<select class="form-control" name="equipment-type_equip" required>
 										<option value="">Selecione o Item*</option>
 										<?php foreach ($all_types_equip as $t_equip) : ?>
@@ -99,6 +102,9 @@ if (isset($_POST['add_equipment'])) {
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Setor</b>
+									</span>
 									<select class="form-control" name="equipment-situation" required>
 										<option value="">Selecione o Setor*</option>
 										<?php foreach ($all_situation as $sit) : ?>
@@ -108,6 +114,17 @@ if (isset($_POST['add_equipment'])) {
 									</select>
 								</div>
 								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Localização</b>
+									</span>
+									<div class="input-group">
+										<input type="text" class="form-control" name="equipment-local" placeholder="Localização" autocomplete="off">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Fabricante</b>
+									</span>
 									<select class="form-control" name="equipment-manufacturer">
 										<option value="">Selecione o Fabricante</option>
 										<?php foreach ($all_manufacturer as $man) : ?>
@@ -117,6 +134,9 @@ if (isset($_POST['add_equipment'])) {
 									</select>
 								</div>
 								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Situação</b>
+									</span>
 									<select class="form-control" name="equipment-situation" required>
 										<option value="">Selecione a Situação*</option>
 										<?php foreach ($all_situation as $sit) : ?>
@@ -130,28 +150,36 @@ if (isset($_POST['add_equipment'])) {
 						<!--Campos Adicionais-->
 						<div class="form-group">
 							<div class="row">
-								<div class="col-md-2">
+								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Modelo</b>
+									</span>
 									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-info-sign"></i>
-										</span>
 										<input type="text" class="form-control" name="equipment-model" placeholder="Modelo" autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Nº de Série</b>
+									</span>
 									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-info-sign"></i>
-										</span>
 										<input type="text" class="form-control" name="equipment-number_serial" placeholder="Número de Série" autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Nota Fiscal</b>
+									</span>
 									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-info-sign"></i>
-										</span>
-										<input type="text" class="form-control" name="equipment-specifications" placeholder="Especificações" autocomplete="off">
+										<input type="text" class="form-control" name="equipment-specifications" placeholder="Nº NF" autocomplete="off">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Valor</b>
+									</span>
+									<div class="input-group">
+										<input type="text" class="form-control" name="equipment-specifications" placeholder="R$ 0,00 (Opcional)" autocomplete="off">
 									</div>
 								</div>
 							</div>
@@ -159,11 +187,11 @@ if (isset($_POST['add_equipment'])) {
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-12">
+									<span class="input-group-addon">
+										<b>Observações</b>
+									</span>
 									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="glyphicon glyphicon-paperclip"></i>
-										</span>
-										<input type="text" class="form-control" name="equipment-obs" placeholder="Observações (Caso não tenha deixar em branco)" autocomplete="off">
+										<input type="text" class="form-control" name="equipment-obs" placeholder="Observações (Opcional)" autocomplete="off">
 									</div>
 								</div>
 							</div>
@@ -176,10 +204,11 @@ if (isset($_POST['add_equipment'])) {
 										<i class="glyphicon glyphicon-calendar"></i> <b>Término da Garantia</b>
 									</span>
 									<input type="date" class="form-control" name="equipment-warranty">
+									<span style="font-weight: bold; font-size:13.2px;">  * se não houver, deixar em branco.</span>
 								</div>
 							</div>
 						</div>
-						<button type="submit" name="add_equipment" class="btn btn-primary">Adicionar equipamento</button>
+						<button type="submit" name="add_equipment" class="btn btn-success">CADASTRAR ITEM</button>
 					</form>
 				</div>
 			</div>
