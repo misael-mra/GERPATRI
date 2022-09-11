@@ -111,7 +111,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background-color: #272c33;
+  background-color: #d8dfe8;
 }
 
 .wrap-login100 {
@@ -323,7 +323,7 @@ input.input100 {
 }
 
 .login100-form-btn:hover {
-  background-color: #333333;
+  background-color: #1f50ba;
 }
 
 

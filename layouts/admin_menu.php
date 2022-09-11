@@ -2,17 +2,19 @@
   <li>
     <a href="dashboard.php">
       <i class="glyphicon glyphicon-home"></i>
-      <span>Dashboard</span>
+      <span>Painel</span>
     </a>
   </li>  
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-th-large"></i>
-      <span>Itens</span>
+      <span>Patrimônio</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="equipamentos.php">Gerenciar e Cadastrar</a> </li>
+      <li><a href="equipamentos.php">Editar e Cadastrar Bens</a> </li>
       <li><a href="tipos_equipamento.php">Editar e Cadastrar Tipos</a> </li>
+      <li><a href="realizar_inventario.php">Abrir inventário</a> </li> <!-- implementar função -->
+      <li><a href="listar_inventario.php">Listar inventários</a> </li> <!-- implementar função -->
     </ul>
   </li>
   <li>
@@ -36,9 +38,11 @@
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-transfer"></i>
-      <span>Transferências</span>
+      <span>Movimentação</span>
     </a>
     <ul class="nav submenu">
+      <li><a href="adicionar_transferencia.php">Realizar Transferência</a> </li> <!-- implementar função -->
+      <li><a href="adicionar_transferencia.php">Realizar Baixa</a> </li> <!-- implementar função -->
       <li><a href="transferencias.php">Gerenciar Transferências</a> </li>
       <li><a href="historico_transferencias.php">Histórico de Transferências</a> </li>
     </ul>

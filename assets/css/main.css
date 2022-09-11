@@ -124,15 +124,15 @@ font-size: 12px;
 }
 
 header>.logo {
-  font-size: 26px;
-  color: #fff;
-  text-align: center;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   display: inline-block;
-  width: 250px;
-  background-color: #3498DB;
+  width: 219.12px;
+  background-color: #272c33;
+  text-align: center;
+}
+
+.logo-header{
+  width: 100%;
+  max-width: 140px;
 }
 
 .header-date {
@@ -213,7 +213,7 @@ header>.logo {
   top: 0;
   padding: 65px 0 0;
   height: 100%;
-  width: 250px;
+  width: 220px;
   background: #272c33;
   border-right: 1px solid #ddd;
   text-align: center;
