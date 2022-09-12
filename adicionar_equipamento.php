@@ -2,11 +2,13 @@
 require_once('includes/load.php');
 
 $page_title = 'Adicionar item';
-// Checkin What level user has permission to view this page
+// Verifica se o usuário tem permissões
 page_require_level(2);
 $all_types_equip = find_all('types_equips');
 $all_manufacturer = find_all('manufacturers');
 $all_situation = find_all('situations');
+$all_sector = find_all('sectors');
+                
 ?>
 <?php
 if (isset($_POST['add_equipment'])) {
@@ -82,7 +84,7 @@ if (isset($_POST['add_equipment'])) {
 										<b>Tombo</b>
 									</span>
 									<div class="input-group">
-										<input type="number" class="form-control" name="equipment-tombo" placeholder="Nº Tombo*" required autocomplete="off">
+										<input type="number" class="form-control" name="equipment-tombo" placeholder="Nº Tombo *" required autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-10">
@@ -90,7 +92,7 @@ if (isset($_POST['add_equipment'])) {
 										<b>Descrição do item</b>
 									</span>
 									<select class="form-control" name="equipment-type_equip" required>
-										<option value="">Selecione o Item*</option>
+										<option value="">Selecione o item *</option>
 										<?php foreach ($all_types_equip as $t_equip) : ?>
 											<option value="<?= (int)$t_equip['id'] ?>">
 												<?= $t_equip['name'] ?></option>
@@ -106,10 +108,10 @@ if (isset($_POST['add_equipment'])) {
 										<b>Setor</b>
 									</span>
 									<select class="form-control" name="equipment-situation" required>
-										<option value="">Selecione o Setor*</option>
-										<?php foreach ($all_situation as $sit) : ?>
-											<option value="<?= (int)$sit['id'] ?>">
-												<?= $sit['name'] ?></option>
+										<option value="">Selecione o setor *</option>
+										<?php foreach ($all_sector as $sector) : ?>
+											<option value="<?= (int)$sector['id'] ?>">
+												<?= $sector['name'] ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>
@@ -126,7 +128,7 @@ if (isset($_POST['add_equipment'])) {
 										<b>Fabricante</b>
 									</span>
 									<select class="form-control" name="equipment-manufacturer">
-										<option value="">Selecione o Fabricante</option>
+										<option value="">Selecione o fabricante</option>
 										<?php foreach ($all_manufacturer as $man) : ?>
 											<option value="<?= (int)$man['id'] ?>">
 												<?= $man['name'] ?></option>
@@ -135,10 +137,10 @@ if (isset($_POST['add_equipment'])) {
 								</div>
 								<div class="col-md-3">
 									<span class="input-group-addon">
-										<b>Situação</b>
+										<b>Status</b>
 									</span>
 									<select class="form-control" name="equipment-situation" required>
-										<option value="">Selecione a Situação*</option>
+										<option value="">Selecione o status*</option>
 										<?php foreach ($all_situation as $sit) : ?>
 											<option value="<?= (int)$sit['id'] ?>">
 												<?= $sit['name'] ?></option>
@@ -204,7 +206,7 @@ if (isset($_POST['add_equipment'])) {
 										<i class="glyphicon glyphicon-calendar"></i> <b>Término da Garantia</b>
 									</span>
 									<input type="date" class="form-control" name="equipment-warranty">
-									<span style="font-weight: bold; font-size:13.2px;">  * se não houver, deixar em branco.</span>
+									<span style="font-weight: bold; font-size:13.2px;"> * se não houver, deixar em branco.</span>
 								</div>
 							</div>
 						</div>

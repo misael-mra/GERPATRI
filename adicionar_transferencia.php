@@ -45,9 +45,9 @@ if(isset($_POST['add_transfer'])){
     <form method="post" action="ajax.php" autocomplete="off" id="sug-form">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" id="sug_input" class="form-control" name="tombo"  placeholder="Informe o tombo do equipamento">
+          <input type="text" id="sug_input" class="form-control" name="tombo"  placeholder="Informe o Nº tombo">
           <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary">Buscar equipamento</button>
+            <button type="submit" class="btn btn-primary">Buscar</button>
           </span>            
         </div>
         <div id="result" class="list-group"></div>
@@ -62,10 +62,10 @@ if(isset($_POST['add_transfer'])){
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Adicionar transferência</span>
+          <span>Realizar transferência</span>
         </strong>
         <div class="pull-right">
-          <a href="transferencias.php" class="btn btn-danger">Listar transferência</a>
+          <a href="transferencias.php" class="btn btn-danger">cancelar</a>
         </div>
       </div>
       <div class="panel-body">
@@ -73,7 +73,7 @@ if(isset($_POST['add_transfer'])){
           <table class="table table-bordered">
             <thead>
               <th> Tombo </th>
-              <th> Tipo de Equipamento</th>
+              <th> Item</th>
               <th> Usuário Responsável </th>
               <th> Setor </th>
               <th> Data da transferência</th>

@@ -12,8 +12,9 @@
     </a>
     <ul class="nav submenu">
       <li><a href="equipamentos.php">Editar e Cadastrar Bens</a> </li>
-      <li><a href="tipos_equipamento.php">Editar e Cadastrar Tipos</a> </li>
-      <li><a href="realizar_inventario.php">Abrir inventário</a> </li> <!-- implementar função -->
+      <li><a href="descricao_bens.php">Cadastrar Descrições</a> </li>
+      <li><a href="tipos_equipamento.php">Cadastrar Tipos</a> </li>
+      <li><a href="realizar_inventario.php">Abrir inventário</a> </li>
       <li><a href="listar_inventario.php">Listar inventários</a> </li> <!-- implementar função -->
     </ul>
   </li>
@@ -41,7 +42,7 @@
       <span>Movimentação</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="adicionar_transferencia.php">Realizar Transferência</a> </li> <!-- implementar função -->
+      <li><a href="adicionar_transferencia.php">Realizar Transferência</a> </li>
       <li><a href="adicionar_baixa.php">Realizar Baixa</a> </li> <!-- implementar função -->
       <li><a href="transferencias.php">Gerenciar Transferências</a> </li>
       <li><a href="historico_transferencias.php">Histórico de Transferências</a> </li>

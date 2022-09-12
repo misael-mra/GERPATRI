@@ -1,6 +1,7 @@
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
+  color: #212121;
   overflow-x: hidden;
   overflow-y: auto;
   background: #f1f2f7;
@@ -28,7 +29,7 @@ a {
   display: block;
   top: 50px;
   left: 0;
-  padding: 35px 15px 20px 270px;
+  padding: 33px 0px 20px 220px;
 }
 
 .m-t-25 {
