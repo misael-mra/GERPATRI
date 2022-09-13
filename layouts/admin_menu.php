@@ -11,9 +11,9 @@
       <span>Patrimônio</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="equipamentos.php">Editar e Cadastrar Bens</a> </li>
-      <li><a href="descricao_bens.php">Cadastrar Descrições</a> </li>
-      <li><a href="tipos_equipamento.php">Cadastrar Tipos</a> </li>
+      <li><a href="bens.php">Gerenciar Bens</a> </li>
+      <li><a href="descricao_bens.php">Descrições</a> </li>
+      <li><a href="tipos_itens.php">Tipos</a> </li>
       <li><a href="realizar_inventario.php">Abrir inventário</a> </li>
       <li><a href="listar_inventario.php">Listar inventários</a> </li> <!-- implementar função -->
     </ul>

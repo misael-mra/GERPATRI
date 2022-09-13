@@ -184,15 +184,15 @@ function page_require_level($require_level){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for find all equipments
+/* Function for find all assets
 /*--------------------------------------------------------------*/
-function find_all_equipment(){
+function find_all_asset(){
   global $db;
   $sql  =" SELECT e.id, e.tombo, e.specifications, e.obs, e.warranty, t_e.name AS type_equip,";
   $sql  .=" m.name AS manufacturer, sit.name AS situation,";
   $sql  .=" e.created_at, u_c.name AS created_user, u_u.name AS updated_user, e.updated_at";
-  $sql  .=" FROM equipments e";
-  $sql  .=" INNER JOIN types_equips t_e ON t_e.id = e.types_equip_id";
+  $sql  .=" FROM assets e";
+  $sql  .=" INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id";
   $sql  .=" INNER JOIN manufacturers m ON m.id = e.manufacturer_id";
   $sql  .=" INNER JOIN situations sit ON sit.id = e.situation_id";
   $sql  .=" INNER JOIN users u_c ON u_c.id = e.created_by";
@@ -203,11 +203,11 @@ function find_all_equipment(){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Validate tombo of equipment
+/* Function for Validate tombo of asset
 /*--------------------------------------------------------------*/
-function validate_tombo($equipment_tombo){
+function validate_tombo($asset_tombo){
   global $db;
-  $sql = "SELECT tombo FROM equipments WHERE tombo = $equipment_tombo";
+  $sql = "SELECT tombo FROM assets WHERE tombo = $asset_tombo";
   $result = find_by_sql($sql);
 
   if(empty($result)){
@@ -218,39 +218,39 @@ function validate_tombo($equipment_tombo){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Finding all equipment name
+/* Function for Finding all asset name
 /* Request coming from ajax.php for auto suggest
 /*--------------------------------------------------------------*/
-function find_equipment_by_tombo($equipment_tombo){
+function find_asset_by_tombo($asset_tombo){
   global $db;
-  $e_tombo = remove_junk($db->escape($equipment_tombo));
-  $sql  = "SELECT tombo FROM equipments";
-  $sql .= " WHERE id NOT IN (SELECT equipment_id FROM transfers)";
+  $e_tombo = remove_junk($db->escape($asset_tombo));
+  $sql  = "SELECT tombo FROM assets";
+  $sql .= " WHERE id NOT IN (SELECT asset_id FROM transfers)";
   $sql .= " AND tombo like '%$e_tombo%' LIMIT 5";
   $result = find_by_sql($sql);
   return $result;
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Finding all equipment info by equipment tombo
+/* Function for Finding all asset info by asset tombo
 /* Request coming from ajax.php
 /*--------------------------------------------------------------*/
-function find_all_equipment_info_by_tombo($tombo){
+function find_all_asset_info_by_tombo($tombo){
   global $db;
-  $sql  = "SELECT e.id,e.tombo,t_e.name AS type_equip FROM equipments e";
-  $sql .= " INNER JOIN types_equips t_e ON t_e.id = e.types_equip_id";
-  $sql .= " WHERE e.id NOT IN (SELECT equipment_id FROM transfers)";    
+  $sql  = "SELECT e.id,e.tombo,t_e.name AS type_equip FROM assets e";
+  $sql .= " INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id";
+  $sql .= " WHERE e.id NOT IN (SELECT asset_id FROM transfers)";    
   $sql .= " AND e.tombo ='{$tombo}'";
   return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Display Recent Equipment
+/* Function for Display Recent asset
 /*--------------------------------------------------------------*/
-function find_recent_equipment_added($limit){
+function find_recent_asset_added($limit){
   global $db;
   $sql  ="SELECT tombo,specifications";
-  $sql .= " FROM equipments";
+  $sql .= " FROM assets";
   $sql .= " ORDER BY created_at DESC LIMIT ".$db->escape((int)$limit);
   return find_by_sql($sql);
 }
@@ -263,9 +263,9 @@ function find_all_transfer(){
   $sql  = "SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,e.specifications,s.name AS sector,t_e.name AS type_equip,";
   $sql  .=" t.created_at, u_c.name AS created_user, u_u.name AS updated_user, t.updated_at";
   $sql .= " FROM transfers t";
-  $sql .= " INNER JOIN equipments e ON e.id = t.equipment_id";
+  $sql .= " INNER JOIN assets e ON e.id = t.asset_id";
   $sql .= " INNER JOIN sectors s ON s.id = t.sector_id";
-  $sql .= " INNER JOIN types_equips t_e ON t_e.id = e.types_equip_id";
+  $sql .= " INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id";
   $sql  .=" INNER JOIN users u_c ON u_c.id = t.created_by";
   $sql  .=" LEFT JOIN users u_u ON u_u.id = t.updated_by";
   $sql .= " ORDER BY t.created_at DESC";   
@@ -279,8 +279,8 @@ function find_recent_transfer_added($limit){
   global $db;
   $sql  ="SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,t_e.name AS type_equip";
   $sql .= " FROM transfers t";
-  $sql .= " INNER JOIN equipments e ON e.id = t.equipment_id";
-  $sql  .=" INNER JOIN types_equips t_e ON t_e.id = e.types_equip_id";
+  $sql .= " INNER JOIN assets e ON e.id = t.asset_id";
+  $sql  .=" INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id";
   $sql .= " ORDER BY t.created_at DESC LIMIT ".$db->escape((int)$limit);
   return find_by_sql($sql);
 }
@@ -292,7 +292,7 @@ function find_all_transfer_history(){
   global $db;
   $sql  = "SELECT l_h.id,l_h.responsible_user,l_h.transfer_date,l_h.created_at,e.tombo,e.specifications,s.name AS sector,u.name AS create_user";
   $sql .= " FROM transfer_historys l_h";
-  $sql .= " INNER JOIN equipments e ON e.id = l_h.equipment_id";
+  $sql .= " INNER JOIN assets e ON e.id = l_h.asset_id";
   $sql .= " INNER JOIN sectors s ON s.id = l_h.sector_id";
   $sql .= " INNER JOIN users u ON u.id = l_h.created_by";
   $sql .= " ORDER BY l_h.created_at DESC";   
@@ -306,35 +306,35 @@ function find_all_transfer_history(){
 /*--------------------------------------------------------------*/
 function issue_reports($tombo, $specifications, $responsible_user, $transfer, $type_equip, $sector, $manufacturer, $situation){
   global $db;
-  $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,t.responsible_user,s.name AS sector,m.name AS manufacturer,sit.name AS situation,t_e.name AS types_equip FROM equipments e 
-  LEFT JOIN transfers t ON t.equipment_id = e.id 
+  $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,t.responsible_user,s.name AS sector,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
+  LEFT JOIN transfers t ON t.asset_id = e.id 
   LEFT JOIN sectors s ON s.id = t.sector_id 
   INNER JOIN manufacturers m ON m.id = e.manufacturer_id 
   INNER JOIN situations sit ON sit.id = e.situation_id 
-  INNER JOIN types_equips t_e ON t_e.id = e.types_equip_id WHERE e.id ";
+  INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id WHERE e.id ";
 
-  // Search for equipments in the category of "Somente Emprestados"
+  // Search for assets in the category of "Somente Emprestados"
   if($transfer === "2"){
-    $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,t.responsible_user,s.name AS sector,m.name AS manufacturer,sit.name AS situation,t_e.name AS types_equip FROM equipments e 
-    INNER JOIN transfers t ON t.equipment_id = e.id 
+    $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,t.responsible_user,s.name AS sector,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
+    INNER JOIN transfers t ON t.asset_id = e.id 
     INNER JOIN sectors s ON s.id = t.sector_id 
     INNER JOIN manufacturers m ON m.id = e.manufacturer_id 
     INNER JOIN situations sit ON sit.id = e.situation_id 
-    INNER JOIN types_equips t_e ON t_e.id = e.types_equip_id WHERE e.id ";
+    INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id WHERE e.id ";
 
-  // Search for equipments in the category of "Somente não Emprestados"
+  // Search for assets in the category of "Somente não Emprestados"
   } elseif($transfer === "3") {
-    $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,m.name AS manufacturer,sit.name AS situation,t_e.name AS types_equip FROM equipments e 
+    $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
     INNER JOIN manufacturers m ON m.id = e.manufacturer_id 
     INNER JOIN situations sit ON sit.id = e.situation_id 
-    INNER JOIN types_equips t_e ON t_e.id = e.types_equip_id 
-    WHERE e.id NOT IN (SELECT equipment_id FROM transfers) ";
+    INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id 
+    WHERE e.id NOT IN (SELECT asset_id FROM transfers) ";
   }
 
   if(!empty($tombo)) $sql .= " AND e.tombo LIKE '%$tombo%'";
   if(!empty($specifications)) $sql .= " AND e.specifications LIKE '%$specifications%'";
   if(!empty($responsible_user) && $transfer !== "3") $sql .= " AND t.responsible_user LIKE '%$responsible_user%'";
-  if(!empty($type_equip)) $sql .= " AND e.types_equip_id = '$type_equip'";
+  if(!empty($type_equip)) $sql .= " AND e.description_assets_id = '$type_equip'";
   if(!empty($sector) && $transfer !== "3") $sql .= " AND t.sector_id = $sector";
   if(!empty($manufacturer)) $sql .= " AND e.manufacturer_id = '$manufacturer'";
   if(!empty($situation)) $sql .= " AND e.situation_id = '$situation'";
@@ -344,11 +344,11 @@ function issue_reports($tombo, $specifications, $responsible_user, $transfer, $t
 
 
 /*--------------------------------------------------------------*/
-/* Create pie Chart for Dashboard with Types Equipments
+/* Create pie Chart for Dashboard with Types assets
 /*--------------------------------------------------------------*/
-function pieChartEquipmentPerTyperEquip(){
+function pieChartassetPerTyperEquip(){
   global $db;
-  $sql = "SELECT COUNT(e.types_equip_id) AS count, t_e.name FROM equipments e INNER JOIN types_equips t_e ON t_e.id = e.types_equip_id GROUP BY e.types_equip_id";
+  $sql = "SELECT COUNT(e.description_assets_id) AS count, t_e.name FROM assets e INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id GROUP BY e.description_assets_id";
   return find_by_sql($sql);
 }
 
@@ -362,21 +362,21 @@ function barChartLoanPerSector(){
 }
 
 /*--------------------------------------------------------------*/
-/* Create horizontal bar Chart for Dashboard with Equipments
+/* Create horizontal bar Chart for Dashboard with assets
    per Manufacturer
 /*--------------------------------------------------------------*/
-function horizontalBarChartEquipmentPerManufacturer(){
+function horizontalBarChartassetPerManufacturer(){
   global $db;
-  $sql = "SELECT COUNT(e.manufacturer_id) AS count, m.name FROM equipments e INNER JOIN manufacturers m ON m.id = e.manufacturer_id GROUP BY e.manufacturer_id";
+  $sql = "SELECT COUNT(e.manufacturer_id) AS count, m.name FROM assets e INNER JOIN manufacturers m ON m.id = e.manufacturer_id GROUP BY e.manufacturer_id";
   return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/
-/* Create pie Chart for Dashboard with Types Equipments
+/* Create pie Chart for Dashboard with Types assets
 /*--------------------------------------------------------------*/
-function pieChartEquipmentPerSituation(){
+function pieChartassetPerSituation(){
   global $db;
-  $sql = "SELECT COUNT(e.situation_id) AS count,s.name FROM equipments e INNER JOIN situations s ON s.id = e.situation_id GROUP BY e.situation_id";
+  $sql = "SELECT COUNT(e.situation_id) AS count,s.name FROM assets e INNER JOIN situations s ON s.id = e.situation_id GROUP BY e.situation_id";
   return find_by_sql($sql);
 }
 

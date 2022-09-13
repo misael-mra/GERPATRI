@@ -4,53 +4,55 @@ require_once('includes/load.php');
 $page_title = 'Adicionar item';
 // Verifica se o usuário tem permissões
 page_require_level(2);
-$all_types_equip = find_all('types_equips');
+
+$all_description_asset = find_all('description_assets');
+$all_types_item = find_all('types_itens');
 $all_manufacturer = find_all('manufacturers');
 $all_situation = find_all('situations');
 $all_sector = find_all('sectors');
                 
 ?>
 <?php
-if (isset($_POST['add_equipment'])) {
-	$req_fields = array('equipment-tombo', 'equipment-specifications', 'equipment-obs', 'equipment-type_equip', 'equipment-manufacturer', 'equipment-situation', 'equipment-model', 'equipment-number_serial');
+if (isset($_POST['add_assets'])) {
+	$req_fields = array('assets-tombo', 'assets-specifications', 'assets-obs', 'assets-type_item', 'assets-manufacturer', 'assets-situation', 'assets-model', 'assets-number_serial');
 	validate_fields($req_fields);
 	if (empty($errors)) {
-		$equip_tombo  = remove_junk($db->escape($_POST['equipment-tombo']));
-		$equip_specifications  = remove_junk($db->escape($_POST['equipment-specifications']));
-		$equip_obs  = remove_junk($db->escape($_POST['equipment-obs']));
-		$equip_type_equip   = remove_junk($db->escape($_POST['equipment-type_equip']));
-		$equip_manufacturer   = remove_junk($db->escape($_POST['equipment-manufacturer']));
-		$equip_situation  = remove_junk($db->escape($_POST['equipment-situation']));
-		$equip_model	= remove_junk($db->escape($_POST['equipment-model']));
-		$equip_number_serial	= remove_junk($db->escape($_POST['equipment-number_serial']));
-		$equip_warranty  = remove_junk($db->escape($_POST['equipment-warranty']));
-		$equip_created_by    = (int) $_SESSION['user_id'];
-		$equip_created_at    = make_date();
+		$asset_tombo  = remove_junk($db->escape($_POST['assets-tombo']));
+		$asset_specifications  = remove_junk($db->escape($_POST['assets-specifications']));
+		$asset_obs  = remove_junk($db->escape($_POST['assets-obs']));
+		$asset_type_item   = remove_junk($db->escape($_POST['assets-type_item']));
+		$asset_manufacturer   = remove_junk($db->escape($_POST['assets-manufacturer']));
+		$asset_situation  = remove_junk($db->escape($_POST['assets-situation']));
+		$asset_model	= remove_junk($db->escape($_POST['assets-model']));
+		$asset_number_serial	= remove_junk($db->escape($_POST['assets-number_serial']));
+		$asset_warranty  = remove_junk($db->escape($_POST['assets-warranty']));
+		$asset_created_by    = (int) $_SESSION['user_id'];
+		$asset_created_at    = make_date();
 
-		if (validate_tombo($equip_tombo)) {
-			$session->msg('d', "Desculpe, Já existe um equipamento com o tombo $equip_tombo");
-			redirect('adicionar_equipamento.php', false);
+		if (validate_tombo($asset_tombo)) {
+			$session->msg('d', "Desculpe, Já existe um assetamento com o tombo $asset_tombo");
+			redirect('adicionar_bens.php', false);
 		}
 
-		$query  = "INSERT INTO equipments (";
-		$query .= " tombo, specifications, obs, types_equip_id, manufacturer_id, situation_id, model, number_serial, warranty, created_by, created_at";
+		$query  = "INSERT INTO assets (";
+		$query .= " tombo, specifications, obs, types_item_id, manufacturer_id, situation_id, model, number_serial, warranty, created_by, created_at";
 		$query .= ") VALUES (";
-		$query .= " '{$equip_tombo}', '{$equip_specifications}', '{$equip_obs}', '{$equip_type_equip}', '{$equip_manufacturer}', '{$equip_situation}', '{$equip_model}', '{$equip_number_serial}',";
-		if (empty($equip_warranty)) $query  .= " NULL,";
-		else $query .= " '{$equip_warranty}',";
-		$query .= " '{$equip_created_by}','{$equip_created_at}'";
+		$query .= " '{$asset_tombo}', '{$asset_specifications}', '{$asset_obs}', '{$asset_type_item}', '{$asset_manufacturer}', '{$asset_situation}', '{$asset_model}', '{$asset_number_serial}',";
+		if (empty($asset_warranty)) $query  .= " NULL,";
+		else $query .= " '{$asset_warranty}',";
+		$query .= " '{$asset_created_by}','{$asset_created_at}'";
 		$query .= ")";
 
 		if ($db->query($query)) {
-			$session->msg('s', "Equipamento adicionado com sucesso! ");
-			redirect('adicionar_equipamento.php', false);
+			$session->msg('s', "assetamento adicionado com sucesso! ");
+			redirect('adicionar_bens.php', false);
 		} else {
-			$session->msg('d', 'Desculpe, falha ao cadastrar o equipamento, tente novamente.');
-			redirect('equipamentos.php', false);
+			$session->msg('d', 'Desculpe, falha ao cadastrar o assetamento, tente novamente.');
+			redirect('bens.php', false);
 		}
 	} else {
 		$session->msg("d", $errors);
-		redirect('adicionar_equipamento.php', false);
+		redirect('adicionar_bens.php', false);
 	}
 }
 
@@ -70,12 +72,12 @@ if (isset($_POST['add_equipment'])) {
 					<span>Adicionar Novo Item</span>
 				</strong>
 				<div class="pull-right">
-					<a href="equipamentos.php" class="btn btn-danger">voltar</a>
+					<a href="bens.php" class="btn btn-danger">voltar</a>
 				</div>
 			</div>
 			<div class="panel-body">
 				<div class="col-md-12">
-					<form method="post" action="adicionar_equipamento.php" class="clearfix">
+					<form method="post" action="adicionar_bens.php" class="clearfix">
 						<div class="form-group">
 							<!--campos principais do formulário-->
 							<div class="row">
@@ -84,18 +86,30 @@ if (isset($_POST['add_equipment'])) {
 										<b>Tombo</b>
 									</span>
 									<div class="input-group">
-										<input type="number" class="form-control" name="equipment-tombo" placeholder="Nº Tombo *" required autocomplete="off">
+										<input type="number" class="form-control" name="assets-tombo" placeholder="Nº Tombo *" required autocomplete="off">
 									</div>
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-7">
 									<span class="input-group-addon">
-										<b>Descrição do item</b>
+										<b>Descrição do bem</b>
 									</span>
-									<select class="form-control" name="equipment-type_equip" required>
-										<option value="">Selecione o item *</option>
-										<?php foreach ($all_types_equip as $t_equip) : ?>
-											<option value="<?= (int)$t_equip['id'] ?>">
-												<?= $t_equip['name'] ?></option>
+									<select class="form-control" name="assets-type_item" required>
+										<option value="">Selecione um item *</option>
+										<?php foreach ($all_description_asset as $t_descr_asset) : ?>
+											<option value="<?= (int)$t_descr_asset['id'] ?>">
+												<?= $t_descr_asset['name'] ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<span class="input-group-addon">
+										<b>Tipo</b>
+									</span>
+									<select class="form-control" name="assets-type_item" required>
+										<option value="">Selecione *</option>
+										<?php foreach ($all_types_item as $t_type_item) : ?>
+											<option value="<?= (int)$t_type_item['id'] ?>">
+												<?= $t_type_item['name'] ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>
@@ -107,7 +121,7 @@ if (isset($_POST['add_equipment'])) {
 									<span class="input-group-addon">
 										<b>Setor</b>
 									</span>
-									<select class="form-control" name="equipment-situation" required>
+									<select class="form-control" name="assets-situation" required>
 										<option value="">Selecione o setor *</option>
 										<?php foreach ($all_sector as $sector) : ?>
 											<option value="<?= (int)$sector['id'] ?>">
@@ -120,14 +134,14 @@ if (isset($_POST['add_equipment'])) {
 										<b>Localização</b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="equipment-local" placeholder="Localização" autocomplete="off">
+										<input type="text" class="form-control" name="assets-local" placeholder="Localização" autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-3">
 									<span class="input-group-addon">
 										<b>Fabricante</b>
 									</span>
-									<select class="form-control" name="equipment-manufacturer">
+									<select class="form-control" name="assets-manufacturer">
 										<option value="">Selecione o fabricante</option>
 										<?php foreach ($all_manufacturer as $man) : ?>
 											<option value="<?= (int)$man['id'] ?>">
@@ -139,7 +153,7 @@ if (isset($_POST['add_equipment'])) {
 									<span class="input-group-addon">
 										<b>Status</b>
 									</span>
-									<select class="form-control" name="equipment-situation" required>
+									<select class="form-control" name="assets-situation" required>
 										<option value="">Selecione o status*</option>
 										<?php foreach ($all_situation as $sit) : ?>
 											<option value="<?= (int)$sit['id'] ?>">
@@ -157,7 +171,7 @@ if (isset($_POST['add_equipment'])) {
 										<b>Modelo</b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="equipment-model" placeholder="Modelo" autocomplete="off">
+										<input type="text" class="form-control" name="assets-model" placeholder="Modelo" autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -165,7 +179,7 @@ if (isset($_POST['add_equipment'])) {
 										<b>Nº de Série</b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="equipment-number_serial" placeholder="Número de Série" autocomplete="off">
+										<input type="text" class="form-control" name="assets-number_serial" placeholder="Número de Série" autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -173,7 +187,7 @@ if (isset($_POST['add_equipment'])) {
 										<b>Nota Fiscal</b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="equipment-specifications" placeholder="Nº NF" autocomplete="off">
+										<input type="text" class="form-control" name="assets-specifications" placeholder="Nº NF" autocomplete="off">
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -181,7 +195,7 @@ if (isset($_POST['add_equipment'])) {
 										<b>Valor</b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="equipment-specifications" placeholder="R$ 0,00 (Opcional)" autocomplete="off">
+										<input type="text" class="form-control" name="assets-specifications" placeholder="R$ 0,00 (Opcional)" autocomplete="off">
 									</div>
 								</div>
 							</div>
@@ -193,7 +207,7 @@ if (isset($_POST['add_equipment'])) {
 										<b>Observações</b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="equipment-obs" placeholder="Observações (Opcional)" autocomplete="off">
+										<input type="text" class="form-control" name="assets-obs" placeholder="Observações (Opcional)" autocomplete="off">
 									</div>
 								</div>
 							</div>
@@ -205,12 +219,12 @@ if (isset($_POST['add_equipment'])) {
 									<span class="input-group-addon">
 										<i class="glyphicon glyphicon-calendar"></i> <b>Término da Garantia</b>
 									</span>
-									<input type="date" class="form-control" name="equipment-warranty">
+									<input type="date" class="form-control" name="assets-warranty">
 									<span style="font-weight: bold; font-size:13.2px;"> * se não houver, deixar em branco.</span>
 								</div>
 							</div>
 						</div>
-						<button type="submit" name="add_equipment" class="btn btn-success">CADASTRAR ITEM</button>
+						<button type="submit" name="add_assets" class="btn btn-success">CADASTRAR ITEM</button>
 					</form>
 				</div>
 			</div>

@@ -5,25 +5,25 @@ $page_title = 'Todos os tipos de itens';
 // Verifica se o usuário tem permissão de acesso
 page_require_level(1);
 
-$all_types_equip = find_all('types_item');
+$all_types_item = find_all('types_itens');
 
-if(isset($_POST['types_equip'])){
+if (isset($_POST['types_item'])) {
 	$req_field = array('tipos_itens-name');
 	validate_fields($req_field);
-	$type_equip_name = remove_junk($db->escape($_POST['tipos_itens-name']));
-	if(empty($errors)){
-		$sql  = "INSERT INTO types_item (name)";
-		$sql .= " VALUES ('{$type_equip_name}')";
-		if($db->query($sql)){
+	$type_type_item_name = remove_junk($db->escape($_POST['tipos_itens-name']));
+	if (empty($errors)) {
+		$sql  = "INSERT INTO types_itens (name)";
+		$sql .= " VALUES ('{$type_type_item_name}')";
+		if ($db->query($sql)) {
 			$session->msg("s", "Tipos de item adicionado com sucesso!");
-			redirect('tipos_itens.php',false);
+			redirect('tipos_itens.php', false);
 		} else {
 			$session->msg("d", "Desculpe, falha ao cadastrar o tipo de item.");
-			redirect('tipos_itens.php',false);
+			redirect('tipos_itens.php', false);
 		}
 	} else {
 		$session->msg("d", $errors);
-		redirect('tipos_itens.php',false);
+		redirect('tipos_itens.php', false);
 	}
 }
 ?>
@@ -40,7 +40,7 @@ if(isset($_POST['types_equip'])){
 			<div class="panel-heading">
 				<strong>
 					<span class="glyphicon glyphicon-th"></span>
-					<span>Cadastrar nova descrição - nomeclatura</span>
+					<span>Cadastrar novo tipo</span>
 				</strong>
 			</div>
 			<div class="panel-body">
@@ -48,11 +48,7 @@ if(isset($_POST['types_equip'])){
 					<div class="form-group">
 						<input type="text" class="form-control" name="tipos_itens-name" placeholder="Nova descrição" required autocomplete="off">
 					</div>
-					<button type="submit" name="types_equip" class="btn btn-success">CADASTRAR</button>
-					<br><br>
-					<div style="background-color: #f1f2f7; font-size:12px; padding: 15px; border-radius: 8px;">
-					<span>Padrão:<br> - NOME, TIPO, MATERIAL E COR.<br> - TUDO EM CAIXA ALTA.<br> - Nº SEM O ZERO NA FRENTE.<br><br>Preposicçoes padrão: <br> - DE e COM. <br><br> Exemplo:<br> ARMÁRIO DE AÇO COM 2 PORTAS CINZA E AZUL</span><br>
-					</div>
+					<button type="submit" name="types_item" class="btn btn-success">CADASTRAR</button>
 				</form>
 			</div>
 		</div>
@@ -75,23 +71,24 @@ if(isset($_POST['types_equip'])){
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($all_types_equip as $t_equip):?>
+						<?php foreach ($all_types_item as $t_type_item) : ?>
 							<tr>
-								<td class="text-center"><?= count_id();?></td>
-								<td><?= remove_junk(ucfirst($t_equip['name'])); ?></td>
+								<td class="text-center"><?= count_id(); ?></td>
+								<td><?= remove_junk(ucfirst($t_type_item['name'])); ?></td>
 								<td class="text-center">
 									<div class="btn-group">
-										<a href="editar_tipos_itens.php?id=<?= (int)$t_equip['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
+										<a href="editar_tipos_itens.php?id=<?= (int)$t_type_item['id']; ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
 											<span class="glyphicon glyphicon-edit" style="width: 22px;"></span>
 										</a>
 
-										<button title="Remover" type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#launchModal-<?= (int)$t_equip['id'];?>">
+										<button title="Remover" type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#launchModal-<?= (int)$t_type_item['id']; ?>">
 											<i class="glyphicon glyphicon-remove" style="width: 22px;"></i>
 										</button>
-										<?php $action="deletar_tipos_itens.php"; $id=(int)$t_equip['id']; include('layouts/modal-confirmacao.php'); ?>
+										<?php $action = "deletar_tipos_itens.php";
+										$id = (int)$t_type_item['id'];
+										include('layouts/modal-confirmacao.php'); ?>
 									</div>
 								</td>
-
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -99,7 +96,6 @@ if(isset($_POST['types_equip'])){
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 <?php include_once('layouts/footer.php'); ?>
