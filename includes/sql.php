@@ -260,7 +260,7 @@ function find_recent_asset_added($limit){
 /*--------------------------------------------------------------*/
 function find_all_transfer(){
   global $db;
-  $sql  = "SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,e.specifications,s.name AS sector,t_e.name AS type_equip,";
+  $sql  = "SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,e.specifications,s.name AS sector,t_e.name AS type_equip";
   $sql  .=" t.created_at, u_c.name AS created_user, u_u.name AS updated_user, t.updated_at";
   $sql .= " FROM transfers t";
   $sql .= " INNER JOIN assets e ON e.id = t.asset_id";
