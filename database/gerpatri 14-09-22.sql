@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Set-2022 às 05:44
+-- Generation Time: 14-Set-2022 às 06:29
 -- Versão do servidor: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -30,13 +30,77 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `assets` (
   `id` int(11) NOT NULL,
+  `tombo` int(15) NOT NULL,
+  `description_asset_id` varchar(250) NOT NULL,
+  `types_item_id` int(15) NOT NULL,
+  `sector_id` int(15) NOT NULL,
+  `localization` varchar(250) DEFAULT NULL,
+  `manufacturer_id` int(15) NOT NULL,
+  `situation_id` int(15) NOT NULL,
+  `provider` varchar(250) DEFAULT NULL,
+  `number_nf` varchar(250) DEFAULT NULL,
+  `date_aquisition` date DEFAULT NULL,
+  `value` varchar(250) DEFAULT NULL,
+  `number_serial` varchar(250) DEFAULT NULL,
+  `obs` varchar(250) DEFAULT NULL,
+  `warranty` date DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `assets`
+--
+
+INSERT INTO `assets` (`id`, `tombo`, `description_asset_id`, `types_item_id`, `sector_id`, `localization`, `manufacturer_id`, `situation_id`, `provider`, `number_nf`, `date_aquisition`, `value`, `number_serial`, `obs`, `warranty`, `created_by`, `created_at`, `updated_at`, `updated_by`) VALUES
+(1, 1, '1', 919, 1, 'Sala servidores', 1, 1, 'teste', '00012', '2022-09-14', '500,00', '123456789', 'Nada a declarar', NULL, 1, '2022-09-14 00:46:29', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `assets_old`
+--
+
+CREATE TABLE `assets_old` (
+  `id` int(11) NOT NULL,
   `tombo` int(11) NOT NULL,
   `specifications` varchar(250) NOT NULL,
   `obs` varchar(250) DEFAULT NULL,
   `types_item_id` int(15) NOT NULL,
-  `description_assets_id` int(15) NOT NULL,
+  `description_asset_id` int(15) NOT NULL,
   `manufacturer_id` int(11) NOT NULL,
   `situation_id` int(11) NOT NULL,
+  `warranty` date DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `localization` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `assets_old2`
+--
+
+CREATE TABLE `assets_old2` (
+  `id` int(15) NOT NULL,
+  `tombo` int(15) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `types_item_id` int(15) NOT NULL,
+  `sector_id` int(15) NOT NULL,
+  `localization` varchar(250) DEFAULT NULL,
+  `manufacturer_id` int(15) NOT NULL,
+  `situation_id` int(15) NOT NULL,
+  `provider` varchar(250) DEFAULT NULL,
+  `number_nf` varchar(250) DEFAULT NULL,
+  `date_aquisition` date DEFAULT NULL,
+  `value` varchar(250) DEFAULT NULL,
+  `number_serial` varchar(250) DEFAULT NULL,
+  `obs` varchar(250) DEFAULT NULL,
   `warranty` date DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -100,10 +164,16 @@ CREATE TABLE `sectors` (
 --
 
 INSERT INTO `sectors` (`id`, `name`) VALUES
-(1, 'INFORMÁTICA'),
-(4, 'LOGÍSTICA'),
-(2, 'MARKET'),
-(3, 'RH');
+(9, 'Centro de Imagem'),
+(7, 'Direção'),
+(3, 'DP - Departamento Pessoal'),
+(5, 'NAC - Núcleo De Atendimento Ao Cliente'),
+(2, 'NAF - Núcleo Administrativo Financeiro'),
+(1, 'NTI - Núcleo De Tecnologia Da Informação'),
+(6, 'Ouvidoria'),
+(4, 'RH - Recursos Humanos'),
+(10, 'SAD - Serviço de Assistência Domiciliar '),
+(8, 'Serviço Social');
 
 -- --------------------------------------------------------
 
@@ -137,7 +207,7 @@ INSERT INTO `situations` (`id`, `name`) VALUES
 
 CREATE TABLE `transfers` (
   `id` int(11) NOT NULL,
-  `equipment_id` int(11) NOT NULL,
+  `asset_id` int(11) NOT NULL,
   `responsible_user` varchar(50) NOT NULL,
   `sector_id` int(11) NOT NULL,
   `transfer_date` date NOT NULL,
@@ -221,7 +291,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Administrador', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'no_image.jpg', 1, '2022-09-12 22:49:09'),
+(1, 'Administrador', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'no_image.jpg', 1, '2022-09-13 20:06:16'),
 (2, 'Usuário Operacional', 'user', '12dea96fec20593566ab75692c9949596833adc9', 2, 'no_image.jpg', 1, '2020-08-14 16:42:28');
 
 -- --------------------------------------------------------
@@ -255,12 +325,26 @@ INSERT INTO `user_groups` (`id`, `group_name`, `group_level`, `group_status`) VA
 ALTER TABLE `assets`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `idx_tombo` (`tombo`),
+  ADD KEY `fk_asset_manufacturer` (`manufacturer_id`),
+  ADD KEY `fk_asset_sector` (`sector_id`),
+  ADD KEY `fk_asset_situation` (`situation_id`),
+  ADD KEY `fk_asset_created_user` (`created_by`),
+  ADD KEY `fk_asset_updated_user` (`updated_by`),
+  ADD KEY `fk_asset_types_item` (`types_item_id`),
+  ADD KEY `fk_asset_description_asset` (`description_asset_id`);
+
+--
+-- Indexes for table `assets_old`
+--
+ALTER TABLE `assets_old`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_tombo` (`tombo`),
   ADD KEY `fk_equipments_manufacturer` (`manufacturer_id`),
   ADD KEY `fk_equipments_situation` (`situation_id`),
   ADD KEY `fk_equipments_created_user` (`created_by`),
   ADD KEY `fk_equipments_updated_user` (`updated_by`),
   ADD KEY `fk_equipments_description_assets` (`types_item_id`) USING BTREE,
-  ADD KEY `description_assets_id` (`description_assets_id`) USING BTREE;
+  ADD KEY `description_assets_id` (`description_asset_id`) USING BTREE;
 
 --
 -- Indexes for table `description_assets`
@@ -295,7 +379,7 @@ ALTER TABLE `situations`
 --
 ALTER TABLE `transfers`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_transfer_equipment` (`equipment_id`),
+  ADD KEY `fk_transfer_equipment` (`asset_id`),
   ADD KEY `fk_transfer_sector` (`sector_id`),
   ADD KEY `fk_transfer_created_user` (`created_by`),
   ADD KEY `fk_transfer_updated_user` (`updated_by`);
@@ -338,6 +422,12 @@ ALTER TABLE `user_groups`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `assets_old`
+--
+ALTER TABLE `assets_old`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -356,7 +446,7 @@ ALTER TABLE `manufacturers`
 -- AUTO_INCREMENT for table `sectors`
 --
 ALTER TABLE `sectors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `situations`
@@ -402,7 +492,14 @@ ALTER TABLE `user_groups`
 -- Limitadores para a tabela `assets`
 --
 ALTER TABLE `assets`
+  ADD CONSTRAINT `fk_asset_created_user` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+--
+-- Limitadores para a tabela `assets_old`
+--
+ALTER TABLE `assets_old`
   ADD CONSTRAINT `fk_equipments_created_user` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `fk_equipments_description_asset` FOREIGN KEY (`description_asset_id`) REFERENCES `description_assets` (`id`),
   ADD CONSTRAINT `fk_equipments_manufacturer` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturers` (`id`),
   ADD CONSTRAINT `fk_equipments_situation` FOREIGN KEY (`situation_id`) REFERENCES `situations` (`id`),
   ADD CONSTRAINT `fk_equipments_types_equip` FOREIGN KEY (`types_item_id`) REFERENCES `types_itens` (`id`),
@@ -413,7 +510,7 @@ ALTER TABLE `assets`
 --
 ALTER TABLE `transfers`
   ADD CONSTRAINT `fk_transfers_created_user` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `fk_transfers_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `assets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_transfers_equipment` FOREIGN KEY (`asset_id`) REFERENCES `assets_old` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_transfers_sector` FOREIGN KEY (`sector_id`) REFERENCES `sectors` (`id`),
   ADD CONSTRAINT `fk_transfers_updated_user` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`);
 
@@ -422,7 +519,7 @@ ALTER TABLE `transfers`
 --
 ALTER TABLE `transfer_historys`
   ADD CONSTRAINT `fk_transfer_historys_created_user` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `fk_transfer_historys_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `assets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_transfer_historys_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `assets_old` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_transfer_historys_sector` FOREIGN KEY (`sector_id`) REFERENCES `sectors` (`id`);
 
 --
