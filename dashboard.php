@@ -47,7 +47,7 @@ $recent_transfers    = find_recent_transfer_added('5');
       </div>
       <div class="panel-value pull-right">
         <h2 class="margin-top"> <?= $c_asset['total']; ?> </h2>
-        <p class="text-muted">Itens Cadastrados</p>
+        <p class="text-muted">Bens Cadastrados</p>
       </div>
     </div>
   </div>

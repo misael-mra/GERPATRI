@@ -188,11 +188,12 @@ function page_require_level($require_level){
 /*--------------------------------------------------------------*/
 function find_all_asset(){
   global $db;
-  $sql  =" SELECT e.id, e.tombo, e.specifications, e.obs, e.warranty, t_e.name AS type_equip,";
-  $sql  .=" m.name AS manufacturer, sit.name AS situation,";
+  $sql  =" SELECT e.id, e.tombo, e.obs, e.warranty, d_a.name AS descrip_asset,";
+  $sql  .=" m.name AS manufacturer, sit.name AS situation, t_item.name AS type_item,";
   $sql  .=" e.created_at, u_c.name AS created_user, u_u.name AS updated_user, e.updated_at";
   $sql  .=" FROM assets e";
-  $sql  .=" INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id";
+  $sql  .=" INNER JOIN description_assets d_a ON d_a.id = e.description_asset_id";
+  $sql  .=" INNER JOIN types_itens t_item ON t_item.id = e.types_item_id";
   $sql  .=" INNER JOIN manufacturers m ON m.id = e.manufacturer_id";
   $sql  .=" INNER JOIN situations sit ON sit.id = e.situation_id";
   $sql  .=" INNER JOIN users u_c ON u_c.id = e.created_by";

@@ -2,7 +2,7 @@
 require_once('includes/load.php');
 
 $page_title = 'Todos os Itens';
-// Checkin What level user has permission to view this page
+// Verifica se o usuário tem permissão para acessar essa página
 page_require_level(1);
 
 $assets = find_all_asset();
@@ -17,7 +17,7 @@ $assets = find_all_asset();
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Todos os Itens</span>
+          <span>Todos os bens</span>
         </strong>
         <div class="pull-right">
           <a href="adicionar_bens.php" class="btn btn-primary">Adicionar Novo</a>
@@ -47,8 +47,8 @@ $assets = find_all_asset();
               <tr>
                 <td class="text-center"><?= count_id();?></td>
                 <td class="text-center"><?= remove_junk($asset['tombo']); ?></td>
-                <td><?= remove_junk($asset['description_assets']); ?></td>
-                <td class="text-center"><?= remove_junk($asset['type_itens']); ?></td>                
+                <td><?= remove_junk($asset['descrip_asset']); ?></td>
+                <td class="text-center"><?= remove_junk($asset['type_item']); ?></td>                
                 <td class="text-center"><?= remove_junk($asset['manufacturer']); ?></td>                
                 <td class="text-center"><?= remove_junk($asset['situation']); ?></td>                
                 <td><?= remove_junk($asset['obs']); ?></td>
