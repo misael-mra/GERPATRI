@@ -2,20 +2,20 @@
 require_once('includes/load.php');
 
 $page_title = 'Dashboard';
-// Checkin What level user has permission to view this page
+// Verifica se o usuário tem permissão para acessar essa página
 page_require_level(2);
 
-$c_equipment     = count_by_id('equipments');
+$c_asset     = count_by_id('assets');
 $c_transfer       = count_by_id('transfers');
 $c_sector          = count_by_id('sectors');
 $c_user          = count_by_id('users');
 
-$pieChartEquipmentPerTyperEquip = pieChartEquipmentPerTyperEquip();
+$pieChartAssetsPerDescription = pieChartAssetPerDescription();
 $barChartLoansPerSector = barChartLoanPerSector();
-$horizontalBarChartEquipmentPerManufacturer = horizontalBarChartEquipmentPerManufacturer();
-$pieChartEquipmentPerSituation = pieChartEquipmentPerSituation();
+$horizontalBarChartAssetsPerManufacturer = horizontalBarChartAssetPerManufacturer();
+$pieChartAssetsPerSituation = pieChartAssetPerSituation();
 
-$recent_equipments    = find_recent_equipment_added('5');
+$recent_assets    = find_recent_asset_added('5');
 $recent_transfers    = find_recent_transfer_added('5');
 
 ?>
@@ -46,7 +46,7 @@ $recent_transfers    = find_recent_transfer_added('5');
         <i class="glyphicon glyphicon-edit"></i>
       </div>
       <div class="panel-value pull-right">
-        <h2 class="margin-top"> <?= $c_equipment['total']; ?> </h2>
+        <h2 class="margin-top"> <?= $c_asset['total']; ?> </h2>
         <p class="text-muted">Itens Cadastrados</p>
       </div>
     </div>
@@ -118,10 +118,10 @@ $recent_transfers    = find_recent_transfer_added('5');
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($recent_equipments as  $r_e): ?>
+            <?php foreach ($recent_assets as  $r_ass): ?>
               <tr>
-                <td><?= remove_junk(first_character($r_e['tombo'])); ?></td>
-                <td><?= remove_junk(ucfirst($r_e['specifications'])); ?></td>
+                <td><?= remove_junk(first_character($r_ass['tombo'])); ?></td>
+                <td><?= remove_junk(ucfirst($r_ass['specifications'])); ?></td>
               </tr>
 
             <?php endforeach; ?>
@@ -142,7 +142,7 @@ $recent_transfers    = find_recent_transfer_added('5');
         <table class="table table-striped table-bordered table-condensed">
           <thead>
             <tr>
-              <th>N º Tombo</th>
+              <th>Nº Tombo</th>
               <th>Item</th>
               <th>Responsável</th>
             </tr>
@@ -151,7 +151,7 @@ $recent_transfers    = find_recent_transfer_added('5');
             <?php foreach ($recent_transfers as  $recent_transfer): ?>
               <tr>
                 <td><?= remove_junk(first_character($recent_transfer['tombo'])); ?></td>
-                <td><?= remove_junk(ucfirst($recent_transfer['type_equip'])); ?></td>
+                <td><?= remove_junk(ucfirst($recent_transfer['description_asset'])); ?></td>
                 <td><?= remove_junk(first_character($recent_transfer['responsible_user'])); ?></td>
               </tr>
 
@@ -171,19 +171,19 @@ var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
     labels: [
-    <?php foreach ($pieChartEquipmentPerTyperEquip as $count_type_equip): ?>
+    <?php foreach ($pieChartAssetPerTyperEquip as $count_type_equip): ?>
       "<?= $count_type_equip['name'] ?>",
     <?php endforeach; ?>
     ],
     datasets: [{
-      label: 'Tipo de Equipamento',
+      label: 'Tipo',
       data: [
-      <?php foreach ($pieChartEquipmentPerTyperEquip as $count_type_equip): ?>
+      <?php foreach ($pieChartAssetPerTyperEquip as $count_type_equip): ?>
         "<?= $count_type_equip['count'] ?>",
       <?php endforeach; ?>
       ],              
       backgroundColor: [
-      <?php foreach ($pieChartEquipmentPerTyperEquip as $count_type_equip):
+      <?php foreach ($pieChartAssetPerTyperEquip as $count_type_equip):
         $rand1 = mt_rand(0, 255); $rand2 = mt_rand(0, 255); $rand3 = mt_rand(0, 255); ?>
         '<?= "rgba($rand1, $rand2, $rand3)" ?>',
       <?php endforeach; ?>
@@ -234,20 +234,20 @@ new Chart(document.getElementById("horizontalBar"), {
   type: "horizontalBar",
   data: {
     labels: [
-    <?php foreach ($horizontalBarChartEquipmentPerManufacturer as $count_manufacturer): ?>
+    <?php foreach ($horizontalBarChartAssetPerManufacturer as $count_manufacturer): ?>
       "<?= $count_manufacturer['name'] ?>",
     <?php endforeach; ?>
     ],
     datasets: [{
-      label: "Equipamentos por Fabricante",
+      label: "Fabricante",
       data: [
-        <?php foreach ($horizontalBarChartEquipmentPerManufacturer as $count_manufacturer): ?>
+        <?php foreach ($horizontalBarChartAssetPerManufacturer as $count_manufacturer): ?>
           "<?= $count_manufacturer['count'] ?>",
         <?php endforeach; ?>
       ],
       fill: false,
       backgroundColor: [
-        <?php foreach ($horizontalBarChartEquipmentPerManufacturer as $count_manufacturer):
+        <?php foreach ($horizontalBarChartAssetPerManufacturer as $count_manufacturer):
           $rand1 = mt_rand(0, 255); $rand2 = mt_rand(0, 255); $rand3 = mt_rand(0, 255); ?>
           '<?= "rgba($rand1, $rand2, $rand3)" ?>',
         <?php endforeach; ?>      
@@ -272,18 +272,18 @@ var myLineChart = new Chart(ctxD, {
   type: 'doughnut',
   data: {
     labels: [
-    <?php foreach ($pieChartEquipmentPerSituation as $count_situation): ?>
+    <?php foreach ($pieChartAssetPerSituation as $count_situation): ?>
       "<?= $count_situation['name'] ?>",
     <?php endforeach; ?>
     ],
     datasets: [{
       data: [
-      <?php foreach ($pieChartEquipmentPerSituation as $count_situation): ?>
+      <?php foreach ($pieChartAssetPerSituation as $count_situation): ?>
         "<?= $count_situation['count'] ?>",
       <?php endforeach; ?>
       ],              
       backgroundColor: [
-      <?php foreach ($pieChartEquipmentPerSituation as $count_situation):
+      <?php foreach ($pieChartAssetPerSituation as $count_situation):
         $rand1 = mt_rand(0, 255); $rand2 = mt_rand(0, 255); $rand3 = mt_rand(0, 255); ?>
         '<?= "rgba($rand1, $rand2, $rand3)" ?>',
       <?php endforeach; ?>

@@ -1,7 +1,7 @@
 <?php
 
 /*--------------------------------------------------------------*/
-/* Function for find all database table rows by table name
+/* Função para encontrar todas as linhas da tabela da base de dados pelo nome da tabela
 /*--------------------------------------------------------------*/
 function find_all($table) {
   global $db;
@@ -12,7 +12,7 @@ function find_all($table) {
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Perform queries
+/* Função para realizar consultas
 /*--------------------------------------------------------------*/
 function find_by_sql($sql)
 {
@@ -23,7 +23,7 @@ function find_by_sql($sql)
 }
 
 /*--------------------------------------------------------------*/
-/*  Function for Find data from table by id
+/*  Função para procurar dados da tabela pelo id
 /*--------------------------------------------------------------*/
 function find_by_id($table,$id)
 {
@@ -39,7 +39,7 @@ function find_by_id($table,$id)
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Delete data from table by id
+/* Função para apagar dados da tabela por id
 /*--------------------------------------------------------------*/
 function delete_by_id($table,$id)
 {
@@ -55,7 +55,7 @@ function delete_by_id($table,$id)
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Count id  By table name
+/* Função de contagem de id pelo nome da tabela
 /*--------------------------------------------------------------*/
 function count_by_id($table){
   global $db;
@@ -68,7 +68,7 @@ function count_by_id($table){
 }
 
 /*--------------------------------------------------------------*/
-/* Determine if database table exists
+/* Determinar se a tabela da base de dados existe
 /*--------------------------------------------------------------*/
 function tableExists($table){
   global $db;
@@ -82,8 +82,8 @@ function tableExists($table){
 }
 
 /*--------------------------------------------------------------*/
-/* Login with the data provided in $_POST,
-/* coming from the login form.
+/* Entrar com os dados fornecidos no $_POST,
+/* vindos do formulário de login.
 /*--------------------------------------------------------------*/
 function authenticate($username='', $password='') {
   global $db;
@@ -103,7 +103,7 @@ function authenticate($username='', $password='') {
 
 
 /*--------------------------------------------------------------*/
-/* Find current log in user by session id
+/* Encontrar usuário atual logado pelo id da sessão
 /*--------------------------------------------------------------*/
 function current_user(){
   static $current_user;
@@ -118,8 +118,8 @@ function current_user(){
 }
 
 /*--------------------------------------------------------------*/
-/* Find all user by
-/* Joining users table and user gropus table
+/* Encontrar todos os usuários através da junção da 
+/* tabela de usuários e da tabela de grupos de usuários
 /*--------------------------------------------------------------*/
 function find_all_user(){
   global $db;
@@ -134,7 +134,7 @@ function find_all_user(){
 }
 
 /*--------------------------------------------------------------*/
-/* Function to update the last log in of a user
+/* Função para atualizar o último login de um usuário
 /*--------------------------------------------------------------*/
 function updateLastLogIn($user_id)
 {
@@ -146,7 +146,7 @@ function updateLastLogIn($user_id)
 }
 
 /*--------------------------------------------------------------*/
-/* Find group level
+/* Encontrar nível de grupo
 /*--------------------------------------------------------------*/
 function find_by_groupLevel($level)
 {
@@ -156,24 +156,24 @@ function find_by_groupLevel($level)
 }
 
 /*--------------------------------------------------------------*/
-/* Function for cheaking which user level has access to page
+/* Função para verificar qual o nível de acesso do usuário à página
 /*--------------------------------------------------------------*/
 function page_require_level($require_level){
   global $session;
   $current_user = current_user();
   $login_level = find_by_groupLevel($current_user['user_level']);
 
-  //if user not login
+  //se o usuário não fizer login
   if (!$session->isUserLoggedIn(true)):
     $session->msg('d','Por favor, faça o Login.');
     redirect('index.php', false);
-  //if Group status Deactive
+  //se o estado do grupo estiver desativado
   elseif($login_level['0']['group_status'] === '0'):     
     if(!$session->logout()):
       $session->msg('d','Este nível de usuário está desabilitado.');
       redirect("index.php");        
     endif;
-  //cheackin log in User level and Require level is Less than or equal to
+  //verifica o nível de login e o nível de permissão
   elseif($current_user['user_level'] <= (int)$require_level):
     return true;
   else:
@@ -184,7 +184,7 @@ function page_require_level($require_level){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for find all assets
+/* Função para encontrar todos os bens
 /*--------------------------------------------------------------*/
 function find_all_asset(){
   global $db;
@@ -192,7 +192,7 @@ function find_all_asset(){
   $sql  .=" m.name AS manufacturer, sit.name AS situation,";
   $sql  .=" e.created_at, u_c.name AS created_user, u_u.name AS updated_user, e.updated_at";
   $sql  .=" FROM assets e";
-  $sql  .=" INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id";
+  $sql  .=" INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id";
   $sql  .=" INNER JOIN manufacturers m ON m.id = e.manufacturer_id";
   $sql  .=" INNER JOIN situations sit ON sit.id = e.situation_id";
   $sql  .=" INNER JOIN users u_c ON u_c.id = e.created_by";
@@ -203,7 +203,7 @@ function find_all_asset(){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Validate tombo of asset
+/* Função para validar o tombo dos bens
 /*--------------------------------------------------------------*/
 function validate_tombo($asset_tombo){
   global $db;
@@ -218,8 +218,8 @@ function validate_tombo($asset_tombo){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Finding all asset name
-/* Request coming from ajax.php for auto suggest
+/* Função para encontrar todos os nomes dos bens 
+/* solicitados por ajax.php para auto-sugestão
 /*--------------------------------------------------------------*/
 function find_asset_by_tombo($asset_tombo){
   global $db;
@@ -232,40 +232,40 @@ function find_asset_by_tombo($asset_tombo){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Finding all asset info by asset tombo
-/* Request coming from ajax.php
+/* Função para encontrar todas as informações do bem pelo nº tombo 
+/* solicitados por ajax.php
 /*--------------------------------------------------------------*/
 function find_all_asset_info_by_tombo($tombo){
   global $db;
   $sql  = "SELECT e.id,e.tombo,t_e.name AS type_equip FROM assets e";
-  $sql .= " INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id";
+  $sql .= " INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id";
   $sql .= " WHERE e.id NOT IN (SELECT asset_id FROM transfers)";    
   $sql .= " AND e.tombo ='{$tombo}'";
   return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Display Recent asset
+/* Função para exibição de bens adicionados recente
 /*--------------------------------------------------------------*/
 function find_recent_asset_added($limit){
   global $db;
-  $sql  ="SELECT tombo,specifications";
+  $sql  ="SELECT tombo,description_asset_id";
   $sql .= " FROM assets";
   $sql .= " ORDER BY created_at DESC LIMIT ".$db->escape((int)$limit);
   return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/
-/* Function for find all transfers
+/* Função para encontrar todas as transferências
 /*--------------------------------------------------------------*/
 function find_all_transfer(){
   global $db;
-  $sql  = "SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,e.specifications,s.name AS sector,t_e.name AS type_equip";
+  $sql  = "SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,e.specifications,s.name AS sector,t_e.name AS description_asset,";
   $sql  .=" t.created_at, u_c.name AS created_user, u_u.name AS updated_user, t.updated_at";
   $sql .= " FROM transfers t";
   $sql .= " INNER JOIN assets e ON e.id = t.asset_id";
   $sql .= " INNER JOIN sectors s ON s.id = t.sector_id";
-  $sql .= " INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id";
+  $sql .= " INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id";
   $sql  .=" INNER JOIN users u_c ON u_c.id = t.created_by";
   $sql  .=" LEFT JOIN users u_u ON u_u.id = t.updated_by";
   $sql .= " ORDER BY t.created_at DESC";   
@@ -273,20 +273,20 @@ function find_all_transfer(){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Display Recent Loan
+/* Função para exibição de empréstimo/transferencia recente
 /*--------------------------------------------------------------*/
 function find_recent_transfer_added($limit){
   global $db;
-  $sql  ="SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,t_e.name AS type_equip";
+  $sql  ="SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,t_e.name AS description_asset";
   $sql .= " FROM transfers t";
   $sql .= " INNER JOIN assets e ON e.id = t.asset_id";
-  $sql  .=" INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id";
+  $sql  .=" INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id";
   $sql .= " ORDER BY t.created_at DESC LIMIT ".$db->escape((int)$limit);
   return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/
-/* Function for find all transfer history
+/* Função para encontrar todo o histórico de transferências
 /*--------------------------------------------------------------*/
 function find_all_transfer_history(){
   global $db;
@@ -302,9 +302,9 @@ function find_all_transfer_history(){
 
 
 /*--------------------------------------------------------------*/
-/* Reports: Function to issue reports
+/* Relatórios: Função de emissão de relatórios
 /*--------------------------------------------------------------*/
-function issue_reports($tombo, $specifications, $responsible_user, $transfer, $type_equip, $sector, $manufacturer, $situation){
+function issue_reports($tombo, $specifications, $responsible_user, $transfer, $description_asset, $sector, $manufacturer, $situation){
   global $db;
   $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,t.responsible_user,s.name AS sector,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
   LEFT JOIN transfers t ON t.asset_id = e.id 
@@ -313,7 +313,7 @@ function issue_reports($tombo, $specifications, $responsible_user, $transfer, $t
   INNER JOIN situations sit ON sit.id = e.situation_id 
   INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id WHERE e.id ";
 
-  // Search for assets in the category of "Somente Emprestados"
+  // Procurar bens na categoria de "Somente Emprestados"
   if($transfer === "2"){
     $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,t.responsible_user,s.name AS sector,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
     INNER JOIN transfers t ON t.asset_id = e.id 
@@ -322,19 +322,19 @@ function issue_reports($tombo, $specifications, $responsible_user, $transfer, $t
     INNER JOIN situations sit ON sit.id = e.situation_id 
     INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id WHERE e.id ";
 
-  // Search for assets in the category of "Somente não Emprestados"
+  // Procurar bens na categoria de "Somente não Emprestados"
   } elseif($transfer === "3") {
     $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
     INNER JOIN manufacturers m ON m.id = e.manufacturer_id 
     INNER JOIN situations sit ON sit.id = e.situation_id 
-    INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id 
+    INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id 
     WHERE e.id NOT IN (SELECT asset_id FROM transfers) ";
   }
 
   if(!empty($tombo)) $sql .= " AND e.tombo LIKE '%$tombo%'";
   if(!empty($specifications)) $sql .= " AND e.specifications LIKE '%$specifications%'";
   if(!empty($responsible_user) && $transfer !== "3") $sql .= " AND t.responsible_user LIKE '%$responsible_user%'";
-  if(!empty($type_equip)) $sql .= " AND e.description_assets_id = '$type_equip'";
+  if(!empty($description_asset)) $sql .= " AND e.description_asset_id = '$description_asset'";
   if(!empty($sector) && $transfer !== "3") $sql .= " AND t.sector_id = $sector";
   if(!empty($manufacturer)) $sql .= " AND e.manufacturer_id = '$manufacturer'";
   if(!empty($situation)) $sql .= " AND e.situation_id = '$situation'";
@@ -344,16 +344,16 @@ function issue_reports($tombo, $specifications, $responsible_user, $transfer, $t
 
 
 /*--------------------------------------------------------------*/
-/* Create pie Chart for Dashboard with Types assets
+/* Criar gráfico de pizza para Dashboard com todos os bens (verificar se mantêm esssa função)
 /*--------------------------------------------------------------*/
-function pieChartassetPerTyperEquip(){
+function pieChartAssetPerDescription(){
   global $db;
-  $sql = "SELECT COUNT(e.description_assets_id) AS count, t_e.name FROM assets e INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id GROUP BY e.description_assets_id";
+  $sql = "SELECT COUNT(e.description_asset_id) AS count, t_e.name FROM assets e INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id GROUP BY e.description_asset_id";
   return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/
-/* Create bar Chart for Dashboard with Loans per Sector
+/* Criar gráfico de pizza para Dashboard com todas as transferencias por setor
 /*--------------------------------------------------------------*/
 function barChartLoanPerSector(){
   global $db;
@@ -362,19 +362,19 @@ function barChartLoanPerSector(){
 }
 
 /*--------------------------------------------------------------*/
-/* Create horizontal bar Chart for Dashboard with assets
-   per Manufacturer
+/* Criar gráfico de barras horizontais para Dashboard 
+/* pela marca dos bens (verificar se mantêm esssa função)
 /*--------------------------------------------------------------*/
-function horizontalBarChartassetPerManufacturer(){
+function horizontalBarChartAssetPerManufacturer(){
   global $db;
   $sql = "SELECT COUNT(e.manufacturer_id) AS count, m.name FROM assets e INNER JOIN manufacturers m ON m.id = e.manufacturer_id GROUP BY e.manufacturer_id";
   return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/
-/* Create pie Chart for Dashboard with Types assets
+/* Criar gráfico de pizza para Dashboard com o status do bem
 /*--------------------------------------------------------------*/
-function pieChartassetPerSituation(){
+function pieChartAssetPerSituation(){
   global $db;
   $sql = "SELECT COUNT(e.situation_id) AS count,s.name FROM assets e INNER JOIN situations s ON s.id = e.situation_id GROUP BY e.situation_id";
   return find_by_sql($sql);
