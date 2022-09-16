@@ -9,7 +9,6 @@ $all_manufacturers = find_all('manufacturers');
 
 if(isset($_POST['add_manufacturer'])){
   $req_field = array('manufacturer-name');
-  validate_fields($req_field);
   $manufacturer_name = remove_junk($db->escape($_POST['manufacturer-name']));
   if(empty($errors)){
     $sql  = "INSERT INTO manufacturers (name)";

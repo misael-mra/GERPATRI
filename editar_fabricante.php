@@ -14,7 +14,6 @@ if(!$manufacturer){
 
 if(isset($_POST['edit_manufacturer'])){
   $req_field = array('manufacturer-name');
-  validate_fields($req_field);
   $manufacturer_name = remove_junk($db->escape($_POST['manufacturer-name']));
   if(empty($errors)){
     $sql = "UPDATE manufacturers SET name='{$manufacturer_name}'";
@@ -52,7 +51,7 @@ if(isset($_POST['edit_manufacturer'])){
           <div class="form-group">
             <input type="text" class="form-control" name="manufacturer-name" required autocomplete="off" value="<?= remove_junk(ucfirst($manufacturer['name']));?>">
           </div>
-          <button type="submit" name="edit_manufacturer" class="btn btn-primary">Atualizar fabricante</button>
+          <button type="submit" name="edit_manufacturer" class="btn btn-primary">Atualizar</button>
         </form>
       </div>
     </div>

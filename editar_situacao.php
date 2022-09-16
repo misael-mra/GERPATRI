@@ -14,7 +14,6 @@ if(!$situation){
 
 if(isset($_POST['edit_situation'])){
   $req_field = array('situation-name');
-  validate_fields($req_field);
   $situation_name = remove_junk($db->escape($_POST['situation-name']));
   if(empty($errors)){
     $sql = "UPDATE situations SET name='{$situation_name}'";
@@ -52,7 +51,7 @@ if(isset($_POST['edit_situation'])){
           <div class="form-group">
             <input type="text" class="form-control" name="situation-name" required autocomplete="off" value="<?= remove_junk(ucfirst($situation['name']));?>">
           </div>
-          <button type="submit" name="edit_situation" class="btn btn-primary">Atualizar situação</button>
+          <button type="submit" name="edit_situation" class="btn btn-primary">Atualizar</button>
         </form>
       </div>
     </div>

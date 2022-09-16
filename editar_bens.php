@@ -16,7 +16,6 @@ if(!$equipment){
 
 if(isset($_POST['update_equipment'])){
   $req_fields = array('equipment-tombo','equipment-specifications','equipment-type_equip','equipment-manufacturer','equipment-situation');
-  validate_fields($req_fields);
 
   if(empty($errors)){
     $equip_specifications  = remove_junk($db->escape($_POST['equipment-specifications']));

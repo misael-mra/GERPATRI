@@ -9,7 +9,6 @@ $all_description_assets = find_all('description_assets');
 
 if(isset($_POST['description_assets'])){
 	$req_field = array('descricao_bens-name');
-	validate_fields($req_field);
 	$type_equip_name = remove_junk($db->escape($_POST['descricao_bens-name']));
 	if(empty($errors)){
 		$sql  = "INSERT INTO description_assets (name)";

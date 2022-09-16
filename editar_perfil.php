@@ -21,7 +21,6 @@ if(isset($_POST['submit'])) {
 //update user other info
 if(isset($_POST['update-profile'])){
   $req_fields = array('name','username' );
-  validate_fields($req_fields);
   if(empty($errors)){
     $id = (int)$_SESSION['user_id'];
     $name = remove_junk($db->escape($_POST['name']));
@@ -44,7 +43,6 @@ if(isset($_POST['update-profile'])){
 // Update user password
 if(isset($_POST['update-pass'])) {
   $req_fields = array('id-pass','password');
-  validate_fields($req_fields);
   if(empty($errors)){
     $id = (int)$_POST['id-pass'];
     $password = remove_junk($db->escape($_POST['password']));

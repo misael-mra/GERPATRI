@@ -17,7 +17,6 @@ $equipment = find_by_id('equipments',$transfer['equipment_id']);
 
 if(isset($_POST['update_transfer'])){
   $req_fields = array('tombo','sector','responsible_user','transfer_date');
-  validate_fields($req_fields);
   if(empty($errors)){
     $e_r_u     = $db->escape($_POST['responsible_user']);
     $e_sector  = $db->escape((int) $_POST['sector']);

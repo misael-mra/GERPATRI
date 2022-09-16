@@ -9,7 +9,6 @@ $all_situations = find_all('situations');
 
 if(isset($_POST['add_situation'])){
   $req_field = array('situation-name');
-  validate_fields($req_field);
   $situation_name = remove_junk($db->escape($_POST['situation-name']));
   if(empty($errors)){
     $sql  = "INSERT INTO situations (name)";

@@ -9,7 +9,6 @@ $all_sectors = find_all('sectors');
 
 if(isset($_POST['add_sector'])){
   $req_field = array('sector-name');
-  validate_fields($req_field);
   $sector_name = remove_junk($db->escape($_POST['sector-name']));
   if(empty($errors)){
     $sql  = "INSERT INTO sectors (name)";

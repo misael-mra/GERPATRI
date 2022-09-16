@@ -10,7 +10,6 @@ $groups = find_all('user_groups');
 if(isset($_POST['add_user'])){
 
   $req_fields = array('full-name','username','password','level' );
-  validate_fields($req_fields);
 
   if(empty($errors)){
     $name   = remove_junk($db->escape($_POST['full-name']));

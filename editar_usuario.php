@@ -15,7 +15,6 @@ if(!$e_user){
 //Update User basic info
 if(isset($_POST['update'])) {
   $req_fields = array('name','username','level');
-  validate_fields($req_fields);
   if(empty($errors)){
     $id = (int)$e_user['id'];
     $name = remove_junk($db->escape($_POST['name']));
@@ -40,7 +39,6 @@ if(isset($_POST['update'])) {
 // Update user password
 if(isset($_POST['update-pass'])) {
   $req_fields = array('password');
-  validate_fields($req_fields);
   if(empty($errors)){
     $id = (int)$e_user['id'];
     $password = remove_junk($db->escape($_POST['password']));

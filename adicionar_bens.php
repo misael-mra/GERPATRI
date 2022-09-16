@@ -148,7 +148,7 @@ if (isset($_POST['add_asset'])) {
 										<b>Fabricante/Marca</b>
 									</span>
 									<select class="form-control" name="asset-manufacturer">
-										<option value="">Selecione*</option>
+										<option value="">Selecione</option>
 										<?php foreach ($all_manufacturer as $man) : ?>
 											<option value="<?= (int)$man['id'] ?>">
 												<?= $man['name'] ?></option>

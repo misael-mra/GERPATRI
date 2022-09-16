@@ -9,7 +9,6 @@ page_require_level(2);
 
 if(isset($_POST['add_transfer'])){
   $req_fields = array('e_id','sector','responsible_user','transfer_date');
-  validate_fields($req_fields);
   if(empty($errors)){
     $e_id      = $db->escape((int) $_POST['e_id']);
     $e_r_u     = $db->escape($_POST['responsible_user']);

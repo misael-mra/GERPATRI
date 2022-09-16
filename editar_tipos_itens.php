@@ -14,7 +14,6 @@ if(!$type_equip){
 
 if(isset($_POST['edit_type_equip'])){
   $req_field = array('type_equip-name');
-  validate_fields($req_field);
   $type_equip_name = remove_junk($db->escape($_POST['type_equip-name']));
   if(empty($errors)){
     $sql = "UPDATE types_equips SET name='{$type_equip_name}'";

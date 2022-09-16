@@ -9,7 +9,6 @@ $all_types_item = find_all('types_itens');
 
 if (isset($_POST['types_item'])) {
 	$req_field = array('tipos_itens-name');
-	validate_fields($req_field);
 	$type_type_item_name = remove_junk($db->escape($_POST['tipos_itens-name']));
 	if (empty($errors)) {
 		$sql  = "INSERT INTO types_itens (name)";

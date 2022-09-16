@@ -14,7 +14,6 @@ if(!$sector){
 
 if(isset($_POST['edit_sector'])){
   $req_field = array('sector-name');
-  validate_fields($req_field);
   $sector_name = remove_junk($db->escape($_POST['sector-name']));
   if(empty($errors)){
     $sql = "UPDATE sectors SET name='{$sector_name}'";
@@ -52,7 +51,7 @@ if(isset($_POST['edit_sector'])){
           <div class="form-group">
             <input type="text" class="form-control" name="sector-name" required autocomplete="off" value="<?= remove_junk(ucfirst($sector['name']));?>">
           </div>
-          <button type="submit" name="edit_sector" class="btn btn-primary">Atualizar setor</button>
+          <button type="submit" name="edit_sector" class="btn btn-primary">Atualizar</button>
         </form>
       </div>
     </div>
