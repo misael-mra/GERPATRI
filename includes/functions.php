@@ -26,9 +26,10 @@ function first_character($str){
   $val = ucfirst($val);
   return $val;
 }
+
 /*--------------------------------------------------------------*/
-/* Function for Checking input fields not empty
-/*--------------------------------------------------------------*/
+/* Verifica se há campos vazios (sem necessidade no momento)
+
 function validate_fields($var){
   global $errors;
   foreach ($var as $field) {
@@ -39,7 +40,9 @@ function validate_fields($var){
     }
   }
 }
+
 /*--------------------------------------------------------------*/
+
 /* Function for Display Session Message
    Ex echo displayt_msg($message);
 /*--------------------------------------------------------------*/

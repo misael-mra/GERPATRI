@@ -246,17 +246,6 @@ function find_all_asset_info_by_tombo($tombo){
 }
 
 /*--------------------------------------------------------------*/
-/* Função para exibição de bens adicionados recente
-/*--------------------------------------------------------------*/
-function find_recent_asset_added($limit){
-  global $db;
-  $sql  ="SELECT tombo,description_asset_id";
-  $sql .= " FROM assets";
-  $sql .= " ORDER BY created_at DESC LIMIT ".$db->escape((int)$limit);
-  return find_by_sql($sql);
-}
-
-/*--------------------------------------------------------------*/
 /* Função para encontrar todas as transferências
 /*--------------------------------------------------------------*/
 function find_all_transfer(){
@@ -299,8 +288,6 @@ function find_all_transfer_history(){
   $sql .= " ORDER BY l_h.created_at DESC";   
   return find_by_sql($sql);
 }
-
-
 
 /*--------------------------------------------------------------*/
 /* Relatórios: Função de emissão de relatórios
@@ -345,30 +332,11 @@ function issue_reports($tombo, $specifications, $responsible_user, $transfer, $d
 
 
 /*--------------------------------------------------------------*/
-/* Criar gráfico de pizza para Dashboard com todos os bens (verificar se mantêm esssa função)
+/* Criar gráfico de pizza para Dashboard com todos os bens
 /*--------------------------------------------------------------*/
 function pieChartAssetPerDescription(){
   global $db;
   $sql = "SELECT COUNT(e.description_asset_id) AS count, t_e.name FROM assets e INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id GROUP BY e.description_asset_id";
-  return find_by_sql($sql);
-}
-
-/*--------------------------------------------------------------*/
-/* Criar gráfico de pizza para Dashboard com todas as transferencias por setor
-/*--------------------------------------------------------------*/
-function barChartLoanPerSector(){
-  global $db;
-  $sql = "SELECT COUNT(t.sector_id) AS count, s.name FROM transfers t INNER JOIN sectors s ON s.id = t.sector_id GROUP BY t.sector_id";
-  return find_by_sql($sql);
-}
-
-/*--------------------------------------------------------------*/
-/* Criar gráfico de barras horizontais para Dashboard 
-/* pela marca dos bens (verificar se mantêm esssa função)
-/*--------------------------------------------------------------*/
-function horizontalBarChartAssetPerManufacturer(){
-  global $db;
-  $sql = "SELECT COUNT(e.manufacturer_id) AS count, m.name FROM assets e INNER JOIN manufacturers m ON m.id = e.manufacturer_id GROUP BY e.manufacturer_id";
   return find_by_sql($sql);
 }
 

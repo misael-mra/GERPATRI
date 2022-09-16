@@ -16,7 +16,6 @@ $all_sector = find_all('sectors');
 if (isset($_POST['add_asset'])) {
 	$req_fields = array('asset-tombo','asset-description','asset-type_item','asset-sector','asset-localization','asset-manufacturer',
 	'asset-situation','asset-provider','asset-number_nf','asset-date_aquisition','asset-value','asset-number_serial','asset-obs');
-	validate_fields($req_fields);
 	if (empty($errors)) {
 		$a_tombo = remove_junk($db->escape($_POST['asset-tombo']));
 		$a_description = remove_junk($db->escape($_POST['asset-description']));

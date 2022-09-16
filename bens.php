@@ -23,14 +23,14 @@ $assets = find_all_asset();
           <a href="adicionar_bens.php" class="btn btn-primary">Adicionar Novo</a>
         </div>
       </div>
-      <div class="panel-body">
+      <div class="panel-body" style="font-size: 12px">
         <table class="table table-bordered datatable-active">
           <thead>
             <tr>
-              <th class="text-center" style="width: 30px;">#</th>                
-              <th class="text-center" style="width: 80px;">Nº Tombo</th>
-              <th class="text-center" style="width: 500px;"> Descrição </th>
-              <th class="text-center"> Tipo </th>
+              <th class="text-center" style="max-width: 40px;">#</th>                
+              <th class="text-center" style="max-width: 60px;">Nº Tombo</th>
+              <th class="text-center" style="max-width: 470px;"> Descrição </th>
+              <th class="text-center" style="max-width: 320px;"> Tipo </th>
               <th class="text-center none"> Fabricante: </th>
               <th class="text-center none"> Situação: </th>
               <th class="text-center none"> Observação: </th>
@@ -39,7 +39,7 @@ $assets = find_all_asset();
               <th class="text-center none"> Criado em: </th>
               <th class="text-center none"> Atualizado por: </th>
               <th class="text-center none"> Atualizado em: </th>
-              <th class="text-center" style="width: 100px;"> Ações </th>
+              <th class="text-center"> Ações </th>
             </tr>
           </thead>
           <tbody>

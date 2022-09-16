@@ -301,10 +301,6 @@ ALTER TABLE `user_groups`
   ADD UNIQUE KEY `group_level` (`group_level`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
---
-
---
 -- AUTO_INCREMENT de tabela `equipments`
 --
 ALTER TABLE `equipments`
