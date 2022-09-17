@@ -1,30 +1,37 @@
 <?php
 require_once('includes/load.php');
 
-$page_title = 'Todos os tipos de itens';
+$page_title = 'Descrições';
 // Verifica se o usuário tem permissão de acesso
 page_require_level(1);
 
 $all_description_assets = find_all('description_assets');
 
+
+
 if(isset($_POST['description_assets'])){
 	$req_field = array('descricao_bens-name');
-	$type_equip_name = remove_junk($db->escape($_POST['descricao_bens-name']));
+	$desc_asset_name = remove_junk($db->escape($_POST['descricao_bens-name']));
 	if(empty($errors)){
 		$sql  = "INSERT INTO description_assets (name)";
-		$sql .= " VALUES ('{$type_equip_name}')";
+		$sql .= " VALUES ('{$desc_asset_name}')";
 		if($db->query($sql)){
-			$session->msg("s", "Tipos de item adicionado com sucesso!");
+			$session->msg("s", "Nova descrição adicionada com sucesso!");
 			redirect('descricao_bens.php',false);
-		} else {
-			$session->msg("d", "Desculpe, falha ao cadastrar o tipo de item.");
+		} 
+		
+		else {
+			$session->msg("d", "Desculpe, falha ao cadastrar descrição.");
 			redirect('descricao_bens.php',false);
 		}
-	} else {
+	} 
+	
+	else {
 		$session->msg("d", $errors);
 		redirect('descricao_bens.php',false);
 	}
 }
+
 ?>
 <?php include_once('layouts/header.php'); ?>
 
@@ -74,20 +81,20 @@ if(isset($_POST['description_assets'])){
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($all_description_assets as $t_equip):?>
+						<?php foreach ($all_description_assets as $desc_asset):?>
 							<tr>
 								<td class="text-center"><?= count_id();?></td>
-								<td><?= remove_junk(ucfirst($t_equip['name'])); ?></td>
+								<td><?= remove_junk(ucfirst($desc_asset['name'])); ?></td>
 								<td class="text-center">
 									<div class="btn-group">
-										<a href="editar_descricao_bens.php?id=<?= (int)$t_equip['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
+										<a href="editar_descricao_bens.php?id=<?= (int)$desc_asset['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
 											<span class="glyphicon glyphicon-edit" style="width: 22px;"></span>
 										</a>
 
-										<button title="Remover" type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#launchModal-<?= (int)$t_equip['id'];?>">
+										<button title="Remover" type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#launchModal-<?= (int)$desc_asset['id'];?>">
 											<i class="glyphicon glyphicon-remove" style="width: 22px;"></i>
 										</button>
-										<?php $action="deletar_descricao_bens.php"; $id=(int)$t_equip['id']; include('layouts/modal-confirmacao.php'); ?>
+										<?php $action="deletar_descricao_bens.php"; $id=(int)$desc_asset['id']; include('layouts/modal-confirmacao.php'); ?>
 									</div>
 								</td>
 

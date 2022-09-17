@@ -15,7 +15,7 @@ if(empty($errors)){
     redirect('dashboard.php',false);
 
   } else {
-    $session->msg("d", "Desculpe, Usuário/Senha incorretos.");
+    $session->msg("d", "Desculpe, Usuário ou senha incorretos.");
     redirect('index.php',false);
   }
 
