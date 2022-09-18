@@ -223,15 +223,29 @@ function validate_tombo($asset_tombo){
 /*--------------------------------------------------------------*/
 function validate_description_asset($desc_asset_name){
     global $db;
-    $sql  = "SELECT name FROM description_assets WHERE name = '{($desc_asset_name)}' LIMIT 1 ";
-   
-    return find_by_sql($sql);
+    $sql  = "SELECT name FROM description_assets WHERE name = '$desc_asset_name'";
+    $result = find_by_sql($sql);
 
   if(empty($result)){
     return false;
   }
 
   return true;
+}
+
+/*--------------------------------------------------------------*/
+/* Função para validar o tipo/categoria do bem
+/*--------------------------------------------------------------*/
+function validate_types_item($type_item_name){
+  global $db;
+  $sql  = "SELECT name FROM types_itens WHERE name = '$type_item_name'";
+  $result = find_by_sql($sql);
+
+if(empty($result)){
+  return false;
+}
+
+return true;
 }
 
 /*--------------------------------------------------------------*/

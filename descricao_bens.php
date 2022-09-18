@@ -7,11 +7,15 @@ page_require_level(1);
 
 $all_description_assets = find_all('description_assets');
 
-
-
 if(isset($_POST['description_assets'])){
 	$req_field = array('descricao_bens-name');
 	$desc_asset_name = remove_junk($db->escape($_POST['descricao_bens-name']));
+	
+	if (validate_description_asset($desc_asset_name)) {
+		$session->msg('d', "Já existe uma descrição com o nome: $desc_asset_name");
+		redirect('descricao_bens.php', false);
+	}
+
 	if(empty($errors)){
 		$sql  = "INSERT INTO description_assets (name)";
 		$sql .= " VALUES ('{$desc_asset_name}')";
@@ -76,7 +80,7 @@ if(isset($_POST['description_assets'])){
 					<thead>
 						<tr>
 							<th class="text-center" style="width: 60px;">#</th>
-							<th>Todos os Itens</th>
+							<th>Descrições</th>
 							<th class="text-center" style="width: 100px;">Ações</th>
 						</tr>
 					</thead>

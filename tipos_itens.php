@@ -1,7 +1,7 @@
 <?php
 require_once('includes/load.php');
 
-$page_title = 'Todos os tipos de itens';
+$page_title = 'Tipos de itens';
 // Verifica se o usuário tem permissão de acesso
 page_require_level(1);
 
@@ -9,10 +9,17 @@ $all_types_item = find_all('types_itens');
 
 if (isset($_POST['types_item'])) {
 	$req_field = array('tipos_itens-name');
-	$type_type_item_name = remove_junk($db->escape($_POST['tipos_itens-name']));
+	$type_item_name = remove_junk($db->escape($_POST['tipos_itens-name']));
+
+
+	if (validate_types_item($type_item_name)) {
+		$session->msg('d', "Já existe um tipo cadastrado com o nome: $type_item_name");
+		redirect('tipos_itens.php', false);
+	}
+
 	if (empty($errors)) {
 		$sql  = "INSERT INTO types_itens (name)";
-		$sql .= " VALUES ('{$type_type_item_name}')";
+		$sql .= " VALUES ('{$type_item_name}')";
 		if ($db->query($sql)) {
 			$session->msg("s", "Tipos de item adicionado com sucesso!");
 			redirect('tipos_itens.php', false);
@@ -64,9 +71,9 @@ if (isset($_POST['types_item'])) {
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
 						<tr>
-							<th class="text-center" style="width: 60px;">#</th>
-							<th>Todos os Itens</th>
-							<th class="text-center" style="width: 100px;">Ações</th>
+							<th class="text-center" style="max-width: 60px;">#</th>
+							<th>Tipos</th>
+							<th class="text-center" style="max-width: 100px;">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
