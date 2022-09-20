@@ -84,7 +84,7 @@ if(isset($_POST['update-pass'])) {
           <div class="col-md-8">
             <form class="form" action="editar_perfil.php" method="POST" enctype="multipart/form-data">
               <div class="form-group">
-                <input type="file" name="file_upload" multiple="multiple" required class="btn btn-default btn-file"/>
+                <input type="file" name="file_upload" style="text-indent: 0;" multiple="multiple" required class="btn btn-default btn-file"/>
               </div>
               <div class="form-group">
                 <input type="hidden" name="user_id" value="<?= $user['id'];?>">

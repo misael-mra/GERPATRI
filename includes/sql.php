@@ -371,7 +371,7 @@ function pieChartAssetPerDescription(){
 }
 
 /*--------------------------------------------------------------*/
-/* Criar gráfico de pizza para Dashboard com o status do bem
+/* Criar gráfico de pizza para Dashboard com a situação do bem
 /*--------------------------------------------------------------*/
 function pieChartAssetPerSituation(){
   global $db;

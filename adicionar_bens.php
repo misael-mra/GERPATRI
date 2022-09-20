@@ -221,7 +221,7 @@ if (isset($_POST['add_asset'])) {
 										<b>Observações</b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="asset-obs" placeholder="Observações (Opcional)" autocomplete="off">
+										<input type="text" class="form-control" style="height: 50%" name="asset-obs" placeholder="Observações (Opcional)" autocomplete="off">
 									</div>
 								</div>
 							</div>
