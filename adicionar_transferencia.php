@@ -1,33 +1,33 @@
 <?php
 require_once('includes/load.php');
 
-$page_title = 'Adicionar Transferência';
+$page_title = 'Realizar transferência';
 // Checkin What level user has permission to view this page
 page_require_level(2);
 ?>
 <?php
 
 if(isset($_POST['add_transfer'])){
-  $req_fields = array('e_id','sector','responsible_user','transfer_date');
+  $req_fields = array('asset_id','sector','responsible_user','transfer_date');
   if(empty($errors)){
-    $e_id      = $db->escape((int) $_POST['e_id']);
-    $e_r_u     = $db->escape($_POST['responsible_user']);
-    $e_sector  = $db->escape((int) $_POST['sector']);
-    $e_t_date      = $db->escape($_POST['transfer_date']);
-    $e_user_create = (int) $_SESSION['user_id'];
-    $e_date_create = make_date();
+    $a_id      = $db->escape((int) $_POST['asset_id']);
+    $a_r_u     = $db->escape($_POST['responsible_user']);
+    $a_sector  = $db->escape((int) $_POST['sector']);
+    $a_t_date      = $db->escape($_POST['transfer_date']);
+    $a_user_create = (int) $_SESSION['user_id'];
+    $a_date_create = make_date();
 
     $sql  = "INSERT INTO transfers (";
-    $sql .= " equipment_id,responsible_user,sector_id,transfer_date,created_by,created_at";
+    $sql .= " asset_id,responsible_user,sector_id,transfer_date,created_by,created_at";
     $sql .= ") VALUES (";
-    $sql .= "'{$e_id}','{$e_r_u}','{$e_sector}','{$e_t_date}','{$e_user_create}','{$e_date_create}'";
+    $sql .= "'{$a_id}','{$a_r_u}','{$a_sector}','{$a_t_date}','{$a_user_create}','{$a_date_create}'";
     $sql .= ")";
 
     if($db->query($sql)){
-      $session->msg('s',"Transferência adicionada com sucesso!");
+      $session->msg('s',"Transferência realizada com sucesso!");
       redirect('adicionar_transferencia.php', false);
     } else {
-      $session->msg('d','Desculpe, falha ao adicionar o transferência');
+      $session->msg('d','Desculpe, falha ao realizar o transferência');
       redirect('adicionar_transferencia.php', false);
     }
   } else {
@@ -44,7 +44,7 @@ if(isset($_POST['add_transfer'])){
     <form method="post" action="ajax.php" autocomplete="off" id="sug-form">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" id="sug_input" class="form-control" name="tombo"  placeholder="Informe o Nº tombo">
+          <input type="text" id="sug_input" class="form-control" name="tombo"  placeholder="Informe o nº tombo">
           <span class="input-group-btn">
             <button type="submit" class="btn btn-primary">Buscar</button>
           </span>            
@@ -78,7 +78,7 @@ if(isset($_POST['add_transfer'])){
               <th> Data da transferência</th>
               <th> Ação</th>
             </thead>
-            <tbody  id="equipment_info"> </tbody>
+            <tbody  id="asset_info"> </tbody>
           </table>
         </form>
       </div>

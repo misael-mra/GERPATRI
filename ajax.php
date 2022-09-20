@@ -3,21 +3,21 @@ require_once('includes/load.php');
 // Check if user is logged in
 if(!$session->isUserLoggedIn(true)) { redirect('dashboard.php', false);}
 
-// Auto suggetion
+// Auto sugestão
 $html = '';
-if(isset($_POST['equipment_tombo']) && strlen($_POST['equipment_tombo']))
+if(isset($_POST['asset_tombo']) && strlen($_POST['asset_tombo']))
 {
-  $equipments = find_equipment_by_tombo($_POST['equipment_tombo']);
-  if($equipments){
-    foreach ($equipments as $equipment):
+  $assets = find_asset_by_tombo($_POST['asset_tombo']);
+  if($assets){
+    foreach ($assets as $asset):
       $html .= "<li class=\"list-group-item\">";
-      $html .= $equipment['tombo'];
+      $html .= $asset['tombo'];
       $html .= "</li>";
     endforeach;
   } else {
 
     $html .= '<li onClick=\"fill(\''.addslashes().'\')\" class=\"list-group-item\">';
-    $html .= 'Tombo não encontrado ou este equipamento já foi transferido.';
+    $html .= 'Tombo não encontrado ou este bem já foi transferido.';
     $html .= "</li>";
 
   }
@@ -25,11 +25,11 @@ if(isset($_POST['equipment_tombo']) && strlen($_POST['equipment_tombo']))
   echo json_encode($html);
 }
 
-// find all equipment
+// Encontrar todos os bens 
 if(isset($_POST['e_tombo']) && strlen($_POST['e_tombo']))
 {
-  $equipment_tombo = remove_junk($db->escape($_POST['e_tombo']));
-  if($results = find_all_equipment_info_by_tombo($equipment_tombo)){
+  $asset_tombo = remove_junk($db->escape($_POST['e_tombo']));
+  if($results = find_all_asset_info_by_tombo($asset_tombo)){
     $all_sector = find_all('sectors');
     foreach ($results as $result) {
 
@@ -66,7 +66,7 @@ if(isset($_POST['e_tombo']) && strlen($_POST['e_tombo']))
 
     }
   } else {
-    $html ='<tr><td>Tombo não encontrado ou este equipamento já foi transferido.</td></tr>';
+    $html ='<tr><td>Tombo não encontrado ou o bem já foi transferido.</td></tr>';
   }
 
   echo json_encode($html);

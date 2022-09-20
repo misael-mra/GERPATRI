@@ -31,8 +31,7 @@ $transfers = find_all_transfer();
             <tr>
               <th class="text-center" style="width: 50px;">#</th>                
               <th> Tombo</th>
-              <th class="none"> Especificações </th>
-              <th class="text-center"> Tipo de Equipamento </th>
+              <th class="none"> Descrição </th>
               <th class="text-center"> Setor </th>
               <th class="text-center"> Usuário Responsável </th>
               <th class="text-center"> Data da transferência </th>
@@ -48,8 +47,7 @@ $transfers = find_all_transfer();
               <tr>
                 <td class="text-center"><?= count_id();?></td>
                 <td class="text-center"><?= remove_junk($transfer['tombo']); ?></td>
-                <td><?= remove_junk($transfer['specifications']); ?></td>
-                <td class="text-center"><?= remove_junk($transfer['type_equip']); ?></td>                
+                <td><?= remove_junk($transfer['descrip_asset']); ?></td>         
                 <td class="text-center"><?= remove_junk($transfer['sector']); ?></td>                
                 <td class="text-center"><?= remove_junk($transfer['responsible_user']); ?></td>                
                 <td class="text-center"><?= strftime('%d/%m/%Y', strtotime($transfer['transfer_date'])); ?></td>

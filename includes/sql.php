@@ -280,12 +280,11 @@ function find_all_asset_info_by_tombo($tombo){
 /*--------------------------------------------------------------*/
 function find_all_transfer(){
   global $db;
-  $sql  = "SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,e.specifications,s.name AS sector,t_e.name AS description_asset,";
+  $sql  = "SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,e.asset_id,s.name AS sector,d_a.name AS descrip_asset,";
   $sql  .=" t.created_at, u_c.name AS created_user, u_u.name AS updated_user, t.updated_at";
   $sql .= " FROM transfers t";
-  $sql .= " INNER JOIN assets e ON e.id = t.asset_id";
   $sql .= " INNER JOIN sectors s ON s.id = t.sector_id";
-  $sql .= " INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id";
+  $sql .= " INNER JOIN description_assets d_a ON d_a.id = e.asset_id";
   $sql  .=" INNER JOIN users u_c ON u_c.id = t.created_by";
   $sql  .=" LEFT JOIN users u_u ON u_u.id = t.updated_by";
   $sql .= " ORDER BY t.created_at DESC";   
@@ -299,7 +298,7 @@ function find_recent_transfer_added($limit){
   global $db;
   $sql  ="SELECT t.id,t.responsible_user,t.transfer_date,e.tombo,t_e.name AS description_asset";
   $sql .= " FROM transfers t";
-  $sql .= " INNER JOIN assets e ON e.id = t.asset_id";
+  $sql .= " INNER JOIN assets e ON a.id = t.asset_id";
   $sql  .=" INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id";
   $sql .= " ORDER BY t.created_at DESC LIMIT ".$db->escape((int)$limit);
   return find_by_sql($sql);
