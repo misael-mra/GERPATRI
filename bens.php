@@ -23,14 +23,14 @@ $assets = find_all_asset();
           <a href="adicionar_bens.php" class="btn btn-primary">Adicionar Novo</a>
         </div>
       </div>
-      <div class="panel-body" style="font-size: 12px">
-        <table class="table table-bordered datatable-active">
+      <div class="panel-body table-responsive" style="font-size:12px;">
+        <table class="table table-bordered datatable-active"  style="width: 100%;">
           <thead>
             <tr>
-              <th class="text-center" style="max-width: 40px;">#</th>                
-              <th class="text-center" style="max-width: 60px;">Nº Tombo</th>
-              <th class="text-center" style="max-width: 470px;"> Descrição </th>
-              <th class="text-center" style="max-width: 320px;"> Tipo </th>
+              <th class="text-center" style="max-width: 40px"> #</th>                
+              <th class="text-center" style="max-width: 60px"> Nº Tombo</th>
+              <th class="text-center" style="max-width: 600px"> Descrição </th>
+              <th class="text-center"> Tipo </th>
               <th class="text-center none"> Fabricante: </th>
               <th class="text-center none"> Situação: </th>
               <th class="text-center none"> Observação: </th>
