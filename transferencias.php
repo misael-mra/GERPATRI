@@ -21,9 +21,6 @@ $transfers = find_all_transfer();
           <span class="glyphicon glyphicon-th"></span>
           <span>Todas as Transferências</span>
         </strong>
-        <div class="pull-right">
-          <a href="adicionar_transferencia.php" class="btn btn-primary">Adicionar transferência</a>
-        </div>
       </div>
       <div class="panel-body">
         <table class="table table-bordered datatable-active">
