@@ -12,17 +12,17 @@ if(!$d_transfer){
 
 $delete_id = delete_by_id('transfers',(int)$d_transfer['id']);
 if($delete_id){
-  $e_id      = $db->escape((int) $d_transfer['equipment_id']);
-  $e_r_u     = $db->escape($d_transfer['responsible_user']);
-  $e_sector  = $db->escape((int) $d_transfer['sector_id']);
-  $e_t_date      = $db->escape($d_transfer['transfer_date']);
-  $e_user_create = (int) $_SESSION['user_id'];
-  $e_date_create = make_date();
+  $a_id      = $db->escape((int) $d_transfer['asset_id']);
+  $a_r_u     = $db->escape($d_transfer['responsible_user']);
+  $a_sector  = $db->escape((int) $d_transfer['sector_id']);
+  $a_t_date      = $db->escape($d_transfer['transfer_date']);
+  $a_user_create = (int) $_SESSION['user_id'];
+  $a_date_create = make_date();
 
   $sql  = "INSERT INTO transfer_historys (";
-  $sql .= " equipment_id,responsible_user,sector_id,transfer_date,created_by,created_at";
+  $sql .= " asset_id,responsible_user,sector_id,transfer_date,created_by,created_at";
   $sql .= ") VALUES (";
-  $sql .= "'{$e_id}','{$e_r_u}','{$e_sector}','{$e_t_date}','{$e_user_create}','{$e_date_create}'";
+  $sql .= "'{$a_id}','{$a_r_u}','{$a_sector}','{$a_t_date}','{$a_user_create}','{$a_date_create}'";
   $sql .= ")";
 
   if(!$db->query($sql)){
