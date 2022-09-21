@@ -41,7 +41,7 @@ $transfers = find_all_transfer_history();
               <tr>
                 <td class="text-center"><?= count_id();?></td>
                 <td class="text-center"><?= remove_junk($transfer['tombo']); ?></td>
-                <td><?= remove_junk($transfer['specifications']); ?></td>
+                <td><?= remove_junk($transfer['descrip_asset']); ?></td>
                 <td class="text-center"><?= remove_junk($transfer['sector']); ?></td>                
                 <td class="text-center"><?= remove_junk($transfer['responsible_user']); ?></td>                
                 <td class="text-center"><?= remove_junk($transfer['transfer_date']); ?></td>                
