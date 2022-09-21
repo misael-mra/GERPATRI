@@ -39,7 +39,7 @@ if(isset($_POST['add_transfer'])){
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-2">
     <?= display_msg($msg); ?>
     <form method="post" action="ajax.php" autocomplete="off" id="sug-form">
       <div class="form-group">
@@ -71,12 +71,12 @@ if(isset($_POST['add_transfer'])){
         <form method="post" action="adicionar_transferencia.php">
           <table class="table table-bordered">
             <thead>
-              <th> Tombo </th>
-              <th> Item</th>
-              <th> Usuário Responsável </th>
-              <th> Setor </th>
-              <th> Data da transferência</th>
-              <th> Ação</th>
+              <th class="text-center"> Tombo</th>
+              <th> Descrição do bem</th>
+              <th> Responsável pela Transferência</th>
+              <th> Setor de Destino</th>
+              <th class="text-center"> Data da transferência</th>
+              <th class="text-center"> Ação</th>
             </thead>
             <tbody  id="asset_info"> </tbody>
           </table>

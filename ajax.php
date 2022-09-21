@@ -41,7 +41,7 @@ if(isset($_POST['a_tombo']) && strlen($_POST['a_tombo']))
 
       $html .= "<input type=\"hidden\" name=\"asset_id\" value=\"{$result['id']}\">";
 
-      $html .= "<td id=\"a_tombo\">".$result['tombo']."</td>";
+      $html .= "<td class=\"text-center\" id=\"a_tombo\">".$result['tombo']."</td>";
 
       $html .= "<td>".$result['descrip_asset']."</td>";
 
@@ -62,7 +62,7 @@ if(isset($_POST['a_tombo']) && strlen($_POST['a_tombo']))
       $html  .= "<input type=\"date\" class=\"form-control\" name=\"transfer_date\" required>";
       $html  .= "</td>";
 
-      $html  .= "<td>";
+      $html  .= "<td class=\"text-center\">";
       $html  .= "<button type=\"submit\" name=\"add_transfer\" class=\"btn btn-primary\">Registrar Transferência</button>";
       $html  .= "</td>";
 
