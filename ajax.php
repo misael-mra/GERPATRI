@@ -25,6 +25,10 @@ if(isset($_POST['asset_tombo']) && strlen($_POST['asset_tombo']))
   echo json_encode($html);
 }
 
+// Usuário responsável
+
+$user = current_user();
+
 // Encontrar todos os bens 
 if(isset($_POST['a_tombo']) && strlen($_POST['a_tombo']))
 {
@@ -42,7 +46,7 @@ if(isset($_POST['a_tombo']) && strlen($_POST['a_tombo']))
       $html .= "<td>".$result['descrip_asset']."</td>";
 
       $html  .= "<td>";
-      $html  .= "<input type=\"text\" class=\"form-control\" name=\"responsible_user\" required>";
+      $html  .= "<input type=\"text\" class=\"form-control\" value=\"{$user['name']}\" name=\"responsible_user\" disabled>";
       $html  .= "</td>";
 
       $html .= "<td>";

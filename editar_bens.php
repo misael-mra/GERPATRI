@@ -239,7 +239,7 @@ if (isset($_POST['update_asset'])) {
                 </div>
               </div>
             </div>
-            <button type="submit" name="update_asset" class="btn btn-success">FINALIZAR</button>
+            <button type="submit" name="update_asset" class="btn btn-success">ATUALIZAR</button>
           </form>
         </div>
       </div>
