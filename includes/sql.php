@@ -310,9 +310,9 @@ function find_recent_transfer_added($limit){
 /*--------------------------------------------------------------*/
 function find_all_transfer_history(){
   global $db;
-  $sql  = "SELECT l_h.id,l_h.responsible_user,l_h.transfer_date,l_h.created_at,e.tombo,e.specifications,s.name AS sector,u.name AS create_user";
+  $sql  = "SELECT l_h.id,l_h.responsible_user,l_h.transfer_date,l_h.created_at,a.tombo,a.description_asset_id,s.name AS sector,u.name AS create_user";
   $sql .= " FROM transfer_historys l_h";
-  $sql .= " INNER JOIN assets e ON e.id = l_h.asset_id";
+  $sql .= " INNER JOIN assets a ON a.id = l_h.asset_id";
   $sql .= " INNER JOIN sectors s ON s.id = l_h.sector_id";
   $sql .= " INNER JOIN users u ON u.id = l_h.created_by";
   $sql .= " ORDER BY l_h.created_at DESC";   
