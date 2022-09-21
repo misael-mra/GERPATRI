@@ -10,10 +10,10 @@
           <p class="text-left">Você tem certeza que deseja realizar esta ação?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 
           <input type="hidden" name="id" value="<?= $id; ?>">
-          <button type="submit" class="btn btn-primary">Confirmar</button>
+          <button type="submit" class="btn btn-success">Confirmar</button>
         </div>
       </form>
     </div>
