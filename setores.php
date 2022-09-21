@@ -48,7 +48,7 @@ if(isset($_POST['add_sector'])){
           <div class="form-group">
             <input type="text" class="form-control" name="sector-name" placeholder="Nome do setor" required autocomplete="off">
           </div>
-          <button type="submit" name="add_sector" class="btn btn-primary">Novo setor</button>
+          <button type="submit" name="add_sector" class="btn btn-success">CADASTRAR</button>
         </form>
       </div>
     </div>

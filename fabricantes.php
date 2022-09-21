@@ -47,7 +47,7 @@ if(isset($_POST['add_manufacturer'])){
           <div class="form-group">
             <input type="text" class="form-control" name="manufacturer-name" placeholder="Nome do fabricante" required autocomplete="off">
           </div>
-          <button type="submit" name="add_manufacturer" class="btn btn-primary">Novo fabricante</button>
+          <button type="submit" name="add_manufacturer" class="btn btn-success">CADASTRAR</button>
         </form>
       </div>
     </div>

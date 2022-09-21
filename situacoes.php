@@ -48,7 +48,7 @@ if(isset($_POST['add_situation'])){
           <div class="form-group">
             <input type="text" class="form-control" name="situation-name" placeholder="Nome da situação" required autocomplete="off">
           </div>
-          <button type="submit" name="add_situation" class="btn btn-primary">Nova situação</button>
+          <button type="submit" name="add_situation" class="btn btn-success">CADASTRAR</button>
         </form>
       </div>
     </div>
