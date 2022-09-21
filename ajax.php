@@ -26,20 +26,20 @@ if(isset($_POST['asset_tombo']) && strlen($_POST['asset_tombo']))
 }
 
 // Encontrar todos os bens 
-if(isset($_POST['e_tombo']) && strlen($_POST['e_tombo']))
+if(isset($_POST['a_tombo']) && strlen($_POST['a_tombo']))
 {
-  $asset_tombo = remove_junk($db->escape($_POST['e_tombo']));
+  $asset_tombo = remove_junk($db->escape($_POST['a_tombo']));
   if($results = find_all_asset_info_by_tombo($asset_tombo)){
     $all_sector = find_all('sectors');
     foreach ($results as $result) {
 
       $html .= "<tr>";
 
-      $html .= "<input type=\"hidden\" name=\"e_id\" value=\"{$result['id']}\">";
+      $html .= "<input type=\"hidden\" name=\"asset_id\" value=\"{$result['id']}\">";
 
-      $html .= "<td id=\"e_tombo\">".$result['tombo']."</td>";
+      $html .= "<td id=\"a_tombo\">".$result['tombo']."</td>";
 
-      $html .= "<td>".$result['type_equip']."</td>";
+      $html .= "<td>".$result['descrip_asset']."</td>";
 
       $html  .= "<td>";
       $html  .= "<input type=\"text\" class=\"form-control\" name=\"responsible_user\" required>";

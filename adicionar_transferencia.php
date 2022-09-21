@@ -18,7 +18,7 @@ if(isset($_POST['add_transfer'])){
     $a_date_create = make_date();
 
     $sql  = "INSERT INTO transfers (";
-    $sql .= " asset_id,responsible_user,sector_id,transfer_date,created_by,created_at";
+    $sql .= " asset_id, responsible_user, sector_id, transfer_date, created_by, created_at";
     $sql .= ") VALUES (";
     $sql .= "'{$a_id}','{$a_r_u}','{$a_sector}','{$a_t_date}','{$a_user_create}','{$a_date_create}'";
     $sql .= ")";

@@ -254,10 +254,10 @@ return true;
 /*--------------------------------------------------------------*/
 function find_asset_by_tombo($asset_tombo){
   global $db;
-  $e_tombo = remove_junk($db->escape($asset_tombo));
+  $a_tombo = remove_junk($db->escape($asset_tombo));
   $sql  = "SELECT tombo FROM assets";
   $sql .= " WHERE id NOT IN (SELECT asset_id FROM transfers)";
-  $sql .= " AND tombo like '%$e_tombo%' LIMIT 5";
+  $sql .= " AND tombo like '%$a_tombo%' LIMIT 5";
   $result = find_by_sql($sql);
   return $result;
 }
@@ -268,10 +268,10 @@ function find_asset_by_tombo($asset_tombo){
 /*--------------------------------------------------------------*/
 function find_all_asset_info_by_tombo($tombo){
   global $db;
-  $sql  = "SELECT e.id,e.tombo,t_e.name AS type_equip FROM assets e";
-  $sql .= " INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id";
-  $sql .= " WHERE e.id NOT IN (SELECT asset_id FROM transfers)";    
-  $sql .= " AND e.tombo ='{$tombo}'";
+  $sql  = "SELECT a.id, a.tombo, d_a.name AS descrip_asset FROM assets a";
+  $sql .= " INNER JOIN description_assets d_a ON d_a.id = a.description_asset_id";
+  $sql .= " WHERE a.id NOT IN (SELECT asset_id FROM transfers)";    
+  $sql .= " AND a.tombo ='{$tombo}'";
   return find_by_sql($sql);
 }
 

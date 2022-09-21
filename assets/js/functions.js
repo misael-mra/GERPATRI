@@ -4,10 +4,10 @@ function suggetion() {
      $('#sug_input').keyup(function(e) {
 
          var formData = {
-             'equipment_tombo' : $('input[name=tombo]').val()
+             'asset_tombo' : $('input[name=tombo]').val()
          };
 
-         if(formData['equipment_tombo'].length >= 1){
+         if(formData['asset_tombo'].length >= 1){
 
            // process the form
            $.ajax({
@@ -46,7 +46,7 @@ function suggetion() {
 
 $('#sug-form').submit(function(e) {
       var formData = {
-          'e_tombo' : $('input[name=tombo]').val()
+          'a_tombo' : $('input[name=tombo]').val()
       };
         // process the form
         $.ajax({
@@ -58,10 +58,10 @@ $('#sug-form').submit(function(e) {
         })
             .done(function(data) {
                 //console.log(data);
-                $('#equipment_info').html(data).show();
+                $('#asset_info').html(data).show();
 
             }).fail(function() {
-                $('#equipment_info').html(data).show();
+                $('#asset_info').html(data).show();
             });
       e.preventDefault();
 });
