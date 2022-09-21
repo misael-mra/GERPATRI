@@ -366,7 +366,7 @@ function issue_reports($tombo, $specifications, $responsible_user, $transfer, $d
 /*--------------------------------------------------------------*/
 function pieChartAssetPerDescription(){
   global $db;
-  $sql = "SELECT COUNT(e.description_asset_id) AS count, t_e.name FROM assets e INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id GROUP BY e.description_asset_id";
+  $sql = "SELECT COUNT(a.description_asset_id) AS count, d_a.name FROM assets a INNER JOIN description_assets d_a ON d_a.id = a.description_asset_id GROUP BY a.description_asset_id";
   return find_by_sql($sql);
 }
 
@@ -375,7 +375,7 @@ function pieChartAssetPerDescription(){
 /*--------------------------------------------------------------*/
 function pieChartAssetPerSituation(){
   global $db;
-  $sql = "SELECT COUNT(e.situation_id) AS count,s.name FROM assets e INNER JOIN situations s ON s.id = e.situation_id GROUP BY e.situation_id";
+  $sql = "SELECT COUNT(a.situation_id) AS count,s.name FROM assets a INNER JOIN situations s ON s.id = a.situation_id GROUP BY a.situation_id";
   return find_by_sql($sql);
 }
 
