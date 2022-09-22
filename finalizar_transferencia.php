@@ -25,7 +25,12 @@ if($delete_id){
   $sql .= "'{$a_id}','{$a_r_u}','{$a_sector}','{$a_t_date}','{$a_user_create}','{$a_date_create}'";
   $sql .= ")";
 
-  if(!$db->query($sql)){
+  $sql_2 .= "UPDATE assets ";
+  $sql_2 .= "SET sector_id = '{$a_sector}' ";
+  $sql_2 .= "WHERE id = '{$a_id}'";
+
+
+  if(!$db->query($sql, $sql_2)){
     $session->msg('d','Desculpe, falha ao adicionar a transferência no histórico de transferências.');
     redirect('adicionar_transferencia.php', false);
   }          
