@@ -8,9 +8,9 @@ page_require_level(2);
 <?php
 
 if(isset($_POST['add_transfer'])){
-  $req_fields = array('asset_id','sector','responsible_user','transfer_date');
+  $req_fields = array('a_id','sector','responsible_user','transfer_date');
   if(empty($errors)){
-    $a_id      = $db->escape((int) $_POST['asset_id']);
+    $a_id      = $db->escape((int) $_POST['a_id']);
     $a_r_u     = (int) $_SESSION['responsible_user'];
     $a_sector  = $db->escape((int) $_POST['sector']);
     $a_t_date      = $db->escape($_POST['transfer_date']);

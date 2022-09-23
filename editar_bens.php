@@ -36,13 +36,13 @@ if (isset($_POST['update_asset'])) {
     $a_updated_at    = make_date();
 
     $query   = "UPDATE assets SET";
-    $query  .= " description_asset_id ='{$a_description}', types_item_id ='{$a_types_item}', localization ='{$a_types_item}',";
+    $query  .= " description_asset_id ='{$a_description}', types_item_id ='{$a_types_item}', localization ='{$a_localization}',";
     $query  .= " manufacturer_id ='{$a_manufacturer}', situation_id='{$a_situation}', provider='{$a_provider}',";
     $query  .= " date_aquisition='{$a_date_aquisition}', number_nf='{$a_number_nf}', value='{$a_value}', number_serial='{$a_number_serial}', obs ='{$a_obs}', updated_by='{$a_updated_by}', updated_at='{$a_updated_at}'";
     $query  .= " WHERE id ='{$asset['id']}'";
     $result = $db->query($query);
     if ($result && $db->affected_rows() === 1) {
-      $session->msg('s', 'bem de tombo ' . $asset['tombo'] . ' foi alterado com sucesso!');
+      $session->msg('s', 'O bem de tombo ' . $asset['tombo'] . ' foi alterado com sucesso!');
       redirect('bens.php', false);
     } else {
       $session->msg('d', 'Desculpe, falha ao alterar o bem de tombo ' . $asset['tombo']);

@@ -39,7 +39,7 @@ if(isset($_POST['a_tombo']) && strlen($_POST['a_tombo']))
 
       $html .= "<tr>";
 
-      $html .= "<input type=\"hidden\" name=\"asset_id\" value=\"{$result['id']}\">";
+      $html .= "<input type=\"hidden\" name=\"a_id\" value=\"{$result['id']}\">";
 
       $html .= "<td class=\"text-center\" id=\"a_tombo\">".$result['tombo']."</td>";
 
