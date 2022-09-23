@@ -297,8 +297,9 @@ function find_all_transfer(){
 /*--------------------------------------------------------------*/
 function find_recent_transfer_added($limit){
   global $db;
-  $sql  ="SELECT t.id, t.responsible_user, t.transfer_date, a.tombo, d_a.name AS descrip_asset";
+  $sql  ="SELECT t.id, t.responsible_user, t.transfer_date, t.sector_id, a.tombo, d_a.name AS descrip_asset";
   $sql .= " FROM transfers t";
+  $sql .= " INNER JOIN sectors s ON s.id = t.sector_id";
   $sql .= " INNER JOIN assets a ON a.id = t.asset_id";
   $sql  .=" INNER JOIN description_assets d_a ON d_a.id = a.description_asset_id";
   $sql .= " ORDER BY t.created_at DESC LIMIT ".$db->escape((int)$limit);

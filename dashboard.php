@@ -109,8 +109,8 @@ $recent_transfers    = find_recent_transfer_added('10');
             <?php foreach ($recent_transfers as  $recent_transfer): ?>
               <tr>
                 <td><?= remove_junk(first_character($recent_transfer['tombo'])); ?></td>
-                <td><?= remove_junk(ucfirst($recent_transfer['description_asset'])); ?></td>
-                <td><?= remove_junk(first_character($recent_transfer['responsible_user'])); ?></td>
+                <td><?= remove_junk(ucfirst($recent_transfer['descrip_asset'])); ?></td>
+                <td><?= remove_junk(first_character($recent_transfer['sector_id'])); ?></td>
               </tr>
 
             <?php endforeach; ?>
@@ -126,7 +126,7 @@ $recent_transfers    = find_recent_transfer_added('10');
 // pie chart
 var ctx = document.getElementById('pieChart');
 var myChart = new Chart(ctx, {
-  type: 'pie',
+  type: 'bar',
   data: {
     labels: [
     <?php foreach ($pieChartAssetsPerDescription as $count_desc_description): ?>
@@ -134,12 +134,13 @@ var myChart = new Chart(ctx, {
     <?php endforeach; ?>
     ],
     datasets: [{
-      label: 'Descrição',
+      label: 'QUANTIDADES',
       data: [
       <?php foreach ($pieChartAssetsPerDescription as $count_desc_description): ?>
         "<?= $count_desc_description['count'] ?>",
       <?php endforeach; ?>
-      ],              
+      ],
+      fill: false,              
       backgroundColor: [
       <?php foreach ($pieChartAssetsPerDescription as $count_desc_description):
         $rand1 = mt_rand(0, 255); $rand2 = mt_rand(0, 255); $rand3 = mt_rand(0, 255); ?>
@@ -149,6 +150,7 @@ var myChart = new Chart(ctx, {
 
     }]
   },
+    
 });
 
 // doughnut chart
