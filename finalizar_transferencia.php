@@ -30,7 +30,7 @@ if($delete_id){
   $sql_2 .= "WHERE id = '{$a_id}'";
 
 
-  if(!$db->query($sql, $sql_2)){
+  if(!$db->query($sql)){
     $session->msg('d','Desculpe, falha ao adicionar a transferência no histórico de transferências.');
     redirect('adicionar_transferencia.php', false);
   }          

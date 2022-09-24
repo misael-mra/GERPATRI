@@ -188,17 +188,17 @@ function page_require_level($require_level){
 /*--------------------------------------------------------------*/
 function find_all_asset(){
   global $db;
-  $sql  =" SELECT e.id, e.tombo, e.obs, e.warranty, d_a.name AS descrip_asset,";
+  $sql  =" SELECT a.id, a.tombo, a.obs, a.warranty, d_a.name AS descrip_asset,";
   $sql  .=" m.name AS manufacturer, sit.name AS situation, t_item.name AS type_item,";
-  $sql  .=" e.created_at, u_c.name AS created_user, u_u.name AS updated_user, e.updated_at";
-  $sql  .=" FROM assets e";
-  $sql  .=" INNER JOIN description_assets d_a ON d_a.id = e.description_asset_id";
-  $sql  .=" INNER JOIN types_itens t_item ON t_item.id = e.types_item_id";
-  $sql  .=" INNER JOIN manufacturers m ON m.id = e.manufacturer_id";
-  $sql  .=" INNER JOIN situations sit ON sit.id = e.situation_id";
-  $sql  .=" INNER JOIN users u_c ON u_c.id = e.created_by";
-  $sql  .=" LEFT JOIN users u_u ON u_u.id = e.updated_by";
-  $sql  .=" ORDER BY e.id DESC";
+  $sql  .=" a.created_at, u_c.name AS created_user, u_u.name AS updated_user, a.updated_at";
+  $sql  .=" FROM assets a";
+  $sql  .=" INNER JOIN description_assets d_a ON d_a.id = a.description_asset_id";
+  $sql  .=" INNER JOIN types_itens t_item ON t_item.id = a.types_item_id";
+  $sql  .=" INNER JOIN manufacturers m ON m.id = a.manufacturer_id";
+  $sql  .=" INNER JOIN situations sit ON sit.id = a.situation_id";
+  $sql  .=" INNER JOIN users u_c ON u_c.id = a.created_by";
+  $sql  .=" LEFT JOIN users u_u ON u_u.id = a.updated_by";
+  $sql  .=" ORDER BY a.id DESC";
   return find_by_sql($sql);
 
 }
