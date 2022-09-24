@@ -82,7 +82,7 @@ $(document).ready(function() {
     $('.datatable-active').DataTable({
         bJQueryUI: true,
         sPaginationType: "full_numbers",
-        pageLength: 10,
+        pageLength: 50,
         lengthMenu: [ [12, 24, 36, -1], [12, 24, 36, "All"] ],
         oLanguage: {
             sLengthMenu: "",

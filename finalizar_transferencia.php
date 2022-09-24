@@ -5,6 +5,7 @@ require_once('includes/load.php');
 page_require_level(2);
 
 $d_transfer = find_by_id('transfers',(int)$_POST['id']);
+
 if(!$d_transfer){
   $session->msg("d","Transferência não encontada!");
   redirect('transferencias.php');
@@ -20,15 +21,10 @@ if($delete_id){
   $a_date_create = make_date();
 
   $sql  = "INSERT INTO transfer_historys (";
-  $sql .= " asset_id,responsible_user,sector_id,transfer_date,created_by,created_at";
+  $sql .= " asset_id, responsible_user, sector_id, transfer_date, created_by, created_at";
   $sql .= ") VALUES (";
   $sql .= "'{$a_id}','{$a_r_u}','{$a_sector}','{$a_t_date}','{$a_user_create}','{$a_date_create}'";
   $sql .= ")";
-
-  $sql_2 .= "UPDATE assets ";
-  $sql_2 .= "SET sector_id = '{$a_sector}' ";
-  $sql_2 .= "WHERE id = '{$a_id}'";
-
 
   if(!$db->query($sql)){
     $session->msg('d','Desculpe, falha ao adicionar a transferência no histórico de transferências.');
@@ -37,6 +33,7 @@ if($delete_id){
 
   $session->msg("s","Equipamento recebido com sucesso.");
   redirect('transferencias.php');
+
 } else {
   $session->msg("d","Falha ao finalizar a transferência.");
   redirect('transferencias.php');

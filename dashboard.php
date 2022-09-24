@@ -101,8 +101,8 @@ $recent_transfers    = find_recent_transfer_added('10');
           <thead>
             <tr>
               <th style="max-width: 20px;">Nº Tombo</th>
-              <th style="max-width: 200px;">Bem</th>
-              <th style="max-width: 30px;">Responsável</th>
+              <th style="max-width: 200px;">Descrição do bem</th>
+              <th style="max-width: 30px;">Setor de Destino</th>
             </tr>
           </thead>
           <tbody>
@@ -110,7 +110,7 @@ $recent_transfers    = find_recent_transfer_added('10');
               <tr>
                 <td><?= remove_junk(first_character($recent_transfer['tombo'])); ?></td>
                 <td><?= remove_junk(ucfirst($recent_transfer['descrip_asset'])); ?></td>
-                <td><?= remove_junk(first_character($recent_transfer['sector_id'])); ?></td>
+                <td><?= remove_junk(first_character($recent_transfer['sector'])); ?></td>
               </tr>
 
             <?php endforeach; ?>
