@@ -133,6 +133,14 @@ function find_all_user(){
   return $result;
 }
 
+function updateSector($a_sector='',$a_id='')
+{
+  global $db;
+  $sql = "UPDATE assets SET sector_id='{$a_sector}' WHERE id ='{$a_id}' LIMIT 1";
+  $result = $db->query($sql);
+  return ($result && $db->affected_rows() === 1 ? true : false);
+}
+
 /*--------------------------------------------------------------*/
 /* Função para atualizar o último login de um usuário
 /*--------------------------------------------------------------*/

@@ -26,6 +26,8 @@ if($delete_id){
   $sql .= "'{$a_id}','{$a_r_u}','{$a_sector}','{$a_t_date}','{$a_user_create}','{$a_date_create}'";
   $sql .= ")";
 
+  $update_new_sector = updateSector($a_sector, $a_id);
+
   if(!$db->query($sql)){
     $session->msg('d','Desculpe, falha ao adicionar a transferência no histórico de transferências.');
     redirect('adicionar_transferencia.php', false);
