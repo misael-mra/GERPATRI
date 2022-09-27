@@ -29,11 +29,11 @@ if($delete_id){
   $update_new_sector = updateSector($a_sector, $a_id);
 
   if(!$db->query($sql)){
-    $session->msg('d','Desculpe, falha ao adicionar a transferência no histórico de transferências.');
+    $session->msg('d','Desculpe, falha ao finalizar a transferência, contate o NTI-HGWA.');
     redirect('adicionar_transferencia.php', false);
   }          
 
-  $session->msg("s","Equipamento recebido com sucesso.");
+  $session->msg("s","Transferência realizada com sucesso.");
   redirect('transferencias.php');
 
 } else {
