@@ -10,7 +10,7 @@ $c_transfer  = count_by_id('transfers');
 $c_sector    = count_by_id('sectors');
 $c_user      = count_by_id('users');
 
-$pieChartAssetsPerDescription = pieChartAssetPerDescription();
+$pieChartAssetsPerDomain = pieChartAssetPerDomain();
 $pieChartAssetsPerSituation = pieChartAssetPerSituation();
 
 $recent_transfers    = find_recent_transfer_added('10');
@@ -112,7 +112,6 @@ $recent_transfers    = find_recent_transfer_added('10');
                 <td><?= remove_junk(ucfirst($recent_transfer['descrip_asset'])); ?></td>
                 <td><?= remove_junk(first_character($recent_transfer['sector'])); ?></td>
               </tr>
-
             <?php endforeach; ?>
           </tbody>
         </table>
@@ -126,23 +125,23 @@ $recent_transfers    = find_recent_transfer_added('10');
 // pie chart
 var ctx = document.getElementById('pieChart');
 var myChart = new Chart(ctx, {
-  type: 'bar',
+  type: 'pie',
   data: {
     labels: [
-    <?php foreach ($pieChartAssetsPerDescription as $count_desc_description): ?>
-      "<?= $count_desc_description['name'] ?>",
+    <?php foreach ($pieChartAssetsPerDomain as $count_desc_domain): ?>
+      "<?= $count_desc_domain['name'] ?>",
     <?php endforeach; ?>
     ],
     datasets: [{
       label: 'TODOS',
       data: [
-      <?php foreach ($pieChartAssetsPerDescription as $count_desc_description): ?>
-        "<?= $count_desc_description['count'] ?>",
+      <?php foreach ($pieChartAssetsPerDomain as $count_desc_domain): ?>
+        "<?= $count_desc_domain['count'] ?>",
       <?php endforeach; ?>
       ],
       fill: false,              
       backgroundColor: [
-      <?php foreach ($pieChartAssetsPerDescription as $count_desc_description):
+      <?php foreach ($pieChartAssetsPerDomain as $count_desc_domain):
         $rand1 = mt_rand(0, 255); $rand2 = mt_rand(0, 255); $rand3 = mt_rand(0, 255); ?>
         '<?= "rgba($rand1, $rand2, $rand3)" ?>',
       <?php endforeach; ?>

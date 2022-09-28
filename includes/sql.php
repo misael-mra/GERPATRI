@@ -374,9 +374,9 @@ function issue_reports($tombo, $specifications, $responsible_user, $transfer, $d
 /*--------------------------------------------------------------*/
 /* Criar gráfico de pizza para Dashboard com todos os bens
 /*--------------------------------------------------------------*/
-function pieChartAssetPerDescription(){
+function pieChartAssetPerDomain(){
   global $db;
-  $sql = "SELECT COUNT(a.description_asset_id) AS count, d_a.name FROM assets a INNER JOIN description_assets d_a ON d_a.id = a.description_asset_id GROUP BY a.description_asset_id";
+  $sql = "SELECT COUNT(a.domain_id) AS count, d.name FROM assets a INNER JOIN domain d ON d.id = a.domain_id GROUP BY a.domain_id";
   return find_by_sql($sql);
 }
 
@@ -385,7 +385,7 @@ function pieChartAssetPerDescription(){
 /*--------------------------------------------------------------*/
 function pieChartAssetPerSituation(){
   global $db;
-  $sql = "SELECT COUNT(a.situation_id) AS count,s.name FROM assets a INNER JOIN situations s ON s.id = a.situation_id GROUP BY a.situation_id";
+  $sql = "SELECT COUNT(a.situation_id) AS count, s.name FROM assets a INNER JOIN situations s ON s.id = a.situation_id GROUP BY a.situation_id";
   return find_by_sql($sql);
 }
 
