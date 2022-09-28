@@ -100,7 +100,7 @@ $recent_transfers    = find_recent_transfer_added('10');
         <table class="table table-striped table-bordered table-condensed">
           <thead>
             <tr>
-              <th style="max-width: 20px;">Nº TOMBO</th>
+              <th style="max-width: 80px;">Nº TOMBO</th>
               <th style="max-width: 200px;">DESCRIÇÃO DO BEM</th>
               <th style="max-width: 30px;">SETOR DE DESTINO</th>
             </tr>

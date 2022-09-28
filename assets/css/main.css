@@ -59,7 +59,7 @@ a {
 .panel-default>.panel-heading {
   background-color: #f5f5f5;
   border-bottom: 2px solid #3498DB;
-  font-size: 15px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .5px;
   padding: 15px;
@@ -70,6 +70,10 @@ overflow-y: scroll;
 max-height: 80vh;
 font-size: 12px;
 }
+
+.panel-body{
+  font-size: 12px;
+  }
 
 .panel-box {
   width: 100%;
