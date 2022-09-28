@@ -1,29 +1,29 @@
 <?php
 require_once('includes/load.php');
 
-$page_title = 'Editar tipo de Item';
+$page_title = 'Editar descrição';
 // Checkin What level user has permission to view this page
 page_require_level(1);
 
 //Display all types equipment.
-$type_equip = find_by_id('description_assets',(int)$_GET['id']);
-if(!$type_equip){
-  $session->msg("d","Tipo de item não encontrado!");
+$descripition_asset = find_by_id('description_assets',(int)$_GET['id']);
+if(!$descripition_asset){
+  $session->msg("d","Item não encontrado!");
   redirect('descricao_bens.php');
 }
 
-if(isset($_POST['edit_type_equip'])){
-  $req_field = array('type_equip-name');
-  $type_equip_name = remove_junk($db->escape($_POST['type_equip-name']));
+if(isset($_POST['edit_descripition_asset'])){
+  $req_field = array('descripition_asset-name');
+  $descripition_asset_name = remove_junk($db->escape($_POST['descripition_asset-name']));
   if(empty($errors)){
-    $sql = "UPDATE description_assets SET name='{$type_equip_name}'";
-    $sql .= " WHERE id='{$type_equip['id']}'";
+    $sql = "UPDATE description_assets SET name='{$descripition_asset_name}'";
+    $sql .= " WHERE id='{$descripition_asset['id']}'";
     $result = $db->query($sql);
     if($result && $db->affected_rows() === 1) {
-      $session->msg("s", "Tipo de item alterado com sucesso");
+      $session->msg("s", "Descrição alterada com sucesso");
       redirect('descricao_bens.php',false);
     } else {
-      $session->msg("d", "Desculpe, falha ao alterar o tipo de item.");
+      $session->msg("d", "Desculpe, falha ao alterar a descrição.");
       redirect('descricao_bens.php',false);
     }
   } else {
@@ -43,15 +43,15 @@ if(isset($_POST['edit_type_equip'])){
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-edit"></span>
-          <span>Editando <?= remove_junk(ucfirst($type_equip['name']));?></span>
+          <span>Editando <?= remove_junk(ucfirst($descripition_asset['name']));?></span>
         </strong>
       </div>
       <div class="panel-body">
-        <form method="post" action="editar_tipos_equipamento.php?id=<?= (int)$type_equip['id'];?>">
+        <form method="post" action="editar_descricao_bens.php?id=<?= (int)$descripition_asset['id'];?>">
           <div class="form-group">
-            <input type="text" class="form-control" name="type_equip-name" required autocomplete="off" value="<?= remove_junk(ucfirst($type_equip['name']));?>">
+            <input type="text" class="form-control" name="descripition_asset-name" required autocomplete="off" value="<?= remove_junk(ucfirst($descripition_asset['name']));?>">
           </div>
-          <button type="submit" name="edit_type_equip" class="btn btn-primary">Atualizar Item</button>
+          <button type="submit" name="edit_descripition_asset" class="btn btn-success">Atualizar</button>
         </form>
       </div>
     </div>
