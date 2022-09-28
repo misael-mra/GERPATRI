@@ -15,11 +15,12 @@ $all_sector = find_all('sectors');
 <?php
 if (isset($_POST['add_asset'])) {
 	$req_fields = array(
-		'asset-tombo', 'asset-description', 'asset-type_item', 'asset-sector', 'asset-localization', 'asset-manufacturer',
+		'asset-tombo','asset-domain', 'asset-description', 'asset-type_item', 'asset-sector', 'asset-localization', 'asset-manufacturer',
 		'asset-situation', 'asset-provider', 'asset-number_nf', 'asset-date_aquisition', 'asset-value', 'asset-number_serial', 'asset-obs'
 	);
 	if (empty($errors)) {
 		$a_tombo = remove_junk($db->escape($_POST['asset-tombo']));
+		$a_domain = remove_junk($db->escape($_POST['asset-domain']));
 		$a_description = remove_junk($db->escape($_POST['asset-description']));
 		$a_type_item = remove_junk($db->escape($_POST['asset-type_item']));
 		$a_sector = remove_junk($db->escape($_POST['asset-sector']));
@@ -37,14 +38,14 @@ if (isset($_POST['add_asset'])) {
 		$a_created_at = make_date();
 
 		if (validate_tombo($a_tombo)) {
-			$session->msg('d', "Desculpe, Já existe um bem com o tombo $a_tombo");
+			$session->msg('d', "Desculpe, Já existe um bem registrado com o tombo $a_tombo");
 			redirect('adicionar_bens.php', false);
 		}
 
 		$query  = "INSERT INTO assets (";
-		$query .= " tombo, description_asset_id, types_item_id, sector_id, localization, manufacturer_id, situation_id, provider, number_nf,date_aquisition,value,number_serial,obs,warranty, created_by, created_at";
+		$query .= " tombo, domain_id, description_asset_id, types_item_id, sector_id, localization, manufacturer_id, situation_id, provider, number_nf,date_aquisition,value,number_serial,obs,warranty, created_by, created_at";
 		$query .= ") VALUES (";
-		$query .= " '{$a_tombo}', '{$a_description}', '{$a_type_item}', '{$a_sector}', '{$a_localization}', '{$a_manufacturer}', '{$a_situation}', '{$a_provider}', '{$a_number_nf}',
+		$query .= " '{$a_tombo}', '{$a_domain}', '{$a_description}', '{$a_type_item}', '{$a_sector}', '{$a_localization}', '{$a_manufacturer}', '{$a_situation}', '{$a_provider}', '{$a_number_nf}',
 		 '{$a_date_aquisition}', '{$a_value}', '{$a_number_serial}', '{$a_obs}',";
 		if (empty($a_warranty)) $query  .= " NULL,";
 		else $query .= " '{$a_warranty}',";
@@ -102,12 +103,12 @@ if (isset($_POST['add_asset'])) {
 										<b>*Domínio</b>
 									</span>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-										<label class="form-check-label" for="flexRadioDefault1">
+										<input class="form-check-input" type="radio" name="asset-domain" value="1" id="asset-domain1" checked>
+										<label class="form-check-label" for="asset-domain1">
 											ISGH
 										</label>
-										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" style="margin-left:15%;">
-										<label class="form-check-label" for="flexRadioDefault2">
+										<input class="form-check-input" type="radio" name="asset-domain" value="2" id="asset-domain2" style="margin-left:15%;">
+										<label class="form-check-label" for="asset-domain2">
 											SESA
 										</label>
 									</div>
