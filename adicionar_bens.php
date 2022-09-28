@@ -10,12 +10,14 @@ $all_types_item = find_all('types_itens');
 $all_manufacturer = find_all('manufacturers');
 $all_situation = find_all('situations');
 $all_sector = find_all('sectors');
-                
+
 ?>
 <?php
 if (isset($_POST['add_asset'])) {
-	$req_fields = array('asset-tombo','asset-description','asset-type_item','asset-sector','asset-localization','asset-manufacturer',
-	'asset-situation','asset-provider','asset-number_nf','asset-date_aquisition','asset-value','asset-number_serial','asset-obs');
+	$req_fields = array(
+		'asset-tombo', 'asset-description', 'asset-type_item', 'asset-sector', 'asset-localization', 'asset-manufacturer',
+		'asset-situation', 'asset-provider', 'asset-number_nf', 'asset-date_aquisition', 'asset-value', 'asset-number_serial', 'asset-obs'
+	);
 	if (empty($errors)) {
 		$a_tombo = remove_junk($db->escape($_POST['asset-tombo']));
 		$a_description = remove_junk($db->escape($_POST['asset-description']));
@@ -89,33 +91,36 @@ if (isset($_POST['add_asset'])) {
 							<div class="row">
 								<div class="col-md-2">
 									<span class="input-group-addon">
-										<b>Tombo</b>
+										<b>*Tombo</b>
 									</span>
 									<div class="input-group">
-										<input type="number" class="form-control" name="asset-tombo" placeholder="Nº Tombo *" required autocomplete="off">
+										<input type="text" class="form-control" name="asset-tombo" placeholder="Nº Tombo" required autocomplete="off">
 									</div>
 								</div>
-								<div class="col-md-7">
+								<div class="col-md-2 text-center">
 									<span class="input-group-addon">
-										<b>Descrição do bem</b>
+										<b>*Domínio</b>
+									</span>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+										<label class="form-check-label" for="flexRadioDefault1">
+											ISGH
+										</label>
+										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" style="margin-left:15%;">
+										<label class="form-check-label" for="flexRadioDefault2">
+											SESA
+										</label>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<span class="input-group-addon">
+										<b>*Descrição do bem</b>
 									</span>
 									<select class="form-control" name="asset-description" required>
-										<option value="">Selecione*</option>
-										<?php foreach ($all_description_asset as $t_descr_asset) : ?>
-											<option value="<?= (int)$t_descr_asset['id'] ?>">
-												<?= $t_descr_asset['name'] ?></option>
-										<?php endforeach; ?>
-									</select>
-								</div>
-								<div class="col-md-3">
-									<span class="input-group-addon">
-										<b>Tipo</b>
-									</span>
-									<select class="form-control" name="asset-type_item" required>
-										<option value="">Selecione*</option>
-										<?php foreach ($all_types_item as $t_type_item) : ?>
-											<option value="<?= (int)$t_type_item['id'] ?>">
-												<?= $t_type_item['name'] ?></option>
+										<option value="">Selecione</option>
+										<?php foreach ($all_description_asset as $descr_asset) : ?>
+											<option value="<?= (int)$descr_asset['id'] ?>">
+												<?= $descr_asset['name'] ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>
@@ -123,19 +128,31 @@ if (isset($_POST['add_asset'])) {
 						</div>
 						<div class="form-group">
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<span class="input-group-addon">
-										<b>Setor</b>
+										<b>*Tipo</b>
+									</span>
+									<select class="form-control" name="asset-type_item" required>
+										<option value="">Selecione</option>
+										<?php foreach ($all_types_item as $t_type_item) : ?>
+											<option value="<?= (int)$t_type_item['id'] ?>">
+												<?= $t_type_item['name'] ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<span class="input-group-addon">
+										<b>*Setor</b>
 									</span>
 									<select class="form-control" name="asset-sector" required>
-										<option value="">Selecione*</option>
+										<option value="">Selecione</option>
 										<?php foreach ($all_sector as $sector) : ?>
 											<option value="<?= (int)$sector['id'] ?>">
 												<?= $sector['name'] ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<span class="input-group-addon">
 										<b>Localização</b>
 									</span>
@@ -143,9 +160,14 @@ if (isset($_POST['add_asset'])) {
 										<input type="text" class="form-control" name="asset-localization" placeholder="Localização" autocomplete="off">
 									</div>
 								</div>
+							</div>
+						</div>
+						<!--Campos Adicionais-->
+						<div class="form-group">
+							<div class="row">
 								<div class="col-md-3">
 									<span class="input-group-addon">
-										<b>Fabricante/Marca</b>
+										<b>Marca</b>
 									</span>
 									<select class="form-control" name="asset-manufacturer">
 										<option value="">Selecione</option>
@@ -167,11 +189,6 @@ if (isset($_POST['add_asset'])) {
 										<?php endforeach; ?>
 									</select>
 								</div>
-							</div>
-						</div>
-						<!--Campos Adicionais-->
-						<div class="form-group">
-							<div class="row">
 								<div class="col-md-3">
 									<span class="input-group-addon">
 										<b>Fornecedor</b>
@@ -187,7 +204,11 @@ if (isset($_POST['add_asset'])) {
 									<div class="input-group">
 										<input type="date" class="form-control" name="asset-date_aquisition">
 									</div>
-								</div>			
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
 								<div class="col-md-3">
 									<span class="input-group-addon">
 										<b>Nota Fiscal</b>
@@ -204,10 +225,6 @@ if (isset($_POST['add_asset'])) {
 										<input type="text" class="form-control" name="asset-value" placeholder="R$ 0,00 (Opcional)" autocomplete="off">
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="row">
 								<div class="col-md-3">
 									<span class="input-group-addon">
 										<b>Nº de Série</b>
@@ -216,25 +233,25 @@ if (isset($_POST['add_asset'])) {
 										<input type="text" class="form-control" name="asset-number_serial" placeholder="Número de Série" autocomplete="off">
 									</div>
 								</div>
-								<div class="col-md-9">
-									<span class="input-group-addon">
-										<b>Observações</b>
-									</span>
-									<div class="input-group">
-										<input type="text" class="form-control" style="height: 50%" name="asset-obs" placeholder="Observações (Opcional)" autocomplete="off">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Garantia-->
-						<div class="form-group">
-							<div class="row">
 								<div class="col-md-3">
 									<span class="input-group-addon">
 										<i class="glyphicon glyphicon-calendar"></i> <b>Término da Garantia</b>
 									</span>
 									<input type="date" class="form-control" name="asset-warranty">
 									<span style="font-weight: bold; font-size:13.2px;"> * se não houver, deixar em branco.</span>
+								</div>
+							</div>
+						</div>
+						<!--Garantia-->
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-12">
+									<span class="input-group-addon">
+										<b>Observações</b>
+									</span>
+									<div class="input-group">
+										<textarea type="text" class="form-control" style="height: 100px" name="asset-obs" placeholder="Observações (Opcional)" autocomplete="off"></textarea>
+									</div>
 								</div>
 							</div>
 						</div>
