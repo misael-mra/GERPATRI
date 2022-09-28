@@ -61,7 +61,7 @@ if(isset($_POST['description_assets'])){
 					<button type="submit" name="description_assets" class="btn btn-success">CADASTRAR</button>
 					<br><br>
 					<div style="background-color: #f1f2f7; font-size:12px; padding: 15px; border-radius: 8px;">
-					<span>Padrão:<br> - NOME, TIPO, MATERIAL E COR.<br> - TUDO EM CAIXA ALTA.<br> - Nº SEM O ZERO NA FRENTE.<br><br>Preposicçoes padrão: <br> - DE e COM. <br><br> Exemplo:<br> ARMÁRIO DE AÇO COM 2 PORTAS CINZA E AZUL</span><br>
+					<span>Padrão:<br> - NOME, TIPO, MATERIAL E COR.<br> - TUDO EM CAIXA ALTA.<br> - Nº SEM O ZERO NA FRENTE.<br><br>Preposições padrão: <br> - DE e COM. <br><br> Exemplo:<br> ARMÁRIO DE AÇO COM 2 PORTAS CINZA E AZUL</span><br>
 					</div>
 				</form>
 			</div>
