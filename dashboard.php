@@ -133,7 +133,6 @@ var myChart = new Chart(ctx, {
     <?php endforeach; ?>
     ],
     datasets: [{
-      label: 'TODOS',
       data: [
       <?php foreach ($pieChartAssetsPerDomain as $count_desc_domain): ?>
         "<?= $count_desc_domain['count'] ?>",
