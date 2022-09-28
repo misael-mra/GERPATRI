@@ -93,7 +93,7 @@ $recent_transfers    = find_recent_transfer_added('10');
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Transferências pendentes de análise</span>
+          <span>Transferências pendentes de autorização</span>
         </strong>
       </div>
       <div class="panel-body">
