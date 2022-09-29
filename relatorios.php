@@ -139,7 +139,7 @@ endif;
 
 <?php if (!empty($all_assets)) : ?>
   <div class="row">
-    <div class="col-md-12" style="font-size:11.5px;">
+    <div class="col-md-12" style="font-size:10.5px;">
       <table class="table table-border table-striped datatable-button-active">
         <thead>
           <tr class="info">
@@ -189,13 +189,13 @@ endif;
 ?>
 
 <?php
-$scripts .= "
-	$('#sector').hide();
-	$('#transfers').change(function(){
-	  if($('#transfers').val() == 2) $('#sector').show();
-	  else $('#sector').hide();
-	});
-"
+//$scripts .= "
+	//$('#sector').hide();
+	//$('#transfers').change(function(){
+	  //if($('#transfers').val() == 2) $('#sector').show();
+	 // else $('#sector').hide();
+	//});
+//"
 ?>
 
 <?php include_once('layouts/footer.php'); ?>

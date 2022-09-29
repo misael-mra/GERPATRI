@@ -111,7 +111,7 @@ $(document).ready(function() {
     $('.datatable-button-active').DataTable({
         bJQueryUI: true,
         sPaginationType: "full_numbers",
-        pageLength: 10,
+        pageLength: 50,
         lengthMenu: [ [12, 24, 36, -1], [12, 24, 36, "All"] ],
         oLanguage: {
             sLengthMenu: "",
@@ -142,7 +142,8 @@ $(document).ready(function() {
                 extend: 'excelHtml5',
                 exportOptions: {
                     columns: ':visible'
-                }
+                },
+                fontSize: 8,
             },
             {
                 extend: 'pdfHtml5',                
@@ -150,6 +151,7 @@ $(document).ready(function() {
                     columns: ':visible'
                 },
                 orientation: 'landscape',
+                fontSize: 8,
                 pageSize: 'LEGAL'
             },
             {
@@ -157,6 +159,7 @@ $(document).ready(function() {
                 exportOptions: {
                     columns: ':visible'
                 },
+                fontSize: 4,
                 text: 'Imprimir'
             },
             {
