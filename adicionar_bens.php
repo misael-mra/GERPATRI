@@ -243,7 +243,7 @@ if (isset($_POST['add_asset'])) {
 								</div>
 							</div>
 						</div>
-						<!--Garantia-->
+						<!--Observações-->
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-12">
