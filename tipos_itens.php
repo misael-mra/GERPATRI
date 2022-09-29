@@ -71,9 +71,9 @@ if (isset($_POST['types_item'])) {
 				<table class="table table-bordered table-striped table-hover">
 					<thead>
 						<tr>
-							<th class="text-center" style="max-width: 60px;">#</th>
+							<th class="text-center">#</th>
 							<th>Tipos</th>
-							<th class="text-center" style="max-width: 100px;">Ações</th>
+							<th class="text-center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -84,11 +84,11 @@ if (isset($_POST['types_item'])) {
 								<td class="text-center">
 									<div class="btn-group">
 										<a href="editar_tipos_itens.php?id=<?= (int)$t_type_item['id']; ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
-											<span class="glyphicon glyphicon-edit" style="width: 22px;"></span>
+											<span class="glyphicon glyphicon-edit"></span>
 										</a>
 
 										<button title="Remover" type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#launchModal-<?= (int)$t_type_item['id']; ?>">
-											<i class="glyphicon glyphicon-remove" style="width: 22px;"></i>
+											<i class="glyphicon glyphicon-remove"></i>
 										</button>
 										<?php $action = "deletar_tipos_itens.php";
 										$id = (int)$t_type_item['id'];

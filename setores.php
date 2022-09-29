@@ -65,9 +65,9 @@ if(isset($_POST['add_sector'])){
         <table class="table table-bordered table-striped table-hover">
           <thead>
             <tr>
-              <th class="text-center" style="width: 50px;">#</th>
+              <th class="text-center">#</th>
               <th>Setores</th>
-              <th class="text-center" style="width: 100px;">Ações</th>
+              <th class="text-center">Ações</th>
             </tr>
           </thead>
           <tbody>
