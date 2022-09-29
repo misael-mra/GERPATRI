@@ -28,8 +28,8 @@ $assets = find_all_asset();
           <thead>
             <tr>
               <th class="text-center" style="max-width: 40px"> #</th>                
-              <th class="text-center" style="max-width: 60px"> Nº Tombo</th>
-              <th class="text-center" style="max-width: 600px"> Descrição </th>
+              <th class="text-center"> Nº Tombo</th>
+              <th class="text-center"> Descrição </th>
               <th class="text-center"> Tipo </th>
               <th class="text-center none"> Domínio: </th>
               <th class="text-center none"> Fabricante: </th>
