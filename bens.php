@@ -24,7 +24,7 @@ $assets = find_all_asset();
         </div>
       </div>
       <div class="panel-body table-responsive" style="font-size:12px;">
-        <table class="table table-bordered datatable-active"  style="width: 100%;">
+        <table class="table table-bordered datatable-active table-hover"  style="width: 100%;">
           <thead>
             <tr>
               <th class="text-center" style="max-width: 40px"> #</th>                

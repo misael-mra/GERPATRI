@@ -464,3 +464,8 @@ img.img-size-2 {
   width: 125px;
   height: 125px;
 }
+
+.table>tbody>tr>td{
+  padding: 3px;
+  vertical-align: middle;
+}

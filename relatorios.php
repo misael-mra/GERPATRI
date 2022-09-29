@@ -51,7 +51,7 @@ endif;
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-th-large"></i>
                   </span>
-                  <input type="number" class="form-control" name="asset-tombo" placeholder="Tombo">
+                  <input type="text" class="form-control" name="asset-tombo" placeholder="Tombo">
                 </div>
               </div>
               <div class="col-md-6">
@@ -139,8 +139,8 @@ endif;
 
 <?php if (!empty($all_assets)) : ?>
   <div class="row">
-    <div class="col-md-12" style="font-size:10.5px;">
-      <table class="table table-border table-striped datatable-button-active">
+    <div class="col-md-12" style="font-size:12px;">
+      <table class="table table-border table-striped datatable-button-active table-hover">
         <thead>
           <tr class="info">
             <th>Tombo</th>
