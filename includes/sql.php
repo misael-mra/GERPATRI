@@ -198,10 +198,11 @@ function find_all_asset(){
   global $db;
   $sql  =" SELECT a.id, a.tombo, a.obs, a.warranty, d_a.name AS descrip_asset,";
   $sql  .=" m.name AS manufacturer, sit.name AS situation, t_item.name AS type_item,";
-  $sql  .=" a.created_at, u_c.name AS created_user, u_u.name AS updated_user, a.updated_at";
+  $sql  .=" d.name AS domain_name, a.created_at, u_c.name AS created_user, u_u.name AS updated_user, a.updated_at";
   $sql  .=" FROM assets a";
   $sql  .=" INNER JOIN description_assets d_a ON d_a.id = a.description_asset_id";
   $sql  .=" INNER JOIN types_itens t_item ON t_item.id = a.types_item_id";
+  $sql  .=" INNER JOIN domain d ON d.id = a.domain_id";
   $sql  .=" INNER JOIN manufacturers m ON m.id = a.manufacturer_id";
   $sql  .=" INNER JOIN situations sit ON sit.id = a.situation_id";
   $sql  .=" INNER JOIN users u_c ON u_c.id = a.created_by";

@@ -30,7 +30,8 @@ $assets = find_all_asset();
               <th class="text-center" style="max-width: 40px"> #</th>                
               <th class="text-center" style="max-width: 60px"> Nº Tombo</th>
               <th class="text-center" style="max-width: 600px"> Descrição </th>
-              <th class="text-center"> Tipo </th>
+              <th class="text-center none"> Tipo </th>
+              <th class="text-center none"> Domínio: </th>
               <th class="text-center none"> Fabricante: </th>
               <th class="text-center none"> Situação: </th>
               <th class="text-center none"> Observação: </th>
@@ -48,7 +49,8 @@ $assets = find_all_asset();
                 <td class="text-center"><?= count_id();?></td>
                 <td class="text-center"><?= remove_junk($asset['tombo']); ?></td>
                 <td><?= remove_junk($asset['descrip_asset']); ?></td>
-                <td class="text-center"><?= remove_junk($asset['type_item']); ?></td>                
+                <td class="text-center"><?= remove_junk($asset['type_item']); ?></td>
+                <td class="text-center"><?= remove_junk($asset['domain_name']); ?></td>                
                 <td class="text-center"><?= remove_junk($asset['manufacturer']); ?></td>                
                 <td class="text-center"><?= remove_junk($asset['situation']); ?></td>                
                 <td><?= remove_junk($asset['obs']); ?></td>
