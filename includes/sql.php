@@ -333,40 +333,21 @@ function find_all_transfer_history(){
 /*--------------------------------------------------------------*/
 /* Relatórios: Função de emissão de relatórios
 /*--------------------------------------------------------------*/
-function issue_reports($tombo, $specifications, $responsible_user, $transfer, $description_asset, $sector, $manufacturer, $situation){
+function issue_reports($tombo, $description_asset, $sector, $manufacturer, $situation){
   global $db;
-  $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,t.responsible_user,s.name AS sector,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
-  LEFT JOIN transfers t ON t.asset_id = e.id 
-  LEFT JOIN sectors s ON s.id = t.sector_id 
-  INNER JOIN manufacturers m ON m.id = e.manufacturer_id 
-  INNER JOIN situations sit ON sit.id = e.situation_id 
-  INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id WHERE e.id ";
+  $sql  = "SELECT a.tombo, a.obs, a.warranty, s.name AS sector, m.name AS manufacturer, sit.name AS situation, d_a.name AS descrip_assets, d.name AS domain_asset FROM assets a 
+  INNER JOIN sectors s ON s.id = a.sector_id 
+  INNER JOIN manufacturers m ON m.id = a.manufacturer_id
+  INNER JOIN domain d ON d.id = a.domain_id  
+  INNER JOIN situations sit ON sit.id = a.situation_id 
+  INNER JOIN description_assets d_a ON d_a.id = a.description_asset_id WHERE a.id ";
 
-  // Procurar bens na categoria de "Somente Emprestados"
-  if($transfer === "2"){
-    $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,t.responsible_user,s.name AS sector,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
-    INNER JOIN transfers t ON t.asset_id = e.id 
-    INNER JOIN sectors s ON s.id = t.sector_id 
-    INNER JOIN manufacturers m ON m.id = e.manufacturer_id 
-    INNER JOIN situations sit ON sit.id = e.situation_id 
-    INNER JOIN types_itens t_e ON t_e.id = e.description_assets_id WHERE e.id ";
-
-  // Procurar bens na categoria de "Somente não Emprestados"
-  } elseif($transfer === "3") {
-    $sql  = "SELECT e.tombo,e.specifications,e.obs,e.warranty,m.name AS manufacturer,sit.name AS situation,t_e.name AS description_assets FROM assets e 
-    INNER JOIN manufacturers m ON m.id = e.manufacturer_id 
-    INNER JOIN situations sit ON sit.id = e.situation_id 
-    INNER JOIN description_assets t_e ON t_e.id = e.description_asset_id 
-    WHERE e.id NOT IN (SELECT asset_id FROM transfers) ";
-  }
-
-  if(!empty($tombo)) $sql .= " AND e.tombo LIKE '%$tombo%'";
-  if(!empty($specifications)) $sql .= " AND e.specifications LIKE '%$specifications%'";
-  if(!empty($responsible_user) && $transfer !== "3") $sql .= " AND t.responsible_user LIKE '%$responsible_user%'";
-  if(!empty($description_asset)) $sql .= " AND e.description_asset_id = '$description_asset'";
-  if(!empty($sector) && $transfer !== "3") $sql .= " AND t.sector_id = $sector";
-  if(!empty($manufacturer)) $sql .= " AND e.manufacturer_id = '$manufacturer'";
-  if(!empty($situation)) $sql .= " AND e.situation_id = '$situation'";
+  if(!empty($tombo)) $sql .= " AND a.tombo LIKE '%$tombo%'";
+  //if(!empty($domain)) $sql .= " AND a.domain_id LIKE '%$domain%'";
+  if(!empty($description_asset)) $sql .= " AND a.description_asset_id = '$description_asset'";
+  if(!empty($sector)) $sql .= " AND t.sector_id = '$sector'";
+  if(!empty($manufacturer)) $sql .= " AND a.manufacturer_id = '$manufacturer'";
+  if(!empty($situation)) $sql .= " AND a.situation_id = '$situation'";
 
   return find_by_sql($sql);
 }
