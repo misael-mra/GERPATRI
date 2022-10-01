@@ -354,7 +354,7 @@ function issue_reports($tombo, $description_asset, $types_item, $sector, $manufa
 
 
 /*--------------------------------------------------------------*/
-/* Criar gráfico de pizza para Dashboard com todos os bens
+/* Criar gráfico de pizza para Dashboard com todos os bens separados por unidade de dominio
 /*--------------------------------------------------------------*/
 function pieChartAssetPerDomain(){
   global $db;
