@@ -333,19 +333,19 @@ function find_all_transfer_history(){
 /*--------------------------------------------------------------*/
 /* Relatórios: Função de emissão de relatórios
 /*--------------------------------------------------------------*/
-function issue_reports($tombo, $description_asset, $sector, $manufacturer, $situation){
+function issue_reports($tombo, $description_asset, $types_item, $sector, $manufacturer, $situation){
   global $db;
-  $sql  = "SELECT a.tombo, a.obs, a.warranty, s.name AS sector, m.name AS manufacturer, sit.name AS situation, d_a.name AS descrip_assets, d.name AS domain_asset FROM assets a 
+  $sql  = "SELECT a.tombo, a.obs, a.warranty, s.name AS sector, m.name AS manufacturer, sit.name AS situation, d_a.name AS descrip_assets, t_i.name AS type_item FROM assets a 
   INNER JOIN sectors s ON s.id = a.sector_id 
   INNER JOIN manufacturers m ON m.id = a.manufacturer_id
-  INNER JOIN domain d ON d.id = a.domain_id  
+  INNER JOIN types_itens t_i ON t_i.id = a.types_item_id  
   INNER JOIN situations sit ON sit.id = a.situation_id 
   INNER JOIN description_assets d_a ON d_a.id = a.description_asset_id WHERE a.id ";
 
   if(!empty($tombo)) $sql .= " AND a.tombo LIKE '%$tombo%'";
-  //if(!empty($domain)) $sql .= " AND a.domain_id LIKE '%$domain%'";
+  if(!empty($types_item)) $sql .= " AND a.types_item_id = '$types_item'";
   if(!empty($description_asset)) $sql .= " AND a.description_asset_id = '$description_asset'";
-  if(!empty($sector)) $sql .= " AND t.sector_id = '$sector'";
+  if(!empty($sector)) $sql .= " AND a.sector_id = '$sector'";
   if(!empty($manufacturer)) $sql .= " AND a.manufacturer_id = '$manufacturer'";
   if(!empty($situation)) $sql .= " AND a.situation_id = '$situation'";
 
