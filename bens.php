@@ -24,11 +24,11 @@ $assets = find_all_asset();
         </div>
       </div>
       <div class="panel-body table-responsive" style="font-size:12px;">
-        <table class="table table-bordered datatable-active"  style="width: 100%;">
+        <table class="table table-bordered datatable-active table-hover"  style="width: 100%;">
           <thead>
             <tr>
-              <th class="text-center" style="max-width: 40px"> #</th>                
-              <th class="text-center"> Nº Tombo</th>
+              <th class="text-center" style="max-width: 60px"> #</th>                
+              <th class="text-center" style="max-width: 80px"> Nº Tombo</th>
               <th class="text-center"> Descrição </th>
               <th class="text-center"> Tipo </th>
               <th class="text-center none"> Domínio: </th>
@@ -49,7 +49,7 @@ $assets = find_all_asset();
                 <td class="text-center"><?= count_id();?></td>
                 <td class="text-center"><?= remove_junk($asset['tombo']); ?></td>
                 <td><?= remove_junk($asset['descrip_asset']); ?></td>
-                <td class="text-center"><?= remove_junk($asset['type_item']); ?></td>
+                <td><?= remove_junk($asset['type_item']); ?></td>
                 <td class="text-center"><?= remove_junk($asset['domain_name']); ?></td>                
                 <td class="text-center"><?= remove_junk($asset['manufacturer']); ?></td>                
                 <td class="text-center"><?= remove_junk($asset['situation']); ?></td>                
