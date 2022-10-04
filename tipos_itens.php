@@ -52,7 +52,7 @@ if (isset($_POST['types_item'])) {
 			<div class="panel-body">
 				<form method="post" action="tipos_itens.php">
 					<div class="form-group">
-						<input type="text" class="form-control" name="tipos_itens-name" placeholder="Nova descrição" required autocomplete="off">
+						<input type="text" class="form-control" name="tipos_itens-name" placeholder="Novo tipo" required autocomplete="off">
 					</div>
 					<button type="submit" name="types_item" class="btn btn-success">CADASTRAR</button>
 				</form>
@@ -83,7 +83,7 @@ if (isset($_POST['types_item'])) {
 								<td><?= remove_junk(ucfirst($t_type_item['name'])); ?></td>
 								<td class="text-center">
 									<div class="btn-group">
-										<a href="editar_tipos_itens.php?id=<?= (int)$t_type_item['id']; ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
+										<a href="editar_tipos_itens.php?id=<?= (int)$t_type_item['id']; ?>" class="btn btn-xs btn-primary" data-toggle="tooltip" title="Editar">
 											<span class="glyphicon glyphicon-edit"></span>
 										</a>
 

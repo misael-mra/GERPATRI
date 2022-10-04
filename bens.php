@@ -66,14 +66,8 @@ $assets = find_all_asset();
                 <td class="text-center"><?php if(!empty($asset['updated_at'])) echo strftime('%d/%m/%Y %H:%M', strtotime($asset['updated_at'])); ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="editar_bens.php?id=<?= (int)$asset['id'];?>" class="btn btn-xs btn-info"  title="Editar" data-toggle="tooltip">
+                    <a href="editar_bens.php?id=<?= (int)$asset['id'];?>" class="btn btn-xs btn-primary"  title="Editar" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <a href="adicionar_transferencia.php?id=<?= (int)$asset['tombo'];?>" class="btn btn-xs btn-primary"  title="Transferir" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-transfer"></span>
-                    </a>
-                    <a href="adicionar_baixa.php?id=<?= (int)$asset['id'];?>" class="btn btn-xs btn-warning"  title="Baixar" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-circle-arrow-down"></span>
                     </a>
                     <button title="Remover" type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#launchModal-<?= (int)$asset['id'];?>">
                       <i class="glyphicon glyphicon-remove"></i>

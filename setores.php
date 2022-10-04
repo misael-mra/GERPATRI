@@ -77,7 +77,7 @@ if(isset($_POST['add_sector'])){
                 <td><?= remove_junk(ucfirst($sec['name'])); ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="editar_setor.php?id=<?= (int)$sec['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
+                    <a href="editar_setor.php?id=<?= (int)$sec['id'];?>"  class="btn btn-xs btn-primary" data-toggle="tooltip" title="Editar">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>                        
 

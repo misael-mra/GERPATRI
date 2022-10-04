@@ -76,7 +76,7 @@ if(isset($_POST['add_manufacturer'])){
                 <td><?= remove_junk(ucfirst($man['name'])); ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="editar_fabricante.php?id=<?= (int)$man['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
+                    <a href="editar_fabricante.php?id=<?= (int)$man['id'];?>"  class="btn btn-xs btn-primary" data-toggle="tooltip" title="Editar">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
 
