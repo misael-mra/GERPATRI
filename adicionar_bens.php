@@ -92,7 +92,7 @@ if (isset($_POST['add_asset'])) {
 							<div class="row">
 								<div class="col-md-2">
 									<span class="input-group-addon">
-										<b>*Tombo</b>
+										<b>Tombo<span class="required-tag"> *</span></b>
 									</span>
 									<div class="input-group">
 										<input type="text" class="form-control" name="asset-tombo" placeholder="Nº Tombo" required autocomplete="off">
@@ -100,7 +100,7 @@ if (isset($_POST['add_asset'])) {
 								</div>
 								<div class="col-md-2 text-center">
 									<span class="input-group-addon">
-										<b>*Domínio</b>
+										<b>Domínio<span class="required-tag"> *</span></b>
 									</span>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="asset-domain" value="1" id="asset-domain1" checked>
@@ -115,7 +115,7 @@ if (isset($_POST['add_asset'])) {
 								</div>
 								<div class="col-md-8">
 									<span class="input-group-addon">
-										<b>*Descrição do bem</b>
+										<b>Descrição do bem<span class="required-tag"> *</span></b>
 									</span>
 									<select class="form-control" name="asset-description" required>
 										<option value="">Selecione</option>
@@ -131,7 +131,7 @@ if (isset($_POST['add_asset'])) {
 							<div class="row">
 								<div class="col-md-4">
 									<span class="input-group-addon">
-										<b>*Tipo</b>
+										<b>Tipo<span class="required-tag"> *</span></b>
 									</span>
 									<select class="form-control" name="asset-type_item" required>
 										<option value="">Selecione</option>
@@ -143,7 +143,7 @@ if (isset($_POST['add_asset'])) {
 								</div>
 								<div class="col-md-4">
 									<span class="input-group-addon">
-										<b>*Setor</b>
+										<b>Setor<span class="required-tag"> *</span></b>
 									</span>
 									<select class="form-control" name="asset-sector" required>
 										<option value="">Selecione</option>
@@ -180,10 +180,10 @@ if (isset($_POST['add_asset'])) {
 								</div>
 								<div class="col-md-3">
 									<span class="input-group-addon">
-										<b>Situação Atual</b>
+										<b>Situação Atual<span class="required-tag"> *</span></b>
 									</span>
 									<select class="form-control" name="asset-situation" required>
-										<option value="">Selecione*</option>
+										<option value="">Selecione</option>
 										<?php foreach ($all_situation as $sit) : ?>
 											<option value="<?= (int)$sit['id'] ?>">
 												<?= $sit['name'] ?></option>

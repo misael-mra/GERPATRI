@@ -60,7 +60,7 @@ endif;
                     <i class="glyphicon glyphicon-th-large"></i>
                   </span>
                   <select class="form-control" name="asset-description">
-                    <option value="">Descrição</option>
+                    <option value="">Todos</option>
                     <?php foreach ($all_description_asset as $desc_asset) : ?>
                       <option value="<?= (int)$desc_asset['id'] ?>">
                         <?= $desc_asset['name'] ?></option>
@@ -87,7 +87,7 @@ endif;
               </div>
               <div class="col-md-4">
                 <select class="form-control" name="asset-types_item">
-                  <option value="">Tipo</option>
+                  <option value="">Todos os tipos</option>
                   <?php foreach ($all_types_itens as $t_itens) : ?>
                     <option value="<?= (int)$t_itens['id'] ?>">
                       <?= $t_itens['name'] ?></option>
@@ -96,7 +96,7 @@ endif;
               </div>
               <div class="col-md-4">
                 <select id="sector" class="form-control" name="asset-sector">
-                  <option value="">Setor</option>
+                  <option value="">Todos os setores</option>
                   <?php foreach ($all_sector as $sector) : ?>
                     <option value="<?= (int)$sector['id'] ?>">
                       <?= $sector['name'] ?></option>
@@ -119,7 +119,7 @@ endif;
               </div>
               <div class="col-md-4">
                 <select class="form-control" name="asset-situation">
-                  <option value="">Situação</option>
+                  <option value="">Todas situações</option>
                   <?php foreach ($all_situation as $sit) : ?>
                     <option value="<?= (int)$sit['id'] ?>">
                       <?= $sit['name'] ?></option>

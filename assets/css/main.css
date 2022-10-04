@@ -469,3 +469,8 @@ img.img-size-2 {
   padding: 3px;
   vertical-align: middle;
 }
+
+.required-tag{
+  color: rgb(250, 0, 0);
+  font-size: 15px;
+}
