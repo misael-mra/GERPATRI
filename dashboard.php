@@ -110,7 +110,7 @@ $recent_transfers    = find_recent_transfer_added('10');
               <tr>
                 <td><?= remove_junk(first_character($recent_transfer['tombo'])); ?></td>
                 <td><?= remove_junk(ucfirst($recent_transfer['descrip_asset'])); ?></td>
-                <td><?= remove_junk(first_character($recent_transfer['sector'])); ?></td>
+                <td><?= remove_junk(ucfirst($recent_transfer['sector'])); ?></td>
               </tr>
             <?php endforeach; ?>
           </tbody>

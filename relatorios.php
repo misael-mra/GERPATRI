@@ -60,7 +60,7 @@ endif;
                     <i class="glyphicon glyphicon-th-large"></i>
                   </span>
                   <select class="form-control" name="asset-description">
-                    <option value="">Todos</option>
+                    <option value="">Todas as descrições</option>
                     <?php foreach ($all_description_asset as $desc_asset) : ?>
                       <option value="<?= (int)$desc_asset['id'] ?>">
                         <?= $desc_asset['name'] ?></option>
@@ -68,23 +68,10 @@ endif;
                   </select>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-th-large"></i>
-                  </span>
-                  <input type="text" class="form-control" name="asset-responsible_user" placeholder="Usuário Responsável">
-                </div>
-              </div>
             </div>
           </div>
           <div class="form-group">
             <div class="row">
-              <div class="col-md-4">
-                <select id="transfers" class="form-control" name="asset-transfer">
-                  <option value="1">Todos Equipamentos</option>
-                </select>
-              </div>
               <div class="col-md-4">
                 <select class="form-control" name="asset-types_item">
                   <option value="">Todos os tipos</option>
@@ -110,7 +97,7 @@ endif;
             <div class="row">
               <div class="col-md-4">
                 <select class="form-control" name="asset-manufacturer">
-                  <option value="">Fabricante</option>
+                  <option value="">Todos os fabricantes</option>
                   <?php foreach ($all_manufacturer as $man) : ?>
                     <option value="<?= (int)$man['id'] ?>">
                       <?= $man['name'] ?></option>
@@ -119,7 +106,7 @@ endif;
               </div>
               <div class="col-md-4">
                 <select class="form-control" name="asset-situation">
-                  <option value="">Todas situações</option>
+                  <option value="">Todas as situações</option>
                   <?php foreach ($all_situation as $sit) : ?>
                     <option value="<?= (int)$sit['id'] ?>">
                       <?= $sit['name'] ?></option>
@@ -181,7 +168,7 @@ endif;
 elseif (isset($all_assets)) :
   $output  = "<div class=\"alert alert-danger\">";
   $output .= "<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>";
-  $output .= "Desculpe, nenhum equipamento encontrado!";
+  $output .= "Desculpe, nenhum bem encontrado!";
   $output .= "</div>";
   echo $output;
 endif;
