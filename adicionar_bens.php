@@ -256,7 +256,7 @@ if (isset($_POST['add_asset'])) {
 								</div>
 							</div>
 						</div>
-						<button type="submit" name="add_asset" class="btn btn-success">CADASTRAR</button>
+						<button type="submit" name="add_asset" class="btn btn-success">FINALIZAR CADASTRO</button>
 					</form>
 				</div>
 			</div>
