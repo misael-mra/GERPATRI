@@ -102,12 +102,12 @@ if (isset($_POST['add_asset'])) {
 									<span class="input-group-addon">
 										<b>Unidade de Domínio<span class="required-tag"> *</span></b>
 									</span>
-									<div class="form-check form-check-inline">
+									<div class="form-check form-check-inline" style="margin-top:6px;font-size:14px;">
 										<input class="form-check-input" type="radio" name="asset-domain" value="1" id="asset-domain1" checked>
 										<label class="form-check-label" for="asset-domain1">
 											ISGH
 										</label>
-										<input class="form-check-input" type="radio" name="asset-domain" value="2" id="asset-domain2" style="margin-left:15%;">
+										<input class="form-check-input" type="radio" name="asset-domain" value="2" id="asset-domain2" style="margin-left:15%;margin-top: 6px;">
 										<label class="form-check-label" for="asset-domain2">
 											SESA
 										</label>
