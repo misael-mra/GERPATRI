@@ -100,7 +100,7 @@ if (isset($_POST['add_asset'])) {
 								</div>
 								<div class="col-md-2 text-center">
 									<span class="input-group-addon">
-										<b>Domínio<span class="required-tag"> *</span></b>
+										<b>Unidade de Domínio<span class="required-tag"> *</span></b>
 									</span>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="asset-domain" value="1" id="asset-domain1" checked>
@@ -155,10 +155,10 @@ if (isset($_POST['add_asset'])) {
 								</div>
 								<div class="col-md-4">
 									<span class="input-group-addon">
-										<b>Localização</b>
+										<b>Localização<span class="required-tag"> *</span></b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="asset-localization" placeholder="Localização" autocomplete="off">
+										<input type="text" class="form-control" name="asset-localization" placeholder="Exemplo: Sala 01" autocomplete="off" required>
 									</div>
 								</div>
 							</div>
@@ -168,7 +168,7 @@ if (isset($_POST['add_asset'])) {
 							<div class="row">
 								<div class="col-md-3">
 									<span class="input-group-addon">
-										<b>Marca</b>
+										<b>Fabricante | Marca</b>
 									</span>
 									<select class="form-control" name="asset-manufacturer">
 										<option value="">Selecione</option>
