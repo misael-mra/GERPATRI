@@ -242,7 +242,7 @@ if (isset($_POST['add_asset'])) {
 										<i class="glyphicon glyphicon-calendar"></i> <b>Término da Garantia</b>
 									</span>
 									<input type="date" class="form-control" name="asset-warranty">
-									<span style="font-weight: bold; font-size:13.2px;"> * se não houver, deixar em branco.</span>
+									<span style="font-weight: bold; font-size:13px;"> * se não houver, deixar em branco.</span>
 								</div>
 							</div>
 						</div>
