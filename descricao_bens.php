@@ -91,12 +91,12 @@ if(isset($_POST['description_assets'])){
 								<td><?= remove_junk(ucfirst($desc_asset['name'])); ?></td>
 								<td class="text-center">
 									<div class="btn-group">
-										<a href="editar_descricao_bens.php?id=<?= (int)$desc_asset['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
-											<span class="glyphicon glyphicon-edit" style="width: 22px;"></span>
+										<a href="editar_descricao_bens.php?id=<?= (int)$desc_asset['id'];?>"  class="btn btn-xs btn-primary" data-toggle="tooltip" title="Editar">
+											<span class="glyphicon glyphicon-edit"></span>
 										</a>
 
 										<button title="Remover" type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#launchModal-<?= (int)$desc_asset['id'];?>">
-											<i class="glyphicon glyphicon-remove" style="width: 22px;"></i>
+											<i class="glyphicon glyphicon-remove"></i>
 										</button>
 										<?php $action="deletar_descricao_bens.php"; $id=(int)$desc_asset['id']; include('layouts/modal-confirmacao.php'); ?>
 									</div>
