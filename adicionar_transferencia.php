@@ -41,7 +41,7 @@ if(isset($_POST['add_transfer'])){
 <div class="row">
   <div class="col-md-3">
     <?= display_msg($msg); ?>
-    <form method="post" action="ajax.php" autocomplete="off" id="sug-form">
+    <form method="post" action="ajax_transferencia.php" autocomplete="off" id="sug-form">
       <div class="form-group">
         <div class="input-group">
           <input type="text" id="sug_input" class="form-control" name="tombo"  placeholder="Informe o nº tombo">

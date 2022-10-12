@@ -12,7 +12,7 @@ function suggetion() {
            // process the form
            $.ajax({
                type        : 'POST',
-               url         : 'ajax.php',
+               url         : 'ajax_transferencia.php',
                data        : formData,
                dataType    : 'json',
                encode      : true
@@ -42,26 +42,91 @@ function suggetion() {
          e.preventDefault();
      });
 
+//baixa patrimonial
+     $('#sug_input').keyup(function(e) {
+
+        var formData = {
+            'asset_tombo' : $('input[name=tombo]').val()
+        };
+
+        if(formData['asset_tombo'].length >= 1){
+
+          // process the form
+          $.ajax({
+              type        : 'POST',
+              url         : 'ajax_baixa.php',
+              data        : formData,
+              dataType    : 'json',
+              encode      : true
+          })
+              .done(function(data) {
+                  //console.log(data);
+                  $('#result').html(data).fadeIn();
+                  $('#result li').click(function() {
+
+                    $('#sug_input').val($(this).text());
+                    $('#result').fadeOut(500);
+
+                  });
+
+                  $("#sug_input").blur(function(){
+                    $("#result").fadeOut(500);
+                  });
+
+              });
+
+        } else {
+
+          $("#result").hide();
+
+        };
+
+        e.preventDefault();
+    });
+
 }
 
 $('#sug-form').submit(function(e) {
+    var formData = {
+        'a_tombo' : $('input[name=tombo]').val()
+    };
+      // process the form
+      $.ajax({
+          type        : 'POST',
+          url         : 'ajax_transferencia.php',
+          data        : formData,
+          dataType    : 'json',
+          encode      : true
+      })
+          .done(function(data) {
+              //console.log(data);
+              $('#asset_info').html(data).show();
+
+          }).fail(function() {
+              $('#asset_info').html(data).show();
+          });
+    e.preventDefault();
+});
+
+
+$('#sug-form-off').submit(function(e) {
       var formData = {
           'a_tombo' : $('input[name=tombo]').val()
       };
         // process the form
         $.ajax({
             type        : 'POST',
-            url         : 'ajax.php',
+            url         : 'ajax_baixa.php',
             data        : formData,
             dataType    : 'json',
             encode      : true
         })
             .done(function(data) {
                 //console.log(data);
-                $('#asset_info').html(data).show();
+                $('#asset_info_off').html(data).show();
 
             }).fail(function() {
-                $('#asset_info').html(data).show();
+                $('#asset_info_off').html(data).show();
             });
       e.preventDefault();
 });

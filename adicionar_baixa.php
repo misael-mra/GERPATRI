@@ -41,7 +41,7 @@ if(isset($_POST['add_asset_off'])){
 <div class="row">
   <div class="col-md-3">
     <?= display_msg($msg); ?>
-    <form method="post" action="ajax.php" autocomplete="off" id="sug-form">
+    <form method="post" action="ajax_baixa.php" autocomplete="off" id="sug-form-off">
       <div class="form-group">
         <div class="input-group">
           <input type="text" id="sug_input" class="form-control" name="tombo"  placeholder="Informe o nº tombo">
@@ -78,7 +78,7 @@ if(isset($_POST['add_asset_off'])){
               <th class="text-center"> Data da Baixa</th>
               <th class="text-center"> Ação</th>
             </thead>
-            <tbody  id="asset_info"> </tbody>
+            <tbody  id="asset_info_off"> </tbody>
           </table>
         </form>
       </div>
