@@ -70,7 +70,7 @@ if(isset($_POST['a_tombo']) && strlen($_POST['a_tombo']))
 
     }
   } else {
-    $html ='<tr><td>Tombo não encontrado ou o bem já foi transferido.</td></tr>';
+    $html ='<tr><td>Tombo não encontrado ou o bem já foi baixado.</td></tr>';
   }
 
   echo json_encode($html);

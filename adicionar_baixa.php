@@ -27,7 +27,7 @@ if(isset($_POST['add_asset_off'])){
       $session->msg('s',"Baixa patrimonial realizada com sucesso!");
       redirect('adicionar_baixa.php', false);
     } else {
-      $session->msg('d','Desculpe, falha ao realizar a baixa patrimonial');
+      $session->msg('d','Desculpe, falha ao realizar a baixa patrimonial, entre em contato com NTI-HGWA');
       redirect('adicionar_baixa.php', false);
     }
   } else {
