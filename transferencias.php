@@ -52,7 +52,7 @@ $transfers = find_all_transfer();
                 <td class="text-center"><?php if(!empty($transfer['updated_at'])) echo strftime('%d/%m/%Y %H:%M', strtotime($transfer['updated_at'])); ?></td>                
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="editar_transferencia.php?id=<?= (int)$transfer['id'];?>" class="btn btn-xs btn-warning"  title="Editar" data-toggle="tooltip">
+                    <a href="editar_transferencia.php?id=<?= (int)$transfer['id'];?>" class="btn btn-xs btn-primary"  title="Editar" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
                     <button title="Finalizar" type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#launchModal-<?= (int)$transfer['id'];?>">

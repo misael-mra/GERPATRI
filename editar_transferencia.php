@@ -13,26 +13,27 @@ if(!$transfer){
   redirect('transferencias.php');
 }
 
-$equipment = find_by_id('equipments',$transfer['equipment_id']);
+$asset = find_by_id('assets', $transfer['asset_id']);
+$desc_asset = find_by_id('description_assets', $asset['description_asset_id']);
+$resp_user = find_by_id('users', $transfer['created_by']);
 
 if(isset($_POST['update_transfer'])){
-  $req_fields = array('tombo','sector','responsible_user','transfer_date');
+  $req_fields = array('tombo','sector','transfer_date');
   if(empty($errors)){
-    $e_r_u     = $db->escape($_POST['responsible_user']);
-    $e_sector  = $db->escape((int) $_POST['sector']);
-    $e_t_date      = $db->escape($_POST['transfer_date']);
-    $e_user_update = (int) $_SESSION['user_id'];
-    $e_date_update = make_date();
+    $a_sector  = $db->escape((int) $_POST['sector']);
+    $a_t_date      = $db->escape($_POST['transfer_date']);
+    $a_user_update = (int) $_SESSION['user_id'];
+    $a_date_update = make_date();
 
     $sql  = "UPDATE transfers SET";
-    $sql .= " responsible_user='{$e_r_u}',sector_id={$e_sector},transfer_date='{$e_t_date}',updated_by={$e_user_update}, updated_at='{$e_date_update}'";
+    $sql .= " sector_id={$a_sector}, transfer_date='{$a_t_date}', updated_by={$a_user_update}, updated_at='{$a_date_update}'";
     $sql .= " WHERE id ='{$transfer['id']}'";
     $result = $db->query($sql);
     if( $result && $db->affected_rows() === 1){
-      $session->msg('s','Transferência de tombo '. $equipment['tombo'] .' foi alterado com sucesso!');
+      $session->msg('s','Transferência de tombo '. $asset['tombo'] .' foi alterado com sucesso!');
       redirect('transferencias.php?id='.$transfer['id'], false);
     } else {
-      $session->msg('d','Desculpe, falha ao alterar a transferência.');
+      $session->msg('d','Desculpe, falha ao alterar a transferência, entre em contato com NTI-HGWA.');
       redirect('transferencias.php', false);
     }
   } else {
@@ -58,31 +59,30 @@ if(isset($_POST['update_transfer'])){
           <span>Editar Transferência</span>
         </strong>
         <div class="pull-right">
-          <a href="transferencias.php" class="btn btn-danger">Listar transferências</a>
+          <a href="transferencias.php" class="btn btn-danger">cancelar</a>
         </div>
       </div>
       <div class="panel-body">
         <table class="table table-bordered">
           <thead>
             <th> Tombo </th>
-            <th> Especificações </th>
+            <th> Descrição do bem </th>
             <th> Usuário Responsável </th>
             <th> Setor </th>
             <th> Data da transferência </th>
-            <th> Ação</th>
+            <th class="text-center"> Ação</th>
           </thead>
-          <tbody  id="equipment_info">
+          <tbody  id="asset_info">
             <tr>
               <form method="post" action="editar_transferencia.php?id=<?= (int)$transfer['id']; ?>">
                 <td id="e_tombo">
-                  <input type="text" class="form-control" id="sug_input" name="tombo" value="<?= remove_junk($equipment['tombo']); ?>" readonly>
-                  <div id="result" class="list-group"></div>
+                  <input type="text" class="form-control" id="sug_input" name="tombo" value="<?= remove_junk($asset['tombo']); ?>" disabled>
                 </td>
                 <td>
-                  <input type="text" class="form-control" name="specifications" value="<?= remove_junk($equipment['specifications']); ?>" readonly>
+                  <input type="text" class="form-control" name="description_asset" value="<?= remove_junk($desc_asset['name']); ?>" disabled>
                 </td>
                 <td>
-                  <input type="text" class="form-control" name="responsible_user" value="<?= remove_junk($transfer['responsible_user']); ?>" required>
+                  <input type="text" class="form-control" name="responsible_user" value="<?= remove_junk($resp_user['name']); ?>" disabled>
                 </td>
                 <td>
                   <select class="form-control" name="sector" required>
