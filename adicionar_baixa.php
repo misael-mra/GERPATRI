@@ -11,7 +11,7 @@ if(isset($_POST['add_asset_off'])){
   $req_fields = array('a_id','sector','responsible_user','transfer_date');
   if(empty($errors)){
     $a_id      = $db->escape((int) $_POST['a_id']);
-    $a_r_u     = (int) $_SESSION['responsible_user'];
+    $a_r_u     = (int) $_SESSION['user_id'];
     $a_sector  = $db->escape((int) $_POST['sector']);
     $a_t_date      = $db->escape($_POST['transfer_date']);
     $a_user_create = (int) $_SESSION['user_id'];
