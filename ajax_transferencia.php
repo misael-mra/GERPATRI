@@ -63,7 +63,7 @@ if(isset($_POST['a_tombo']) && strlen($_POST['a_tombo']))
       $html  .= "</td>";
 
       $html  .= "<td class=\"text-center\">";
-      $html  .= "<button type=\"submit\" name=\"add_transfer\" class=\"btn btn-primary\">Registrar Transferência</button>";
+      $html  .= "<button type=\"submit\" name=\"add_transfer\" class=\"btn btn-warning\">Registrar Transferência</button>";
       $html  .= "</td>";
 
       $html  .= "</tr>";
