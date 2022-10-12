@@ -15,7 +15,7 @@ $all_sector = find_all('sectors');
 <?php
 if (isset($_POST['add_asset'])) {
 	$req_fields = array(
-		'asset-tombo','asset-domain', 'asset-description', 'asset-type_item', 'asset-sector', 'asset-localization', 'asset-manufacturer',
+		'asset-tombo', 'asset-domain', 'asset-description', 'asset-type_item', 'asset-sector', 'asset-localization', 'asset-manufacturer',
 		'asset-situation', 'asset-provider', 'asset-number_nf', 'asset-date_aquisition', 'asset-value', 'asset-number_serial', 'asset-obs'
 	);
 	if (empty($errors)) {
@@ -223,7 +223,10 @@ if (isset($_POST['add_asset'])) {
 										<b>Valor</b>
 									</span>
 									<div class="input-group">
-										<input type="text" class="form-control" name="asset-value" placeholder="R$ 0,00 (Opcional)" autocomplete="off">
+									<span class="input-group-addon">
+									<b>R$</b>
+									</span>
+										<input type="text" class="form-control" name="asset-value" id="currency" placeholder="R$ 0,00 (Opcional)" autocomplete="off" onkeyup="formatCurrency();">
 									</div>
 								</div>
 								<div class="col-md-3">
